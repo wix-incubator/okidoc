@@ -1,11 +1,11 @@
-import * as _ from 'lodash';
+import { isString, isEmpty, map, get, has, find } from 'lodash';
 
 export function renderDescription(node) {
-  if (_.isString(node)) {
+  if (isString(node)) {
     return node;
   }
 
-  if (_.isEmpty(node)) {
+  if (isEmpty(node)) {
     return '';
   }
 
@@ -17,15 +17,15 @@ export function renderDescription(node) {
     return `<code>${node.value}</code>`;
   }
 
-  return _.map(node.children, children => renderDescription(children)).join('');
+  return map(node.children, children => renderDescription(children)).join('');
 }
 
 export function renderPossibleValues(param) {
-  if (!_.get(param.type, 'elements')) {
+  if (!has(param.type, 'elements')) {
     return '';
   }
 
-  const possibleValues = _.map(
+  const possibleValues = map(
     param.type.elements,
     element => `<code>${element.value}</code>`,
   ).join(', ');
@@ -34,14 +34,14 @@ export function renderPossibleValues(param) {
 }
 
 export function renderParams(params) {
-  if (_.isEmpty(params)) {
+  if (isEmpty(params)) {
     return null;
   }
 
-  return _.map(params, param => {
+  return map(params, param => {
     return {
       name: param.name,
-      type: _.get(param.type, 'name'),
+      type: get(param.type, 'name'),
       description:
         renderDescription(param.description) + renderPossibleValues(param),
     };
@@ -49,26 +49,23 @@ export function renderParams(params) {
 }
 
 export function renderReturns(returns, interfaces) {
-  if (_.isEmpty(returns)) {
+  if (isEmpty(returns)) {
     return null;
   }
 
   const returnName = returns[0].type.name;
-  const localInterface = _.find(interfaces, ({ name }) => name === returnName);
+  const localInterface = find(interfaces, ({ name }) => name === returnName);
 
   if (!localInterface) {
     return;
   }
 
-  const properties = _.map(localInterface.properties, property => {
-    const tag = _.find(
-      localInterface.tags,
-      ({ name }) => name === property.name,
-    );
+  const properties = map(localInterface.properties, property => {
+    const tag = find(localInterface.tags, ({ name }) => name === property.name);
 
     return {
       ...property,
-      description: _.get(tag, 'description'),
+      description: get(tag, 'description'),
     };
   });
 

@@ -6,7 +6,7 @@ function getDecoratorArguments(decoratorNode) {
   return decoratorNode.expression.arguments;
 }
 
-function isJSDocComment(comment: { value: string; type: string }) {
+function isJSDocComment(comment) {
   return (
     comment.type === COMMENT_BLOCK_TYPE && JSDOC_PATTERN.test(comment.value)
   );

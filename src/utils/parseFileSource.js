@@ -1,7 +1,7 @@
-import * as babylon from 'babylon';
+import { parse } from 'babylon';
 
 function parseFileSource(fileSource) {
-  return babylon.parse(fileSource, {
+  return parse(fileSource, {
     sourceType: 'module',
     plugins: [
       'typescript',

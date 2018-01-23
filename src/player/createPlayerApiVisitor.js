@@ -1,6 +1,6 @@
 import { isPlayerApiDecorator } from './playerApi';
 
-function createPlayerApiVisitor(enter: Function) {
+function createPlayerApiVisitor(enter) {
   return {
     Decorator(path) {
       if (isPlayerApiDecorator(path.node)) {
