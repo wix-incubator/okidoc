@@ -5,10 +5,9 @@ import {
   createPlayerApiMethod,
   createPlayerApiInterface,
   buildPlayerClassDeclaration,
-  PlayerClassOptions,
 } from './player';
 
-function buildDocumentationAst(pattern, options?: PlayerClassOptions) {
+function buildDocumentationAst(pattern) {
   const files = glob(pattern);
   const playerApiInterfaces = [];
   const playerApiMethods = [];
@@ -25,10 +24,7 @@ function buildDocumentationAst(pattern, options?: PlayerClassOptions) {
     }),
   });
 
-  const playerClassDeclaration = buildPlayerClassDeclaration(
-    playerApiMethods,
-    options,
-  );
+  const playerClassDeclaration = buildPlayerClassDeclaration(playerApiMethods);
 
   return {
     type: 'Program',

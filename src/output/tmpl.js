@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
-import * as path from 'path';
-import * as ejs from 'ejs';
+import path from 'path';
+import ejs from 'ejs';
 
 export function render(templateName, options) {
   // TODO: add cache for templates and read files async
