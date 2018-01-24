@@ -4,6 +4,7 @@ import * as t from '@babel/types';
 import glob from './utils/glob';
 import traverseFiles from './utils/traverseFiles';
 import {
+  createApiVisitor,
   createApiMethod,
   createApiInterface,
   buildApiClassDeclaration,
@@ -17,18 +18,48 @@ function ensureVisitorExists(apiVisitorPath) {
   }
 }
 
-function ensureCreateApiVisitorIsFunction(createApiVisitor) {
-  if (typeof createApiVisitor !== 'function') {
+function ensureCreateApiVisitorIsFunction(createCustomApiVisitor) {
+  if (typeof createCustomApiVisitor !== 'function') {
     throw new Error(
-      `'visitor' file should export function 'createApiMethod' (exports.createApiMethod = ...)`,
+      `'visitor' file should export function 'createApiVisitor' (exports.createApiVisitor = ...)`,
     );
   }
 }
 
-function buildDocumentationAst(pattern, { visitor: visitorPath, tag } = {}) {
+function ensureCustomApiVisitorIsCorrect(
+  visitors,
+  customApiVisitor,
+  visitorPath,
+) {
+  const visitorsKeys = Object.keys(visitors);
+  const customApiVisitorKeys = Object.keys(customApiVisitor);
+  const intersection = customApiVisitorKeys.filter(key =>
+    visitorsKeys.includes(key),
+  );
+
+  if (intersection.length) {
+    console.error(
+      `default config visitors ${JSON.stringify(
+        intersection,
+      )} are overridden by config from 'visitor.createApiVisitor' (${visitorPath})`,
+    );
+  }
+}
+
+function buildDocumentationAst(pattern, { tag, visitor: visitorPath }) {
   const files = glob(pattern);
   const apiInterfaces = [];
   const classApiMethods = [];
+
+  if (files.length === 0) {
+    console.warn(`files not found for ${pattern} pattern`);
+  }
+
+  if (!tag && !visitorPath) {
+    throw new Error(
+      `'tag' or/and 'visitor' options should be defined ('${pattern}')`,
+    );
+  }
 
   // NOTE: read about visitors
   // https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors
@@ -39,9 +70,20 @@ function buildDocumentationAst(pattern, { visitor: visitorPath, tag } = {}) {
     },
   };
 
-  visitorPath = visitorPath && path.resolve(visitorPath);
+  if (tag) {
+    Object.assign(
+      visitors,
+      createApiVisitor(tag, path => {
+        if (t.isClassMethod(path.node || t.isClassProperty(path.node))) {
+          classApiMethods.push(createApiMethod(path.node, tag));
+        }
+      }),
+    );
+  }
 
   if (visitorPath) {
+    visitorPath = path.resolve(visitorPath);
+
     ensureVisitorExists(visitorPath);
 
     const {
@@ -51,21 +93,19 @@ function buildDocumentationAst(pattern, { visitor: visitorPath, tag } = {}) {
 
     ensureCreateApiVisitorIsFunction(createCustomApiVisitor);
 
-    Object.assign(
-      visitors,
-      createCustomApiVisitor(path => {
-        if (t.isClassMethod(path.node || t.isClassProperty(path.node))) {
-          classApiMethods.push(
-            typeof createCustomApiMethod === 'function'
-              ? createCustomApiMethod(path.node)
-              : createApiMethod(path.node),
-          );
-        }
-      }),
-    );
-  }
+    const customApiVisitor = createCustomApiVisitor(path => {
+      if (t.isClassMethod(path.node || t.isClassProperty(path.node))) {
+        classApiMethods.push(
+          typeof createCustomApiMethod === 'function'
+            ? createCustomApiMethod(path.node)
+            : createApiMethod(path.node),
+        );
+      }
+    });
 
-  if (tag) {
+    ensureCustomApiVisitorIsCorrect(visitors, customApiVisitor, visitorPath);
+
+    Object.assign(visitors, customApiVisitor);
   }
 
   traverseFiles(files, visitors);

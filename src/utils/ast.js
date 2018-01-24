@@ -1,15 +1,16 @@
 const COMMENT_BLOCK_TYPE = 'CommentBlock';
 const JSDOC_PATTERN = /^\*[^*]+/;
-const JSDOC_CLEANUP_SPACES_PATTERN = /\n\s*/g;
-
-function getDecoratorArguments(decoratorNode) {
-  return decoratorNode.expression.arguments;
-}
 
 function isJSDocComment(comment) {
   return (
     comment.type === COMMENT_BLOCK_TYPE && JSDOC_PATTERN.test(comment.value)
   );
+}
+
+function getJSDocComment(node) {
+  const comments = node.leadingComments;
+
+  return comments && comments.find(isJSDocComment);
 }
 
 function createCommentBlock(description) {
@@ -20,7 +21,11 @@ function createCommentBlock(description) {
 }
 
 function createJSDocComment(description = '') {
-  description = description.replace(JSDOC_CLEANUP_SPACES_PATTERN, '\n');
+  description = description
+    // remove spaces before asterisk
+    .replace(/\n\s*/g, '\n')
+    // remove empty lines
+    .replace(/\n\*\s*\n/g, '\n');
 
   return description.startsWith('*') ? description : `* ${description}`;
 }
@@ -30,8 +35,8 @@ function createJSDocCommentBlock(description) {
 }
 
 export {
-  getDecoratorArguments,
   isJSDocComment,
+  getJSDocComment,
   createCommentBlock,
   createJSDocComment,
   createJSDocCommentBlock,

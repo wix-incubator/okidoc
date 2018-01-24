@@ -4,7 +4,10 @@ const yaml = require('yamljs');
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
-const { buildDocumentation } = require('../lib');
+const {
+  buildDocumentation,
+  createFileDirectoryIfNotExists,
+} = require('../lib');
 
 const writeFile = util.promisify(fs.writeFile);
 
@@ -18,10 +21,18 @@ Promise.all(
     buildDocumentation({
       title: doc.title,
       pattern: doc.glob,
+      tag: doc.tag,
       visitor: doc.visitor,
-    }).then(markdown =>
-      writeFile(path.join(outputDir, doc.id + '.md'), markdown),
-    ),
+    }).then(markdown => {
+      const markdownPath = path.join(
+        outputDir,
+        doc.path.endsWith('.md') ? doc.path : doc.path + '.md',
+      );
+
+      createFileDirectoryIfNotExists(markdownPath);
+
+      return writeFile(markdownPath, markdown);
+    }),
   ),
 ).catch(err => {
   console.error(err);
