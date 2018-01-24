@@ -1,6 +1,7 @@
 import { render } from './tmpl';
 import { isEmpty, find, filter } from 'lodash';
 import { renderDescription, renderParams, renderReturns } from './ast';
+import { API_CLASS_IDENTIFIER } from '../api';
 
 const INITIAL_MARKDOWN = `<!-- Generated automatically. Update this documentation by updating the source code. -->\n`;
 
@@ -47,7 +48,7 @@ function renderNodeMarkdown(node, interfaces, depth = 1) {
 export function buildMarkdown({ title, json }) {
   const playerClass = find(
     json,
-    ({ name, kind }) => name === 'Player' && kind === 'class',
+    ({ name, kind }) => name === API_CLASS_IDENTIFIER && kind === 'class',
   );
 
   const interfaces = filter(json, ({ kind }) => kind === 'interface');
