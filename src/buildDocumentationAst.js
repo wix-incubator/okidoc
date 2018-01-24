@@ -1,34 +1,80 @@
+import fs from 'fs';
+import path from 'path';
+import * as t from '@babel/types';
 import glob from './utils/glob';
 import traverseFiles from './utils/traverseFiles';
 import {
-  createPlayerApiVisitor,
-  createPlayerApiMethod,
-  createPlayerApiInterface,
-  buildPlayerClassDeclaration,
-} from './player';
+  createApiMethod,
+  createApiInterface,
+  buildApiClassDeclaration,
+} from './api';
 
-function buildDocumentationAst(pattern) {
+function ensureVisitorExists(apiVisitorPath) {
+  if (!fs.existsSync(apiVisitorPath)) {
+    throw new Error(
+      `'visitor' option should be valid js file path. '${apiVisitorPath}' is not exists`,
+    );
+  }
+}
+
+function ensureCreateApiVisitorIsFunction(createApiVisitor) {
+  if (typeof createApiVisitor !== 'function') {
+    throw new Error(
+      `'visitor' file should export function 'createApiMethod' (exports.createApiMethod = ...)`,
+    );
+  }
+}
+
+function buildDocumentationAst(pattern, { visitor: visitorPath, tag } = {}) {
   const files = glob(pattern);
-  const playerApiInterfaces = [];
-  const playerApiMethods = [];
+  const apiInterfaces = [];
+  const classApiMethods = [];
 
   // NOTE: read about visitors
   // https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors
   // https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
-  traverseFiles(files, {
+  const visitors = {
     'InterfaceDeclaration|TSInterfaceDeclaration': path => {
-      playerApiInterfaces.push(createPlayerApiInterface(path.node));
+      apiInterfaces.push(createApiInterface(path.node));
     },
-    ...createPlayerApiVisitor(path => {
-      playerApiMethods.push(createPlayerApiMethod(path.node));
-    }),
-  });
+  };
 
-  const playerClassDeclaration = buildPlayerClassDeclaration(playerApiMethods);
+  visitorPath = visitorPath && path.resolve(visitorPath);
+
+  if (visitorPath) {
+    ensureVisitorExists(visitorPath);
+
+    const {
+      createApiVisitor: createCustomApiVisitor,
+      createApiMethod: createCustomApiMethod,
+    } = require(visitorPath);
+
+    ensureCreateApiVisitorIsFunction(createCustomApiVisitor);
+
+    Object.assign(
+      visitors,
+      createCustomApiVisitor(path => {
+        if (t.isClassMethod(path.node || t.isClassProperty(path.node))) {
+          classApiMethods.push(
+            typeof createCustomApiMethod === 'function'
+              ? createCustomApiMethod(path.node)
+              : createApiMethod(path.node),
+          );
+        }
+      }),
+    );
+  }
+
+  if (tag) {
+  }
+
+  traverseFiles(files, visitors);
+
+  const apiClassDeclaration = buildApiClassDeclaration(classApiMethods);
 
   return {
     type: 'Program',
-    body: playerApiInterfaces.concat(playerClassDeclaration),
+    body: apiInterfaces.concat(apiClassDeclaration),
   };
 }
 
