@@ -1,3 +1,4 @@
 import buildDocumentation from './buildDocumentation';
+import createFileDirectoryIfNotExists from './utils/createFileDirectoryIfNotExists';
 
-export { buildDocumentation };
+export { createFileDirectoryIfNotExists, buildDocumentation };

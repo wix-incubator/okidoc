@@ -4,11 +4,9 @@ import documentation from 'documentation';
 import buildDocumentationAst from './buildDocumentationAst';
 import { buildMarkdown } from './output';
 
-function buildDocumentation({ title, pattern, visitor }) {
+function buildDocumentation({ title, pattern, tag, visitor }) {
   const { code: documentationSource } = generate(
-    buildDocumentationAst(pattern, {
-      visitor: visitor,
-    }),
+    buildDocumentationAst(pattern, { tag, visitor }),
   );
 
   return documentation
