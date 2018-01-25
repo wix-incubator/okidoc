@@ -33,6 +33,7 @@ try {
   throw new Error(`Invalid site config yaml file (${SITE_YAML_PATH})`);
 }
 
+// TODO: mb use `PropTypes.checkPropTypes`?
 if (!site || REQUIRED_CONFIG_PROPS.some(prop => !site.hasOwnProperty(prop))) {
   throw new Error(`
     Invalid site config yaml file (${SITE_YAML_PATH}).
