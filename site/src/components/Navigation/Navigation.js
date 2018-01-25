@@ -2,7 +2,9 @@ import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 
 import NavButton from './NavButton';
-import NavTree from './NavTree';
+import NavigationHeadings from './NavigationHeadings';
+import classNames from 'classnames';
+import Link from 'gatsby-link';
 
 class Navigation extends Component {
   constructor(props) {
@@ -27,7 +29,19 @@ class Navigation extends Component {
             }));
           }}
         />
-        <NavTree headings={headings} navigation={navigation} isOpen={isOpen} />
+        <div className={classNames('toc-wrapper', { open: isOpen })}>
+          <NavigationHeadings headings={headings} />
+          {navigation &&
+            navigation.length > 0 && (
+              <ul className="toc-footer">
+                {navigation.map(({ path, title }) => (
+                  <li>
+                    <Link to={path}>{title}</Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+        </div>
       </Fragment>
     );
   }
