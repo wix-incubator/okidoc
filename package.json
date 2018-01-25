@@ -5,13 +5,15 @@
   "main": "lib/index.js",
   "files": ["bin", "lib", "src"],
   "bin": {
-    "okidoc": "./bin/okidoc.js"
+    "okidoc": "./bin/okidoc.js",
+    "okidoc-site": "./bin/okidoc-site.js"
   },
   "scripts": {
     "build": "rm -rf lib && babel src -d lib --copy-files",
     "build:watch": "npm run build -- --watch",
     "format": "prettier --config .prettierrc --write '{src,bin}/**/*.js'",
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "postinstall": "cd site && npm install"
   },
   "lint-staged": {
     "*.{js,json,md}": ["prettier --config .prettierrc --write", "git add"]
@@ -32,6 +34,7 @@
     "@babel/traverse": "7.0.0-beta.38",
     "@babel/types": "7.0.0-beta.38",
     "babylon": "7.0.0-beta.38",
+    "cross-spawn": "^6.0.3",
     "documentation": "^5.3.5",
     "ejs": "^2.5.7",
     "glob": "^7.1.2",

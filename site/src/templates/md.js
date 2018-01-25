@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import PropTypes from 'prop-types';
 import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
 
@@ -29,26 +30,42 @@ function Template({ location, data: { page } }) {
   );
 }
 
+Template.propTypes = {
+  location: PropTypes.any.isRequired,
+  data: PropTypes.shape({
+    page: PropTypes.shape({
+      headings: PropTypes.array,
+      html: PropTypes.string,
+    }),
+  }).isRequired,
+};
+
+export const markdownFragment = graphql`
+  fragment mdTemplateFields on MarkdownRemark {
+    frontmatter {
+      title
+      include {
+        childMarkdownRemark {
+          headings {
+            value
+            depth
+          }
+          html
+        }
+      }
+    }
+    headings {
+      depth
+      value
+    }
+    html
+  }
+`;
+
 export const query = graphql`
   query MarkdownPage($slug: String!) {
     page: markdownRemark(fields: { slug: { eq: $slug } }) {
-      frontmatter {
-        title
-        include {
-          childMarkdownRemark {
-            headings {
-              value
-              depth
-            }
-            html
-          }
-        }
-      }
-      headings {
-        depth
-        value
-      }
-      html
+      ...mdTemplateFields
     }
   }
 `;
