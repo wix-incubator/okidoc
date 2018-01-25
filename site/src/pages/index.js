@@ -4,7 +4,7 @@ import MdTemplate from '../templates/md';
 
 export const pageQuery = graphql`
   query IndexPage {
-    page: markdownRemark(fields: { slug: { eq: "docs/" } }) {
+    page: markdownRemark(fields: { slug: { eq: "/" } }) {
       ...mdTemplateFields
     }
   }
