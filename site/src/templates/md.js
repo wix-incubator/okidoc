@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
 
-function Template({ location, data: { page } }) {
+function Template({ location, data: { site, page } }) {
   let headings = page.headings;
   let html = page.html;
 
@@ -18,7 +18,11 @@ function Template({ location, data: { page } }) {
 
   return (
     <Fragment>
-      <Navigation location={location} headings={headings} />
+      <Navigation
+        location={location}
+        headings={headings}
+        navigation={site.siteMetadata.navigation}
+      />
       <div className="page-wrapper">
         <div className="dark-box" />
         <CatchDemoLinks>
@@ -33,15 +37,31 @@ function Template({ location, data: { page } }) {
 Template.propTypes = {
   location: PropTypes.any.isRequired,
   data: PropTypes.shape({
-    page: PropTypes.shape({
-      headings: PropTypes.array,
-      html: PropTypes.string,
+    site: PropTypes.shape({
+      siteMetadata: PropTypes.shape({
+        navigation: PropTypes.array.isRequired,
+      }),
     }),
-  }).isRequired,
+    page: PropTypes.shape({
+      headings: PropTypes.array.isRequired,
+      html: PropTypes.string.isRequired,
+    }),
+  }),
 };
 
+export const siteFragment = graphql`
+  fragment mdTemplateSiteFields on Site {
+    siteMetadata {
+      navigation {
+        path
+        title
+      }
+    }
+  }
+`;
+
 export const markdownFragment = graphql`
-  fragment mdTemplateFields on MarkdownRemark {
+  fragment mdTemplateMarkdownFields on MarkdownRemark {
     frontmatter {
       title
       include {
@@ -64,8 +84,11 @@ export const markdownFragment = graphql`
 
 export const query = graphql`
   query MarkdownPage($slug: String!) {
+    site {
+      ...mdTemplateSiteFields
+    }
     page: markdownRemark(fields: { slug: { eq: $slug } }) {
-      ...mdTemplateFields
+      ...mdTemplateMarkdownFields
     }
   }
 `;

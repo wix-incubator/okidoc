@@ -4,7 +4,7 @@ const yaml = require('yamljs');
 
 const { SITE_CWD, SITE_YAML_PATH } = process.env;
 
-const REQUIRED_CONFIG_PROPS = ['docsPath', 'config', 'navigation'];
+const REQUIRED_CONFIG_PROPS = ['docsPath', 'config'];
 
 if (!SITE_CWD || !SITE_YAML_PATH) {
   throw new Error(`

@@ -3,7 +3,9 @@ const site = require('./getSiteConfig');
 // https://www.gatsbyjs.org/docs/gatsby-config/
 module.exports = {
   pathPrefix: site.config.pathPrefix,
-  siteMetadata: site.config.siteMetadata,
+  siteMetadata: Object.assign({}, site.config.siteMetadata, {
+    navigation: site.navigation || [],
+  }),
   plugins: [
     'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
