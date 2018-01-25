@@ -35,7 +35,7 @@ class Navigation extends Component {
             navigation.length > 0 && (
               <ul className="toc-footer">
                 {navigation.map(({ path, title }) => (
-                  <li>
+                  <li key={path}>
                     <Link to={path}>{title}</Link>
                   </li>
                 ))}

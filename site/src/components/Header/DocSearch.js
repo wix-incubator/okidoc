@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import 'docsearch.js/dist/npm/styles/main.scss';
 
+const apiKey = process.env.GATSBY_ALGOLIA_API_KEY;
+
 class DocSearch extends Component {
   componentDidMount() {
+    if (!apiKey) {
+      return;
+    }
+
     // NOTE: use require to fix gatsby build.
     // https://www.gatsbyjs.org/docs/debugging-html-builds/
     const docSearch = require('docsearch.js');
 
     docSearch({
-      apiKey: '8b7e07f448cec6e39fa301bf82ac83d6',
+      apiKey: apiKey,
       indexName: 'wix',
       inputSelector: '#input-search-custom',
       debug: false, // Set debug to true if you want to inspect the dropdown
@@ -16,7 +22,7 @@ class DocSearch extends Component {
   }
 
   render() {
-    return (
+    return apiKey ? (
       <div className="search">
         <input
           type="text"
@@ -25,7 +31,7 @@ class DocSearch extends Component {
           placeholder="Search"
         />
       </div>
-    );
+    ) : null;
   }
 }
 

@@ -1,5 +1,7 @@
 const site = require('./getSiteConfig');
 
+process.env.GATSBY_ALGOLIA_API_KEY = site.config.algoliaApiKey;
+
 // https://www.gatsbyjs.org/docs/gatsby-config/
 module.exports = {
   pathPrefix: site.config.pathPrefix,
