@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 
 const path = require('path');
+const fs = require('fs');
+const yaml = require('yamljs');
 const spawn = require('cross-spawn');
 const copy = require('ncp').ncp;
 
@@ -9,27 +11,37 @@ const [command, siteYamlPath] = process.argv.slice(2);
 
 const ALLOWED_COMMANDS = ['build', 'develop'];
 const SITE_PATH = path.join(__dirname, '../site');
-// TODO: add ability to configure SITE_DIST_PATH
-const SITE_DIST_PATH = path.resolve('./site');
-const RUN_EXAMPLE = `okidoc-site ${ALLOWED_COMMANDS[0]} ./path/to/site.yml`;
+const RUN_EXAMPLE = `
+  example:
+    '> okidoc-site ${ALLOWED_COMMANDS[0]} ./path/to/site.yml'
+`;
 
 if (!command || !ALLOWED_COMMANDS.includes(command)) {
-  throw new Error(`
-    'command' should be one of ${JSON.stringify(ALLOWED_COMMANDS)}.
-    example:
-    '> ${RUN_EXAMPLE}'
-  `);
+  throw new Error(
+    `'command' should be one of ${JSON.stringify(ALLOWED_COMMANDS)}.
+    ${RUN_EXAMPLE}`,
+  );
 }
 
 if (!siteYamlPath) {
-  throw new Error(`
-    'okidoc-site' config parameter not provided
-    example:
-    '> ${RUN_EXAMPLE}'
-  `);
+  throw new Error(
+    `'okidoc-site' config parameter not provided.
+    ${RUN_EXAMPLE}`,
+  );
 }
 
-const site = spawn('npm', ['run', command], {
+if (!fs.existsSync(siteYamlPath)) {
+  throw new Error(
+    `site yaml path should be valid path.
+    '${siteYamlPath}' is not exists.
+    ${RUN_EXAMPLE}`,
+  );
+}
+
+const site = yaml.load(siteYamlPath);
+const SITE_DIST_PATH = path.resolve(site.distPath || './site');
+
+const siteCommand = spawn('npm', ['run', command], {
   cwd: SITE_PATH,
   stdio: 'inherit',
   env: {
@@ -40,7 +52,7 @@ const site = spawn('npm', ['run', command], {
 });
 
 if (command === 'build') {
-  site.on('close', code => {
+  siteCommand.on('close', code => {
     // NOTE: only success build should be copied
     if (code !== 0) {
       return;
