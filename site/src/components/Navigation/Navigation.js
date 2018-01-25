@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 
 import NavButton from './NavButton';
 import NavTree from './NavTree';
@@ -13,7 +14,7 @@ class Navigation extends Component {
   }
 
   render() {
-    const { headings } = this.props;
+    const { headings, navigation } = this.props;
     const { isOpen } = this.state;
 
     return (
@@ -26,10 +27,15 @@ class Navigation extends Component {
             }));
           }}
         />
-        <NavTree headings={headings} isOpen={isOpen} />
+        <NavTree headings={headings} navigation={navigation} isOpen={isOpen} />
       </Fragment>
     );
   }
 }
+
+Navigation.propTypes = {
+  headings: PropTypes.any.isRequired,
+  navigation: PropTypes.array.isRequired,
+};
 
 export default Navigation;

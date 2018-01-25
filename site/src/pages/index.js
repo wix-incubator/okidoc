@@ -4,8 +4,11 @@ import MdTemplate from '../templates/md';
 
 export const pageQuery = graphql`
   query IndexPage {
+    site {
+      ...mdTemplateSiteFields
+    }
     page: markdownRemark(fields: { slug: { eq: "/" } }) {
-      ...mdTemplateFields
+      ...mdTemplateMarkdownFields
     }
   }
 `;

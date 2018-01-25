@@ -1,10 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Link from 'gatsby-link';
 
 import createLinksTree from './createLinksTree';
 
-function NavTree({ headings, isOpen }) {
+function NavTree({ headings, navigation, isOpen }) {
   const navTree = createLinksTree(headings);
 
   return (
@@ -33,8 +34,24 @@ function NavTree({ headings, isOpen }) {
           </li>
         ))}
       </div>
+      {navigation &&
+        navigation.length > 0 && (
+          <ul className="toc-footer">
+            {navigation.map(({ path, title }) => (
+              <li>
+                <Link to={path}>{title}</Link>
+              </li>
+            ))}
+          </ul>
+        )}
     </div>
   );
 }
+
+NavTree.propTypes = {
+  headings: PropTypes.any.isRequired,
+  navigation: PropTypes.array.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+};
 
 export default NavTree;
