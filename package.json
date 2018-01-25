@@ -11,12 +11,13 @@
   "scripts": {
     "build": "rm -rf lib && babel src -d lib --copy-files",
     "build:watch": "npm run build -- --watch",
-    "format": "prettier --config .prettierrc --write '{src,bin}/**/*.js'",
+    "format":
+      "prettier --write '{src,bin}/**/*.js' 'site/src/**/*.js' 'site/*.js'",
     "precommit": "lint-staged",
     "postinstall": "cd site && npm install"
   },
   "lint-staged": {
-    "*.{js,json,md}": ["prettier --config .prettierrc --write", "git add"]
+    "*.{js,json,md}": ["prettier --write", "git add"]
   },
   "repository": {
     "type": "git",

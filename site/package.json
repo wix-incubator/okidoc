@@ -1,6 +1,6 @@
 {
-  "name": "video-player-site",
-  "description": "video-player.js site",
+  "name": "okidoc-site",
+  "description": "okidoc site",
   "version": "1.0.0",
   "dependencies": {
     "classnames": "^2.2.5",
@@ -16,7 +16,6 @@
     "gatsby-remark-prismjs": "^1.2.9",
     "gatsby-source-filesystem": "^1.5.8",
     "gatsby-transformer-remark": "^1.7.21",
-    "gh-pages": "^1.1.0",
     "github-slugger": "^1.2.0",
     "prettier": "^1.8.2",
     "prop-types": "^15.6.0",
@@ -31,10 +30,6 @@
   "main": "n/a",
   "scripts": {
     "build": "gatsby build --prefix-paths",
-    "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-    "develop": "gatsby develop",
-    "format":
-      "prettier --trailing-comma es5 --single-quote --write \"src/**/*.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "develop": "gatsby develop"
   }
 }
