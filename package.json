@@ -14,7 +14,8 @@
     "format":
       "prettier --write '{src,bin}/**/*.js' 'site/src/**/*.js' 'site/*.js'",
     "precommit": "lint-staged",
-    "postinstall": "cd site && npm install"
+    "postinstall": "cd site && npm install",
+    "release": "npm run build && wnpm-release --no-shrinkwrap"
   },
   "lint-staged": {
     "*.{js,json,md}": ["prettier --write", "git add"]
@@ -50,6 +51,11 @@
     "@babel/preset-env": "7.0.0-beta.38",
     "husky": "0.14.3",
     "lint-staged": "6.0.1",
-    "prettier": "1.10.2"
-  }
+    "prettier": "1.10.2",
+    "wnpm-ci": "latest"
+  },
+  "publishConfig": {
+    "registry": "http://repo.dev.wix/artifactory/api/npm/npm-local/"
+  },
+  "private": false
 }
