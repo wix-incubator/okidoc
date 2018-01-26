@@ -4,11 +4,22 @@ if (site.config.algoliaApiKey) {
   process.env.GATSBY_ALGOLIA_API_KEY = site.config.algoliaApiKey;
 }
 
+if (site.navigation && site.navigation.length) {
+  process.env.GATSBY_WITH_NAVIGATION = true;
+}
+
 // https://www.gatsbyjs.org/docs/gatsby-config/
 module.exports = {
   pathPrefix: site.config.pathPrefix,
   siteMetadata: Object.assign({}, site.config.siteMetadata, {
-    navigation: site.navigation || [],
+    // NOTE: Force graphql schema to add navigation fields if navigation empty
+    // TODO: figure out how to add this fields via gatsby api
+    navigation: site.navigation || [
+      {
+        path: '/',
+        title: 'Home',
+      },
+    ],
   }),
   plugins: [
     'gatsby-plugin-react-next',
