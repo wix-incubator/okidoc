@@ -6,6 +6,8 @@ import NavigationHeadings from './NavigationHeadings';
 import classNames from 'classnames';
 import Link from 'gatsby-link';
 
+const withNavigation = process.env.GATSBY_WITH_NAVIGATION === 'true';
+
 class Navigation extends Component {
   constructor(props) {
     super(props);
@@ -31,7 +33,8 @@ class Navigation extends Component {
         />
         <div className={classNames('toc-wrapper', { open: isOpen })}>
           <NavigationHeadings headings={headings} />
-          {navigation &&
+          {withNavigation &&
+            navigation &&
             navigation.length > 0 && (
               <ul className="toc-footer">
                 {navigation.map(({ path, title }) => (
