@@ -16,6 +16,13 @@ module.exports = {
     'gatsby-plugin-catch-links',
     'gatsby-plugin-sass',
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: `${__dirname}/src/pages`,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `docs`,

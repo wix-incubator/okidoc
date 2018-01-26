@@ -11,13 +11,15 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   ) {
     let slug = createFilePath({ node: parentNode, getNode, basePath: `pages` });
 
-    if (parentNode.sourceInstanceName === 'docs') {
-      createNodeField({
-        node,
-        name: `slug`,
-        value: slug,
-      });
+    if (parentNode.sourceInstanceName !== 'docs') {
+      slug = `/${parentNode.sourceInstanceName}${slug}`;
     }
+
+    createNodeField({
+      node,
+      name: `slug`,
+      value: slug,
+    });
   }
 };
 
