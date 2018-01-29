@@ -23,9 +23,7 @@ function createCommentBlock(description) {
 function createJSDocComment(description = '') {
   description = description
     // remove spaces before asterisk
-    .replace(/\n\s*/g, '\n')
-    // remove empty lines
-    .replace(/\n\*\s*\n/g, '\n');
+    .replace(/\n\s*/g, '\n');
 
   return description.startsWith('*') ? description : `* ${description}`;
 }
