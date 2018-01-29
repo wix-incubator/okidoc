@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "okidoc",
   "main": "lib/index.js",
-  "files": ["bin", "lib", "src"],
+  "files": ["bin", "lib", "src", "site"],
   "bin": {
     "okidoc": "./bin/okidoc.js",
     "okidoc-site": "./bin/okidoc-site.js"
