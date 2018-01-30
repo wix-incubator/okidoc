@@ -1,5 +1,5 @@
 {
-  "name": "okidoc",
+  "name": "@wix/okidoc",
   "version": "1.0.0",
   "description": "okidoc",
   "main": "lib/index.js",
