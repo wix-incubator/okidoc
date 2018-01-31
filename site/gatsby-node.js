@@ -65,3 +65,10 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
     });
   });
 };
+
+// TODO: cleanup when issue resolved https://github.com/gatsbyjs/gatsby/issues/2792#issuecomment-361944910
+exports.modifyWebpackConfig = ({ config }) => {
+  config._loaders.js.config.exclude[0] = new RegExp(
+    process.cwd() + '/(node_modules|bower_components)',
+  );
+};
