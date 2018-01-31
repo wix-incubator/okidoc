@@ -444,11 +444,10 @@ body {
     overflow: auto;
 
     margin-bottom: 1em;
+
     th,
     td {
       line-height: $line-height;
-
-      text-align: left;
       vertical-align: top;
       code {
         white-space: nowrap;
@@ -461,6 +460,7 @@ body {
 
       padding: 5px 0;
 
+      text-align: left;
       vertical-align: bottom;
 
       color: #939da3;
