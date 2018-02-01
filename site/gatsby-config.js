@@ -47,6 +47,9 @@ module.exports = {
           'gatsby-remark-autolink-headers',
           'gatsby-remark-prismjs',
           'gatsby-remark-external-links',
+          // TODO: cleanup when issue with links in md resolved
+          // https://github.com/gatsbyjs/gatsby/issues/3316
+          'gatsby-md-links-fix',
         ],
       },
     },
