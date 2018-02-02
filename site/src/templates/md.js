@@ -3,11 +3,15 @@ import PropTypes from 'prop-types';
 import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
 
+const SIMPLE_LAYOUT = 'simple';
+
 function Template({ location, data: { site, page } }) {
   let headings = page.headings;
   let html = page.html;
 
   const includes = page.frontmatter && page.frontmatter.include;
+  const layout = (page.frontmatter && page.frontmatter.layout) || 'two-column';
+  const isSimpleLayout = layout === SIMPLE_LAYOUT;
 
   if (includes) {
     includes.forEach(({ childMarkdownRemark }) => {
@@ -23,12 +27,12 @@ function Template({ location, data: { site, page } }) {
         headings={headings}
         navigation={site.siteMetadata.navigation}
       />
-      <div className="page-wrapper">
-        <div className="dark-box" />
+      <div className={`page-wrapper ${layout}-layout`}>
+        {!isSimpleLayout && <div className="dark-box" />}
         <CatchDemoLinks>
           <div className="content" dangerouslySetInnerHTML={{ __html: html }} />
         </CatchDemoLinks>
-        <div className="dark-box" />
+        {!isSimpleLayout && <div className="dark-box" />}
       </div>
     </Fragment>
   );
@@ -63,6 +67,7 @@ export const siteFragment = graphql`
 export const markdownFragment = graphql`
   fragment mdTemplateMarkdownFields on MarkdownRemark {
     frontmatter {
+      layout
       title
       include {
         childMarkdownRemark {

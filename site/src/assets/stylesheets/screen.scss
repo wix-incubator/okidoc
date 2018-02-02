@@ -359,6 +359,11 @@ body {
     content: '';
   }
 
+  .simple-layout & {
+    max-width: 800px;
+    margin: auto;
+  }
+
   & > h1,
   & > h2,
   & > h3,
@@ -377,6 +382,10 @@ body {
     box-sizing: border-box;
     margin-right: $examples-width;
     padding: 0 $main-padding;
+
+    .simple-layout & {
+      margin-right: 0;
+    }
 
     @extend %left-col;
   }
@@ -615,6 +624,13 @@ body {
     background-color: $code-bg;
 
     @extend %right-col;
+
+    .simple-layout & {
+      width: auto;
+      float: none;
+      margin: $main-padding;
+      border-radius: 2px;
+    }
 
     & > p {
       margin: 0;
