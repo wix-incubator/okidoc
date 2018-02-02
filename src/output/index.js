@@ -46,9 +46,13 @@ function renderNodeMarkdown(node, interfaces, depth = 1) {
 
 // TODO: refactor next code
 export function buildMarkdown({ title, json }) {
-  const playerClass = find(
+  const docClass = find(
     json,
     ({ name, kind }) => name === API_CLASS_IDENTIFIER && kind === 'class',
+  );
+
+  const docFunctions = filter(json, ({ kind }) =>
+    ['function', 'constant', 'var', 'let'].includes(kind),
   );
 
   const interfaces = filter(json, ({ kind }) => kind === 'interface');
@@ -58,9 +62,9 @@ export function buildMarkdown({ title, json }) {
       name: title,
     },
   });
-  const apiMethodsMarkdowns = playerClass.members.instance.map(method =>
-    renderNodeMarkdown(method, interfaces, 2),
+  const apiMarkdowns = [...docClass.members.instance, ...docFunctions].map(
+    method => renderNodeMarkdown(method, interfaces, 2),
   );
 
-  return [INITIAL_MARKDOWN, headingMarkdown, ...apiMethodsMarkdowns].join('\n');
+  return [INITIAL_MARKDOWN, headingMarkdown, ...apiMarkdowns].join('\n');
 }

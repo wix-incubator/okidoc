@@ -27,6 +27,16 @@ function createApiVisitor(tag, enter) {
         enter(path);
       }
     },
+    FunctionDeclaration(path) {
+      if (hasTagInJSDoc(path.node)) {
+        enter(path);
+      }
+    },
+    VariableDeclaration(path) {
+      if (hasTagInJSDoc(path.node)) {
+        enter(path);
+      }
+    },
   };
 }
 

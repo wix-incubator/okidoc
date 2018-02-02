@@ -50,6 +50,7 @@ function buildDocumentationAst(pattern, { tag, visitor: visitorPath }) {
   const files = glob(pattern);
   const apiInterfaces = [];
   const classApiMethods = [];
+  const functions = [];
 
   if (files.length === 0) {
     console.warn(`files not found for ${pattern} pattern`);
@@ -76,6 +77,12 @@ function buildDocumentationAst(pattern, { tag, visitor: visitorPath }) {
       createApiVisitor(tag, path => {
         if (t.isClassMethod(path.node || t.isClassProperty(path.node))) {
           classApiMethods.push(createApiMethod(path.node, tag));
+        }
+        if (
+          t.isVariableDeclaration(path.node) ||
+          t.isFunctionDeclaration(path.node)
+        ) {
+          functions.push(createApiMethod(path.node, tag));
         }
       }),
     );
@@ -114,7 +121,7 @@ function buildDocumentationAst(pattern, { tag, visitor: visitorPath }) {
 
   return {
     type: 'Program',
-    body: apiInterfaces.concat(apiClassDeclaration),
+    body: apiInterfaces.concat(apiClassDeclaration, functions),
   };
 }
 
