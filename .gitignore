@@ -12,3 +12,5 @@ node_modules/
 # Dist directory
 lib
 
+docs/README.md
+sitedist

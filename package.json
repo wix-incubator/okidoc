@@ -11,6 +11,12 @@
   "scripts": {
     "build": "rm -rf lib && babel src -d lib --copy-files",
     "build:watch": "npm run build -- --watch",
+    "documentation:site":
+      "cp ./README.md ./docs/README.md && node ./bin/okidoc-site develop ./docs/site.yml",
+    "documentation:site:build":
+      "cp ./README.md ./docs/README.md && node ./bin/okidoc-site build ./docs/site.yml",
+    "documentation:site:deploy":
+      "npm run documentation:site:build && gh-pages -d sitedist",
     "format":
       "prettier --write '{src,bin}/**/*.js' 'site/src/**/*.js' 'site/*.js'",
     "precommit": "lint-staged",
@@ -49,6 +55,7 @@
     "@babel/core": "7.0.0-beta.38",
     "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.38",
     "@babel/preset-env": "7.0.0-beta.38",
+    "gh-pages": "^1.1.0",
     "husky": "0.14.3",
     "lint-staged": "6.0.1",
     "prettier": "1.10.2",

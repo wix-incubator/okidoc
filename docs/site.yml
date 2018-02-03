@@ -1,0 +1,8 @@
+docsPath: ./docs
+distPath: ./sitedist
+
+config:
+ siteMetadata:
+   title: okidoc
+ pathPrefix: /okidoc
+ 
