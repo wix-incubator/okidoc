@@ -58,6 +58,9 @@ if (command === 'build') {
       return;
     }
 
+    // NOTE: cleanup prev build version
+    spawn.sync('rm', ['-rf', SITE_DIST_PATH], { stdio: 'inherit' });
+
     copy(path.join(SITE_PATH, 'public'), SITE_DIST_PATH, err => {
       if (!err) {
         console.log(`open '${SITE_DIST_PATH}' to browse site build`);
