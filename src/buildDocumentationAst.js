@@ -80,6 +80,7 @@ function buildDocumentationAst(pattern, { tag, visitor: visitorPath }) {
         }
         if (
           t.isVariableDeclaration(path.node) ||
+          t.isExportNamedDeclaration(path.node) ||
           t.isFunctionDeclaration(path.node)
         ) {
           functions.push(createApiMethod(path.node, tag));
