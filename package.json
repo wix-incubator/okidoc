@@ -14,7 +14,7 @@
     "documentation:site":
       "cp ./README.md ./docs/README.md && node ./bin/okidoc-site develop ./docs/site.yml",
     "documentation:site:build":
-      "cp ./README.md ./docs/README.md && node ./bin/okidoc-site build ./docs/site.yml",
+      "cp ./README.md ./docs/README.md && rm -rf ./sitedist && node ./bin/okidoc-site build ./docs/site.yml",
     "documentation:site:deploy":
       "npm run documentation:site:build && gh-pages -d sitedist",
     "format":
