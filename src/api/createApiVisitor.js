@@ -1,4 +1,4 @@
-import { isJSDocIncludes, hasPrivateTagInJSDoc } from '../utils/ast';
+import { isJSDocIncludes } from '../utils/ast';
 import createDocTagParam from './createDocTagParam';
 
 function createApiVisitor(tag, enter) {
@@ -13,10 +13,7 @@ function createApiVisitor(tag, enter) {
       if (hasDocTagInJSDoc(path.node)) {
         path.traverse({
           ClassMethod(path) {
-            if (
-              path.node.accessibility !== 'private' &&
-              !hasPrivateTagInJSDoc(path.node)
-            ) {
+            if (path.node.accessibility !== 'private') {
               enter(path);
             }
           },

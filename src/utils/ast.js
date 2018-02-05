@@ -38,10 +38,6 @@ function isJSDocIncludes(node, searchString) {
   return !!jsDocComment && jsDocComment.value.includes(searchString);
 }
 
-function hasPrivateTagInJSDoc(node) {
-  return isJSDocIncludes(node, '@private');
-}
-
 export {
   isJSDocComment,
   getJSDocComment,
@@ -49,5 +45,4 @@ export {
   createJSDocComment,
   createJSDocCommentBlock,
   isJSDocIncludes,
-  hasPrivateTagInJSDoc,
 };
