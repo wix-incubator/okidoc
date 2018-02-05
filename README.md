@@ -169,6 +169,8 @@ config:
  pathPrefix: /my-awesome-lib
  # [optional] algolia apiKey for docsearch (https://www.algolia.com/ref/docsearch). If empty, search will be hidden
  algoliaApiKey: YOUR_ALGOLIA_API_KEY
+ # [optional] Link to your github repository
+ githubLink: YOUR_GITHUB_REPOSITORY
 
 # [optional] navigation config. Use if you need more than one page
 navigation:
