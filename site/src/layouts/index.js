@@ -9,15 +9,15 @@ import '../assets/stylesheets/screen.scss';
 import '../assets/stylesheets/prism.scss';
 
 function TemplateWrapper({ children, data }) {
+  const { title, description, keywords } = data.site.siteMetadata;
+
   return (
     <Fragment>
-      <Helmet
-        title={data.site.siteMetadata.title}
-        meta={[
-          { name: 'description', content: 'Sample' },
-          { name: 'keywords', content: 'sample, something' },
-        ]}
-      />
+      <Helmet>
+        {title && <title>{title}</title>}
+        {description && <meta name="description" content={description} />}
+        {keywords && <meta name="keywords" content={keywords} />}
+      </Helmet>
       <Header />
       {children()}
     </Fragment>
@@ -33,6 +33,8 @@ export const query = graphql`
     site {
       siteMetadata {
         title
+        description
+        keywords
       }
     }
   }

@@ -165,6 +165,8 @@ config:
  # [optional] site metadata (https://www.gatsbyjs.org/docs/gatsby-config/#sitemetadata)
  siteMetadata:
    title: YOUR_DOCUMENTATION_SITE_TITLE
+   description: YOUR_DOCUMENTATION_SITE_DESCRIPTION
+   keywords: YOUR_DOCUMENTATION_SITE_KEYWORDS
  # [optional] path prefix
  pathPrefix: /my-awesome-lib
  # [optional] algolia apiKey for docsearch (https://www.algolia.com/ref/docsearch). If empty, search will be hidden

@@ -12,19 +12,30 @@ if (site.navigation && site.navigation.length) {
   process.env.GATSBY_WITH_NAVIGATION = true;
 }
 
+const defaultSiteMetadata = {
+  title: '',
+  description: '',
+  keywords: '',
+};
+
 // https://www.gatsbyjs.org/docs/gatsby-config/
 module.exports = {
   pathPrefix: site.config.pathPrefix,
-  siteMetadata: Object.assign({}, site.config.siteMetadata, {
-    // NOTE: Force graphql schema to add navigation fields if navigation empty
-    // TODO: figure out how to add this fields via gatsby api
-    navigation: site.navigation || [
-      {
-        path: '/',
-        title: 'Home',
-      },
-    ],
-  }),
+  // NOTE: Force graphql schema to add title, description, keywords and navigation fields if they not provided
+  // TODO: figure out how to add this fields via gatsby api (https://github.com/gatsbyjs/gatsby/issues/3726)
+  siteMetadata: Object.assign(
+    {},
+    defaultSiteMetadata,
+    site.config.siteMetadata,
+    {
+      navigation: site.navigation || [
+        {
+          path: '/',
+          title: 'Home',
+        },
+      ],
+    },
+  ),
   plugins: [
     'gatsby-plugin-react-next',
     'gatsby-plugin-react-helmet',
