@@ -3,7 +3,7 @@ import Link from 'gatsby-link';
 import DocSearch from './DocSearch';
 
 import logoImage from './logo.png';
-import styles from './header.scss';
+import styles from './header.module.scss';
 
 const githubLink = process.env.GATSBY_GITHUB_LINK;
 
@@ -17,7 +17,7 @@ function Header() {
       </div>
       <DocSearch />
       {githubLink && (
-        <a href={githubLink} target="_blank" className="githubLink" />
+        <a href={githubLink} target="_blank" className={styles.githubLink} />
       )}
     </div>
   );

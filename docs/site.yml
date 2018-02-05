@@ -5,4 +5,4 @@ config:
  siteMetadata:
    title: okidoc
  pathPrefix: /okidoc
- 
+ githubLink: https://github.com/wix-private/okidoc
