@@ -53,9 +53,9 @@ body {
   background: #1c1f21;
 
   align-items: center;
-  justify-content: space-between;
 
   .logo-wrapper {
+    flex-grow: 2;
     padding: 0 15px;
   }
 

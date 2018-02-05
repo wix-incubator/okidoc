@@ -4,6 +4,10 @@ if (site.config.algoliaApiKey) {
   process.env.GATSBY_ALGOLIA_API_KEY = site.config.algoliaApiKey;
 }
 
+if (site.config.githubLink) {
+  process.env.GATSBY_GITHUB_LINK = site.config.githubLink;
+}
+
 if (site.navigation && site.navigation.length) {
   process.env.GATSBY_WITH_NAVIGATION = true;
 }
