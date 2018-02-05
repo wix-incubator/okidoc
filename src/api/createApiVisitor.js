@@ -1,21 +1,22 @@
-import { getJSDocComment } from '../utils/ast';
+import { isJSDocIncludes, hasPrivateTagInJSDoc } from '../utils/ast';
 import createDocTagParam from './createDocTagParam';
 
 function createApiVisitor(tag, enter) {
-  const TAG_PARAM = createDocTagParam(tag);
+  const DOC_TAG_PARAM = createDocTagParam(tag);
 
-  function hasTagInJSDoc(node) {
-    const jsDocComment = getJSDocComment(node);
-
-    return !!jsDocComment && jsDocComment.value.includes(TAG_PARAM);
+  function hasDocTagInJSDoc(node) {
+    return isJSDocIncludes(node, DOC_TAG_PARAM);
   }
 
   return {
     'ExportDefaultDeclaration|ClassDeclaration'(path) {
-      if (hasTagInJSDoc(path.node)) {
+      if (hasDocTagInJSDoc(path.node)) {
         path.traverse({
           ClassMethod(path) {
-            if (path.node.accessibility !== 'private') {
+            if (
+              path.node.accessibility !== 'private' &&
+              !hasPrivateTagInJSDoc(path.node)
+            ) {
               enter(path);
             }
           },
@@ -23,22 +24,22 @@ function createApiVisitor(tag, enter) {
       }
     },
     ClassMethod(path) {
-      if (hasTagInJSDoc(path.node)) {
+      if (hasDocTagInJSDoc(path.node)) {
         enter(path);
       }
     },
     FunctionDeclaration(path) {
-      if (hasTagInJSDoc(path.node)) {
+      if (hasDocTagInJSDoc(path.node)) {
         enter(path);
       }
     },
     ExportNamedDeclaration(path) {
-      if (hasTagInJSDoc(path.node)) {
+      if (hasDocTagInJSDoc(path.node)) {
         enter(path);
       }
     },
     VariableDeclaration(path) {
-      if (hasTagInJSDoc(path.node)) {
+      if (hasDocTagInJSDoc(path.node)) {
         enter(path);
       }
     },

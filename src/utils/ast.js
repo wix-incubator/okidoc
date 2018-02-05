@@ -32,10 +32,22 @@ function createJSDocCommentBlock(description) {
   return createCommentBlock(createJSDocComment(description));
 }
 
+function isJSDocIncludes(node, searchString) {
+  const jsDocComment = getJSDocComment(node);
+
+  return !!jsDocComment && jsDocComment.value.includes(searchString);
+}
+
+function hasPrivateTagInJSDoc(node) {
+  return isJSDocIncludes(node, '@private');
+}
+
 export {
   isJSDocComment,
   getJSDocComment,
   createCommentBlock,
   createJSDocComment,
   createJSDocCommentBlock,
+  isJSDocIncludes,
+  hasPrivateTagInJSDoc,
 };
