@@ -8,17 +8,21 @@
       "path----4e7c8c3c551e409229f6.js",
       "path----4e7c8c3c551e409229f6.js.map"
     ],
+    "path---test": [
+      "path---test-81b2d28990b2aad21cde.js",
+      "path---test-81b2d28990b2aad21cde.js.map"
+    ],
     "path---readme": [
-      "path---readme-e80b7daf48d697904a8e.js",
-      "path---readme-e80b7daf48d697904a8e.js.map"
+      "path---readme-68d0a45ead16e1ad1e33.js",
+      "path---readme-68d0a45ead16e1ad1e33.js.map"
     ],
     "component---src-layouts-index-js": [
       "component---src-layouts-index-js-bbed38be78f7cc216de6.js",
       "component---src-layouts-index-js-bbed38be78f7cc216de6.js.map"
     ],
     "path---index": [
-      "path---index-70fcd7c7a7856c157338.js",
-      "path---index-70fcd7c7a7856c157338.js.map"
+      "path---index-502633aa887a5325857e.js",
+      "path---index-502633aa887a5325857e.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -34,18 +38,18 @@
       "path---404-html-a0e39f21c11f6a62c5ab.js",
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
+    "path---pages-page-fix": [
+      "path---pages-page-fix-3ce612c9254ff7c6a0c2.js",
+      "path---pages-page-fix-3ce612c9254ff7c6a0c2.js.map"
+    ],
     "component---src-templates-md-js": [
       "component---src-templates-md-js-a037245d6a35f58ad2c4.js",
       "component---src-templates-md-js-a037245d6a35f58ad2c4.js.map"
     ],
-    "path---pages-page-with-include": [
-      "path---pages-page-with-include-a816a76f3d57c5fffd17.js",
-      "path---pages-page-with-include-a816a76f3d57c5fffd17.js.map"
-    ],
     "app": [
-      "app-9d1b3a98fd280cddc689.js",
+      "app-a596a8eac8dba61f30f8.js",
       "build-js-styles.css",
-      "app-9d1b3a98fd280cddc689.js.map",
+      "app-a596a8eac8dba61f30f8.js.map",
       "build-js-styles.css.map"
     ],
     "path---404": [
