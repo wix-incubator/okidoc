@@ -7,7 +7,7 @@ Documentation tool
 Install using the [npm](https://www.npmjs.com/) package manager:
 
 ```sh
-$ npm install @wix/okidoc --save-dev
+$ npm install okidoc --save-dev
 ```
 
 This installs package and put two commands in your `./node_modules/.bin` path:
@@ -128,13 +128,13 @@ module.exports = {
 
 Main visitor example:
 
-* [createApiVisitor](https://github.com/wix-private/okidoc/blob/35fe46cb14e4cf4026a0c6d305e9a908ea33ecbf/src/api/createApiVisitor.js)
-* [createApiMethod](https://github.com/wix-private/okidoc/blob/35fe46cb14e4cf4026a0c6d305e9a908ea33ecbf/src/api/createApiMethod.js)
+* [createApiVisitor](https://github.com/wix/okidoc/blob/35fe46cb14e4cf4026a0c6d305e9a908ea33ecbf/src/api/createApiVisitor.js)
+* [createApiMethod](https://github.com/wix/okidoc/blob/35fe46cb14e4cf4026a0c6d305e9a908ea33ecbf/src/api/createApiMethod.js)
 
 Custom visitor example:
 
-* [createApiVisitor](https://github.com/wix-private/video-player.js/blob/4ec54f1e06ab8b35bffc00dce2291c18a10446c5/scripts/documentation/lib/player/createPlayerApiVisitor.js)
-* [createApiMethod](https://github.com/wix-private/video-player.js/blob/4ec54f1e06ab8b35bffc00dce2291c18a10446c5/scripts/documentation/lib/player/createPlayerApiMethod.js)
+* [createApiVisitor](https://github.com/wix/playable/blob/4ec54f1e06ab8b35bffc00dce2291c18a10446c5/scripts/documentation/lib/player/createPlayerApiVisitor.js)
+* [createApiMethod](https://github.com/wix/playable/blob/4ec54f1e06ab8b35bffc00dce2291c18a10446c5/scripts/documentation/lib/player/createPlayerApiMethod.js)
 
 Read about visitors:
 
@@ -147,7 +147,7 @@ Site logic is based on [gatsby](https://www.gatsbyjs.org/docs/).
 Instead of default gatsby directory `src/pages` use your docs path. Only `md` files are served by `okidoc-site`.
 
 For site index page use `index.md` file
-([example](https://github.com/wix-private/wix-vod/blob/6b06510eedc8774d563871d018f5aacdce0b332b/wix-vod-sdk/docs/index.md)).
+([example](https://github.com/wix/playable/blob/25d9d506c3d640b9cbd614d4e9b476390ada51b9/docs/index.md)).
 It is required file in your documentation directory.
 Other pages are available by file name without `.md` extension.
 

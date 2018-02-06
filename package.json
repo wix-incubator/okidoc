@@ -1,5 +1,5 @@
 {
-  "name": "@wix/okidoc",
+  "name": "okidoc",
   "version": "1.0.0",
   "description": "okidoc",
   "main": "lib/index.js",
@@ -18,25 +18,25 @@
     "documentation:site:deploy":
       "npm run documentation:site:build && gh-pages -d sitedist",
     "format":
-      "prettier --write '{src,bin}/**/*.js' 'site/src/**/*.js' 'site/*.js'",
+      "prettier --write '{src,bin,scripts}/**/*.js' 'site/src/**/*.js' 'site/*.js'",
     "precommit": "lint-staged",
     "postinstall": "cd site && npm install",
-    "release": "npm run build && wnpm-release --no-shrinkwrap"
+    "release": "node scripts/npm-release.js"
   },
   "lint-staged": {
     "*.{js,json,md}": ["prettier --write", "git add"]
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wix-private/okidoc.git"
+    "url": "git+https://github.com/wix/okidoc.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/wix-private/okidoc/issues"
+    "url": "https://github.com/wix/okidoc/issues"
   },
-  "homepage": "https://github.com/wix-private/okidoc#readme",
+  "homepage": "https://github.com/wix/okidoc#readme",
   "dependencies": {
     "@babel/generator": "7.0.0-beta.38",
     "@babel/traverse": "7.0.0-beta.38",
@@ -58,11 +58,10 @@
     "gh-pages": "^1.1.0",
     "husky": "0.14.3",
     "lint-staged": "6.0.1",
-    "prettier": "1.10.2",
-    "wnpm-ci": "latest"
+    "prettier": "1.10.2"
   },
   "publishConfig": {
-    "registry": "http://repo.dev.wix/artifactory/api/npm/npm-local/"
-  },
-  "private": false
+    "registry": "https://registry.npmjs.org/",
+    "logLevel": "verbose"
+  }
 }
