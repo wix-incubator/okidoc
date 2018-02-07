@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import 'docsearch.js/dist/npm/styles/main.scss';
 
 const apiKey = process.env.GATSBY_ALGOLIA_API_KEY;
+const indexName = process.env.GATSBY_ALGOLIA_INDEX_NAME;
 
 class DocSearch extends Component {
   componentDidMount() {
@@ -15,7 +16,7 @@ class DocSearch extends Component {
 
     docSearch({
       apiKey: apiKey,
-      indexName: 'wix',
+      indexName: indexName,
       inputSelector: '#input-search-custom',
       debug: false, // Set debug to true if you want to inspect the dropdown
     });

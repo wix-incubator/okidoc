@@ -198,8 +198,9 @@ config:
    keywords: YOUR_DOCUMENTATION_SITE_KEYWORDS
  # [optional] path prefix
  pathPrefix: /my-awesome-lib
- # [optional] algolia apiKey for docsearch (https://www.algolia.com/ref/docsearch). If empty, search will be hidden
+ # [optional] algolia apiKey and indexName for docsearch (https://www.algolia.com/ref/docsearch). If empty, search will be hidden
  algoliaApiKey: YOUR_ALGOLIA_API_KEY
+ algoliaIndexName: YOUR_ALGOLIA_INDEX_NAME
  # [optional] Link to your github repository
  githubLink: YOUR_GITHUB_REPOSITORY
 
