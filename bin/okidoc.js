@@ -14,7 +14,36 @@ const writeFile = util.promisify(fs.writeFile);
 // NOTE: ignore first 2 arguments (node and path of this file)
 const [docsYamlPath, outputDir] = process.argv.slice(2);
 
-const docs = yaml.load(docsYamlPath);
+const RUN_EXAMPLE = `
+  run example:
+    '> okidoc ./docs.yml ./docs'
+`;
+
+if (!docsYamlPath || !fs.existsSync(docsYamlPath)) {
+  throw new Error(
+    `docs yaml path should be valid path.
+    '${docsYamlPath || ''}' is not exists.
+    ${RUN_EXAMPLE}`,
+  );
+}
+
+if (!outputDir) {
+  throw new Error(
+    `docs target path not provided.
+    ${RUN_EXAMPLE}`,
+  );
+}
+
+let docs;
+
+try {
+  docs = yaml.load(docsYamlPath);
+} catch (e) {
+  console.error(e);
+  throw new Error(
+    `invalid docs yaml file. An error occurred while parsing ${docsYamlPath}.`,
+  );
+}
 
 Promise.all(
   docs.map(doc =>
@@ -35,7 +64,7 @@ Promise.all(
     }),
   ),
 ).catch(err => {
-  console.error(err);
+  console.error('An error occurred while building documentation', err);
 
   process.exit(1);
 });
