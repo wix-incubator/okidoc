@@ -1,6 +1,6 @@
 {
   "name": "okidoc",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "okidoc",
   "main": "lib/index.js",
   "files": ["bin", "lib", "src", "site"],
