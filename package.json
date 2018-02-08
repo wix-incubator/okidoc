@@ -23,6 +23,9 @@
     "postinstall": "cd site && npm install",
     "release": "node scripts/npm-release.js"
   },
+  "engines": {
+    "node": ">=8"
+  },
   "lint-staged": {
     "*.{js,json,md}": ["prettier --write", "git add"]
   },
