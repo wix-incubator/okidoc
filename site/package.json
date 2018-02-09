@@ -5,7 +5,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "docsearch.js": "^2.5.2",
-    "gatsby": "^1.9.184",
+    "gatsby": "^1.9.190",
     "gatsby-link": "^1.6.36",
     "gatsby-plugin-catch-links": "^1.0.9",
     "gatsby-plugin-react-helmet": "^2.0.3",
