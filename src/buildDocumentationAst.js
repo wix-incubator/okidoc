@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import * as t from '@babel/types';
-import glob from './utils/glob';
+import traverseEntries from './utils/traverseEntries';
 import traverseFiles from './utils/traverseFiles';
 import {
   createApiVisitor,
@@ -46,14 +46,22 @@ function ensureCustomApiVisitorIsCorrect(
   }
 }
 
-function buildDocumentationAst(pattern, { tag, visitor: visitorPath }) {
-  const files = glob(pattern);
+function traverse({ entry, pattern }, visitors) {
+  if (entry) {
+    traverseEntries(entry, visitors, { pattern });
+    return;
+  }
+
+  traverseFiles(pattern, visitors);
+}
+
+function buildDocumentationAst({ entry, pattern, tag, visitor: visitorPath }) {
   const apiInterfaces = [];
   const classApiMethods = [];
   const functions = [];
 
-  if (files.length === 0) {
-    console.warn(`files not found for ${pattern} pattern`);
+  if (!entry && !pattern) {
+    throw new Error(`'entry' or/and 'pattern' options should be defined`);
   }
 
   if (!tag && !visitorPath) {
@@ -78,6 +86,7 @@ function buildDocumentationAst(pattern, { tag, visitor: visitorPath }) {
         if (t.isClassMethod(path.node || t.isClassProperty(path.node))) {
           classApiMethods.push(createApiMethod(path.node, tag));
         }
+
         if (
           t.isVariableDeclaration(path.node) ||
           t.isExportNamedDeclaration(path.node) ||
@@ -116,7 +125,7 @@ function buildDocumentationAst(pattern, { tag, visitor: visitorPath }) {
     Object.assign(visitors, customApiVisitor);
   }
 
-  traverseFiles(files, visitors);
+  traverse({ entry, pattern }, visitors);
 
   const apiClassDeclaration = buildApiClassDeclaration(classApiMethods);
 
