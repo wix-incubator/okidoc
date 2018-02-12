@@ -48,9 +48,12 @@
     "cross-spawn": "^6.0.4",
     "documentation": "^5.3.5",
     "ejs": "^2.5.7",
+    "filing-cabinet": "^1.13.1",
     "glob": "^7.1.2",
     "lodash": "^4.17.5",
+    "minimatch": "^3.0.4",
     "ncp": "^2.0.0",
+    "precinct": "^4.0.0",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {

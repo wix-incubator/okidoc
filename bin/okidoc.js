@@ -49,6 +49,7 @@ Promise.all(
   docs.map(doc =>
     buildDocumentation({
       title: doc.title,
+      entry: doc.entry,
       pattern: doc.glob,
       tag: doc.tag,
       visitor: doc.visitor,

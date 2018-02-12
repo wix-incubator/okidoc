@@ -78,6 +78,8 @@ Add yaml config (for example `docs.yml`):
 # and generate markdown to `partial/ui.md` file
 - path: partial/ui.md
   title: UI API Methods
+  # [optional] if provided, only `entry` file dependencies will be parsed
+  entry: src/index.ts
   glob: src/**/*.ts
   tag: UI
 
