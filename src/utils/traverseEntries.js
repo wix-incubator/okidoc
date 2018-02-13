@@ -60,6 +60,19 @@ function traverseEntry(entryPath, visitors, { pattern, visited = [] } = {}) {
         return;
       }
 
+      // TODO: traverse only imported declarations (skip declarations from dependency, which not used in current entry)
+      // something like:
+      // ```
+      // let imports = [];
+      // traverse(entryAST, {
+      //   ImportDeclaration(path) {
+      //     if (path.node.source.value === dependency) {
+      //       imports = getNamedImports(path.node.specifiers)
+      //     }
+      //   }
+      // });
+      // traverseEntry(dependencyPath, visitors, { pattern, visited, includeExported: imports });
+      // ```
       traverseEntry(dependencyPath, visitors, { pattern, visited });
     },
   );
