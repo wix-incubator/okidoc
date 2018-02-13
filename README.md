@@ -73,13 +73,14 @@ class MySuperUIEvents {
 Add yaml config (for example `docs.yml`):
 
 ```yaml
-# get files using `glob` `src/**/*.ts` (could be js or ts files),
+# get files using `entry` or/and `glob` (could be `.js` or `.ts` files),
 # find api methods by `@doc UI` tag in JSDoc
 # and generate markdown to `partial/ui.md` file
 - path: partial/ui.md
   title: UI API Methods
   # [optional] if provided, only `entry` file dependencies will be parsed
   entry: src/index.ts
+  # [optional] required if `entry` not provided
   glob: src/**/*.ts
   tag: UI
 
