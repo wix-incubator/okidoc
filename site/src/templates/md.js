@@ -4,8 +4,16 @@ import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
 
 const SIMPLE_LAYOUT = 'simple';
+const INDEX_PAGE_REQUIRED_MESSAGE = `For site index page create <code>./docs/index.md</code> file`;
 
-function Template({ location, data: { site, page } }) {
+function Template({ match, location, data: { site, page } }) {
+  if (!page && match.path === '/') {
+    page = {
+      headings: [],
+      html: INDEX_PAGE_REQUIRED_MESSAGE,
+    };
+  }
+
   let headings = page.headings;
   let html = page.html;
 
