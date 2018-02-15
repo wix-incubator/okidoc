@@ -177,12 +177,21 @@ Supported properties:
 ## Build documentation site
 
 Site logic is based on [gatsby](https://www.gatsbyjs.org/docs/).
-Instead of default gatsby directory `src/pages` use your docs path. Only `md` files are served by `okidoc-site`.
 
-For site index page use `index.md` file
-([example](https://github.com/wix/playable/blob/25d9d506c3d640b9cbd614d4e9b476390ada51b9/docs/index.md)).
-It is required file in your documentation directory.
-Other pages are available by file name without `.md` extension.
+Instead of default gatsby directory `src/pages`, **use your docs path**. Only `md` files are served by `okidoc-site`:
+
+```
+.
+├── /docs/                      # Site markdown files
+│   ├── /index.md               # [required] site index page
+│   ├── /other-markdown-file.md
+│   └── ...                     # Other markdown files
+```
+
+> IMPORTANT: For site index page use `index.md` file
+> ([example](https://github.com/wix/playable/blob/25d9d506c3d640b9cbd614d4e9b476390ada51b9/docs/index.md)).
+> It is **required** file in your documentation directory.
+> Other pages are available by file name without `.md` extension.
 
 To configure your site, use yaml config (for example `site.yml`):
 
