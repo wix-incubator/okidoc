@@ -19,11 +19,10 @@ You can use these commands in your [npm scripts](https://docs.npmjs.com/misc/scr
 
 ```json
 "scripts": {
-  "documentation": "okidoc ./docs/docs.yml ./docs",
+  "documentation": "okidoc ./docs.yml ./docs",
   "documentation:gitadd": "npm run documentation && git add ./docs",
-  "documentation:site": "okidoc-site develop ./docs/site.yml",
-  "documentation:site:build": "npm run documentation && okidoc-site build ./docs/site.yml",
-  "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d sitedist",
+  "documentation:site": "okidoc-site develop ./site.yml",
+  "documentation:site:build": "npm run documentation && okidoc-site build ./site.yml",
   "precommit": "npm run documentation:gitadd"
 }
 ```
@@ -74,15 +73,14 @@ Add yaml config (for example `docs.yml`):
 
 ```yaml
 # Get files using `entry` or/and `glob` (could be `.js` or `.ts` files),
-# find api methods by `@doc UI` tag in JSDoc
-# and generate markdown to `partial/ui.md` file.
-# NOTE: With `entry` option, all dependency file source will be parsed for doc. Not only imported/exported part.
+# find api methods by `@doc UI` tag in JSDoc and generate markdown to `partial/ui.md` file.
 - path: partial/ui.md
   title: UI API Methods
   # [optional] if provided, only `entry` file dependencies will be parsed
   entry: src/index.ts
   # [optional] required if `entry` not provided
   glob: src/**/*.ts
+  # tag name have to match `@doc UI` in JSDoc
   tag: UI
 
 - path: partial/events.md
@@ -91,6 +89,8 @@ Add yaml config (for example `docs.yml`):
   tag: Events
 ```
 
+> NOTE: With `entry` option, all dependency file source will be parsed for doc. Not only imported/exported part.
+
 Run `okidoc` script
 
 ```sh
@@ -98,7 +98,7 @@ Run `okidoc` script
 okidoc ./docs.yml ./docs
 ```
 
-### Customization
+## Customize documentation generation
 
 To extract api methods with custom rule use `visitor` prop in `docs.yml` and visitor code:
 
@@ -178,20 +178,24 @@ Supported properties:
 
 Site logic is based on [gatsby](https://www.gatsbyjs.org/docs/).
 
-Instead of default gatsby directory `src/pages`, **use your docs path**. Only `md` files are served by `okidoc-site`:
+Instead of default gatsby directory `src/pages`, **use your docs path** ([example](https://github.com/wix/playable/blob/25d9d506c3d640b9cbd614d4e9b476390ada51b9/docs/)):
 
 ```
 .
+├── site.yml
 ├── /docs/                      # Site markdown files
 │   ├── /index.md               # [required] site index page
 │   ├── /other-markdown-file.md
 │   └── ...                     # Other markdown files
+└── ...
 ```
 
 > IMPORTANT: For site index page use `index.md` file
 > ([example](https://github.com/wix/playable/blob/25d9d506c3d640b9cbd614d4e9b476390ada51b9/docs/index.md)).
 > It is **required** file in your documentation directory.
 > Other pages are available by file name without `.md` extension.
+
+> Only `md` files are served by `okidoc-site`.
 
 To configure your site, use yaml config (for example `site.yml`):
 
@@ -217,7 +221,7 @@ config:
  # [optional] Link to your github repository
  githubLink: YOUR_GITHUB_REPOSITORY
 
-# [optional] navigation config. Use if you need more than one page
+# [optional] navigation config. Use if you need more than one page in navigation block
 navigation:
  - path: /player-config
    title: Configuration
@@ -244,3 +248,16 @@ okidoc-site build ./site.yml
 ```
 
 Read gatsby [docs](https://www.gatsbyjs.org/docs/) for more information
+
+## Deploy documentation site
+
+If you use github for your repository, the easiest way to deploy site is to use [gh-pages](https://github.com/tschaub/gh-pages) library:
+
+```json
+"scripts": {
+  "documentation:site:build": "npm run documentation && okidoc-site build ./site.yml",
+  "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d site",
+}
+```
+
+For more deploy options read gatsby [docs](https://www.gatsbyjs.org/docs/deploy-gatsby/)
