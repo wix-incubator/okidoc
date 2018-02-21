@@ -1,11 +1,11 @@
 {
   "name": "okidoc",
-  "version": "1.2.3-2",
+  "version": "1.2.3-3",
   "homepage": "https://wix.github.io/okidoc",
   "license": "MIT",
   "repository": "https://github.com/wix/okidoc",
   "dependencies": {
-    "okidoc-md": "^1.2.3-2",
-    "okidoc-site": "^1.2.3-2"
+    "okidoc-md": "^1.2.3-3",
+    "okidoc-site": "^1.2.3-3"
   }
 }
