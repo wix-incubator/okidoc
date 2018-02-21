@@ -11,9 +11,6 @@ const semver = require('semver');
 const exec = util.promisify(require('child_process').exec);
 const writeFile = util.promisify(require('fs').writeFile);
 
-const packageJSONPath = path.resolve(__dirname, '..', 'package.json');
-const packageJSON = require(packageJSONPath);
-
 const ZERO_VERSION = '0.0.0';
 
 function getPublishedVersion() {
@@ -29,10 +26,10 @@ function getPublishedVersion() {
     });
 }
 
-function shouldPublish(publishedVersion, packageJSONVersion) {
+function shouldPublish(localVersion, publishedVersion) {
   return (
     publishedVersion === ZERO_VERSION ||
-    (!!publishedVersion && semver.gt(packageJSONVersion, publishedVersion))
+    (!!publishedVersion && semver.gt(localVersion, publishedVersion))
   );
 }
 
@@ -40,32 +37,34 @@ function stringify(data) {
   return JSON.stringify(data, null, 2);
 }
 
-writeFile(
-  packageJSONPath,
-  // NOTE: use `private: true` to prevent publish to npm
-  stringify(Object.assign({}, packageJSON, { private: true })),
-)
-  .then(getPublishedVersion)
+getPublishedVersion()
   .then(publishedVersion => {
-    if (shouldPublish(publishedVersion, packageJSON.version)) {
-      return writeFile(packageJSONPath, stringify(packageJSON)).then(() => {
+    const packageJSONPath = path.resolve(__dirname, '..', 'package.json');
+    const packageJSON = require(packageJSONPath);
+    const lernaJSON = require('../lerna.json');
+
+    if (shouldPublish(lernaJSON.version, publishedVersion)) {
+      // NOTE: use `private: false` to allow publish to npm
+      // https://github.com/wix-private/wix-ci/blob/master/ci-scripts/wix-agent-scripts/src/npmBuild.sh#L72
+      return writeFile(
+        packageJSONPath,
+        stringify(Object.assign({}, packageJSON, { private: false })),
+      ).then(() => {
         if (publishedVersion !== ZERO_VERSION) {
           console.log(
-            `Version set in package.json ${
-              packageJSON.version
+            `Version set in lerna.json ${
+              lernaJSON.version
             } is newer than published ${publishedVersion}`,
           );
         }
 
-        console.log(`Package will be published`);
+        console.log(`Packages will be published`);
       });
     } else {
       console.log(`Package will not be published`);
       if (publishedVersion) {
         console.log(
-          `version ${
-            packageJSON.version
-          } set in package.json is already published`,
+          `version ${lernaJSON.version} set in lerna.json is already published`,
         );
       }
     }

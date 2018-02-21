@@ -1,37 +1,36 @@
 {
   "name": "okidoc",
-  "private": true,
+  "private": false,
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
     "readme2docs": "cp ./README.md ./docs/README.md",
-    "documentation:site":
-      "npm run readme2docs && okidoc-site develop ./docs/site.yml",
-    "documentation:site:build":
-      "npm run readme2docs && okidoc-site build ./docs/site.yml",
-    "documentation:site:deploy":
-      "npm run documentation:site:build && gh-pages -d sitedist",
-    "format":
-      "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin}/**/*.js' 'packages/*/*.js'",
+    "documentation:site": "npm run readme2docs && okidoc-site develop ./docs/site.yml",
+    "documentation:site:build": "npm run readme2docs && okidoc-site build ./docs/site.yml",
+    "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d sitedist",
+    "format": "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin}/**/*.js' 'packages/*/*.js'",
     "precommit": "lint-staged",
     "release": "node scripts/npm-release.js",
     "preparePublish": "lerna publish --skip-npm --force-publish",
-    "customPublish":
-      "lerna publish --skip-git --force-publish --repo-version $VERSION_FROM_LERNA_JSON"
+    "customPublish": "node scripts/npm-customPublish.js.js"
   },
   "engines": {
     "node": ">=8"
   },
   "lint-staged": {
-    "*.{js,json,md}": ["prettier --write", "git add"]
+    "*.{js,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
-    "okidoc-site": "^1.2.2",
     "gh-pages": "^1.1.0",
     "husky": "0.14.3",
     "lerna": "^2.9.0",
     "lint-staged": "7.0.0",
-    "prettier": "1.10.2"
+    "okidoc-site": "^1.2.3-2",
+    "prettier": "1.10.2",
+    "semver": "^5.5.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
