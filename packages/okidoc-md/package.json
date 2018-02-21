@@ -1,9 +1,13 @@
 {
   "name": "okidoc-md",
-  "version": "1.2.3-1",
+  "version": "1.2.3-2",
   "homepage": "https://wix.github.io/okidoc",
   "license": "MIT",
-  "files": ["bin", "lib", "src"],
+  "files": [
+    "bin",
+    "lib",
+    "src"
+  ],
   "main": "lib/index.js",
   "bin": {
     "okidoc": "./bin/okidoc.js"
