@@ -1,12 +1,15 @@
 // customPublish script for ci
 // before customPublish, packages should be prepared by npm run preparePublish
+//
+// if (!process.env.IS_BUILD_AGENT) {
+//   console.log(
+//     "Package will not be published because we're not running in a CI build agent",
+//   );
+//   return process.exit(0);
+// }
 
-if (!process.env.IS_BUILD_AGENT) {
-  console.log(
-    "Package will not be published because we're not running in a CI build agent",
-  );
-  return process.exit(0);
-}
+console.log('disable publish before fix lerna + ci + git');
+return process.exit(0);
 
 const lernaCLI = require('lerna/lib/cli');
 const PublishCommand = require('lerna/lib/commands/PublishCommand').default;
