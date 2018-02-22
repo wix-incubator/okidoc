@@ -1,70 +1,36 @@
 {
   "name": "okidoc",
-  "version": "1.1.1",
-  "description": "okidoc",
-  "main": "lib/index.js",
-  "files": ["bin", "lib", "src", "site"],
-  "bin": {
-    "okidoc": "./bin/okidoc.js",
-    "okidoc-site": "./bin/okidoc-site.js"
-  },
+  "private": false,
+  "license": "MIT",
   "scripts": {
-    "build": "rm -rf lib && babel src -d lib --copy-files",
-    "build:watch": "npm run build -- --watch",
-    "documentation:site":
-      "cp ./README.md ./docs/README.md && node ./bin/okidoc-site develop ./docs/site.yml",
-    "documentation:site:build":
-      "cp ./README.md ./docs/README.md && node ./bin/okidoc-site build ./docs/site.yml",
-    "documentation:site:deploy":
-      "npm run documentation:site:build && gh-pages -d sitedist",
-    "format":
-      "prettier --write '{src,bin,scripts}/**/*.js' 'site/src/**/*.js' 'site/*.js'",
+    "bootstrap": "lerna bootstrap --hoist",
+    "readme2docs": "cp ./README.md ./docs/README.md",
+    "documentation:site": "npm run readme2docs && okidoc-site develop ./docs/site.yml",
+    "documentation:site:build": "npm run readme2docs && okidoc-site build ./docs/site.yml",
+    "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d sitedist",
+    "format": "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin}/**/*.js' 'packages/*/*.js'",
     "precommit": "lint-staged",
-    "postinstall": "cd site && npm install",
-    "release": "node scripts/npm-release.js"
+    "release": "node scripts/npm-release.js",
+    "preparePublish": "lerna publish --skip-npm --force-publish",
+    "customPublish": "node scripts/npm-customPublish.js.js"
   },
   "engines": {
     "node": ">=8"
   },
   "lint-staged": {
-    "*.{js,json,md}": ["prettier --write", "git add"]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/wix/okidoc.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/wix/okidoc/issues"
-  },
-  "homepage": "https://github.com/wix/okidoc#readme",
-  "dependencies": {
-    "@babel/generator": "7.0.0-beta.38",
-    "@babel/traverse": "7.0.0-beta.38",
-    "@babel/types": "7.0.0-beta.38",
-    "babylon": "7.0.0-beta.38",
-    "cross-spawn": "^6.0.4",
-    "documentation": "^5.3.5",
-    "ejs": "^2.5.7",
-    "filing-cabinet": "^1.13.1",
-    "glob": "^7.1.2",
-    "lodash": "^4.17.5",
-    "minimatch": "^3.0.4",
-    "ncp": "^2.0.0",
-    "precinct": "^4.0.0",
-    "yamljs": "^0.3.0"
+    "*.{js,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.38",
-    "@babel/core": "7.0.0-beta.38",
-    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.38",
-    "@babel/preset-env": "7.0.0-beta.38",
     "gh-pages": "^1.1.0",
     "husky": "0.14.3",
-    "lint-staged": "6.0.1",
-    "prettier": "1.10.2"
+    "lerna": "^2.9.0",
+    "lint-staged": "7.0.0",
+    "okidoc-site": "^1.2.3-2",
+    "prettier": "1.10.2",
+    "semver": "^5.5.0"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",

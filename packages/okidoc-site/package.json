@@ -1,0 +1,22 @@
+{
+  "name": "okidoc-site",
+  "version": "1.2.3-3",
+  "homepage": "https://wix.github.io/okidoc",
+  "license": "MIT",
+  "files": [
+    "bin",
+    "site"
+  ],
+  "bin": {
+    "okidoc-site": "./bin/okidoc-site.js"
+  },
+  "repository": "https://github.com/wix/okidoc/tree/master/packages/okidoc-site",
+  "scripts": {
+    "postinstall": "cd site && npm install"
+  },
+  "dependencies": {
+    "cross-spawn": "^6.0.4",
+    "ncp": "^2.0.0",
+    "yamljs": "^0.3.0"
+  }
+}
