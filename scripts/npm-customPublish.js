@@ -1,5 +1,4 @@
-// customPublish script for
-// https://github.com/wix-private/wix-ci/blob/master/ci-scripts/wix-agent-scripts/src/npmBuild.sh#L78-L85
+// customPublish script for ci
 // before customPublish, packages should be prepared by npm run preparePublish
 
 if (!process.env.IS_BUILD_AGENT) {
@@ -10,6 +9,7 @@ if (!process.env.IS_BUILD_AGENT) {
 }
 
 const lernaCLI = require('lerna/lib/cli');
+const PublishCommand = require('lerna/lib/commands/PublishCommand').default;
 const semver = require('semver');
 
 const lernaJSON = require('../lerna');
@@ -30,5 +30,12 @@ const argv = [
 if (semver.prerelease(lernaJSON.version) !== null) {
   argv.push('--npm-tag=next');
 }
+
+// git is not required for CI npm publish
+// prevent `lerna` git validation
+// https://github.com/lerna/lerna/blob/2.x/src/Command.js#L240-L245
+Object.defineProperty(PublishCommand.prototype, 'requiresGit', {
+  get: () => false,
+});
 
 lernaCLI().parse(argv);
