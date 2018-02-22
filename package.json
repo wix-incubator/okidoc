@@ -12,7 +12,7 @@
     "precommit": "lint-staged",
     "release": "node scripts/npm-release.js",
     "preparePublish": "lerna publish --skip-npm --force-publish",
-    "customPublish": "node scripts/npm-customPublish.js.js"
+    "customPublish": "node scripts/npm-customPublish.js"
   },
   "engines": {
     "node": ">=8"
