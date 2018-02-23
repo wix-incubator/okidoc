@@ -1,0 +1,521 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildMarkdown for API class should render markdown for getters/setters 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## isVisible
+
+\`isVisible\` getter comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">boolean</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## width
+
+\`width\` setter comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>value</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for methods default value 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod()
+
+myMethod comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+          <div class=\\"optional\\">(Optional)</div>
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p><code>x</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for methods interface as return type 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod()
+
+myMethod comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+        </td>
+        <td>
+            <p><code>y</code> comment</p>
+            Possible values are <code>\\"bla\\"</code>, <code>\\"not bla\\"</code>.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>a</code>
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p><code>a</code> description</p>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>b</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+            <p><code>b</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for methods with @example end @note 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod()
+
+_test example caption_
+
+\`\`\`javascript
+console.log('example')
+\`\`\`
+
+\`\`\`javascript
+console.log('example')
+\`\`\`
+
+> \`myMethod\` note 
+> Read more about [myMethod](/my-method)
+
+myMethod comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p><code>x</code> description. see <a href=\\"http://example.com\\">http://example.com</a></p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for methods with @returns comment 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod()
+
+myMethod comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p><code>x</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p>returns comment</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for methods with union as @param type 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod()
+
+myMethod comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+        </td>
+        <td>
+            <p><code>y</code> comment</p>
+            Possible values are <code>\\"bla\\"</code>, <code>\\"not bla\\"</code>.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown sections in valid order 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod1()
+
+_test example caption_
+
+\`\`\`javascript
+console.log('example')
+\`\`\`
+
+> \`myMethod1\` note 
+> Read more about [myMethod](/my-method)
+
+myMethod1 comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p><code>x</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p>returns comment</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## myMethod2()
+
+\`\`\`javascript
+console.log('example')
+\`\`\`
+
+myMethod2 comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+        </td>
+        <td>
+            <p>y comment</p>
+            Possible values are <code>\\"bla\\"</code>, <code>\\"not bla\\"</code>.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for functions should render valid markdown 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Functions
+
+## myFunc2()
+
+_MyFunc example_
+
+\`\`\`javascript
+console.log(myFunc(3, 2))
+// {a: '3', b: 2}
+\`\`\`
+
+myFunc1 description
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+            <p><code>x</code> description</p>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+            <p><code>y</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>a</code>
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p><code>a</code> description</p>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>b</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+            <p><code>b</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
