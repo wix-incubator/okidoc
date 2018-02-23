@@ -1,5 +1,4 @@
 {
-  "name": "okidoc",
   "private": false,
   "license": "MIT",
   "scripts": {
@@ -10,6 +9,7 @@
     "documentation:site:build": "npm run readme2docs && npm run okidoc-site -- build ./docs/site.yml",
     "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d sitedist",
     "format": "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin}/**/*.js' 'packages/*/*.js'",
+    "test": "jest",
     "precommit": "lint-staged",
     "release": "node scripts/npm-release.js",
     "preparePublish": "lerna publish --skip-npm --force-publish",
@@ -25,12 +25,24 @@
     ]
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.40",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^22.4.0",
     "gh-pages": "^1.1.0",
     "husky": "0.14.3",
+    "jest": "^22.4.0",
     "lerna": "^2.9.0",
     "lint-staged": "7.0.0",
     "prettier": "1.10.2",
+    "regenerator-runtime": "^0.11.1",
     "semver": "^5.5.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/packages/okidoc-md/lib/",
+      "/packages/okidoc-site/site/"
+    ]
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
