@@ -2,7 +2,7 @@ import generate from '@babel/generator';
 import documentation from 'documentation';
 
 import buildDocumentationAst from './buildDocumentationAst';
-import { buildMarkdown } from './output';
+import buildMarkdown from './buildMarkdown';
 
 function buildDocumentation({ title, entry, pattern, tag, visitor }) {
   const { code: documentationSource } = generate(
@@ -11,11 +11,9 @@ function buildDocumentation({ title, entry, pattern, tag, visitor }) {
 
   return documentation
     .build([{ source: documentationSource }], { shallow: true })
-    .then(documentation.formats.json)
-    .then(jsonString =>
-      buildMarkdown({
+    .then(comments =>
+      buildMarkdown(comments, {
         title: title,
-        json: JSON.parse(jsonString),
       }),
     );
 }
