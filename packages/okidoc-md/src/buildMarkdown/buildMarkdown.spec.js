@@ -199,7 +199,7 @@ describe('buildMarkdown', () => {
       /**
       * myFunc1 description
       * @param x - \`x\` description 
-      *
+      */
       function myFunc1(x: number): number {}
       
 
