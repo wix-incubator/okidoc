@@ -5,8 +5,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
     "readme2docs": "cp ./README.md ./docs/README.md",
-    "documentation:site": "npm run readme2docs && okidoc-site develop ./docs/site.yml",
-    "documentation:site:build": "npm run readme2docs && okidoc-site build ./docs/site.yml",
+    "okidoc-site": "node ./packages/okidoc-site/bin/okidoc-site.js",
+    "documentation:site": "npm run readme2docs && npm run okidoc-site -- develop ./docs/site.yml",
+    "documentation:site:build": "npm run readme2docs && npm run okidoc-site -- build ./docs/site.yml",
     "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d sitedist",
     "format": "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin}/**/*.js' 'packages/*/*.js'",
     "precommit": "lint-staged",
@@ -28,7 +29,6 @@
     "husky": "0.14.3",
     "lerna": "^2.9.0",
     "lint-staged": "7.0.0",
-    "okidoc-site": "^1.2.3-2",
     "prettier": "1.10.2",
     "semver": "^5.5.0"
   },
