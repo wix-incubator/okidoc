@@ -14,7 +14,7 @@
   },
   "repository": "https://github.com/wix/okidoc/tree/master/packages/okidoc-md",
   "scripts": {
-    "build": "rm -rf lib && babel src -d lib --copy-files",
+    "build": "rm -rf lib && babel src -d lib --ignore *.spec.js",
     "build:watch": "npm run build -- --watch",
     "prepare": "npm run build"
   },
