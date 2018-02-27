@@ -40,6 +40,7 @@
     "semver": "^5.5.0"
   },
   "jest": {
+    "testEnvironment": "node",
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/packages/okidoc-md/lib/",
