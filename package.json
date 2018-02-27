@@ -10,6 +10,7 @@
     "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d sitedist",
     "format": "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin}/**/*.js' 'packages/*/*.js'",
     "test": "jest",
+    "test:coverage": "jest --coverage",
     "precommit": "lint-staged",
     "release": "node scripts/npm-release.js",
     "preparePublish": "lerna publish --skip-npm --force-publish",
@@ -42,6 +43,9 @@
       "/node_modules/",
       "/packages/okidoc-md/lib/",
       "/packages/okidoc-site/site/"
+    ],
+    "collectCoverageFrom": [
+      "packages/okidoc-md/src/buildMarkdown/**/*.js"
     ]
   },
   "publishConfig": {

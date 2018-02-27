@@ -1,5 +1,5 @@
 import documentation from 'documentation';
-import buildMarkdown from './buildMarkdown';
+import buildMarkdown from './';
 
 function getMarkdown(documentationSource, title) {
   return documentation
