@@ -1,5 +1,5 @@
 {
-  "private": false,
+  "private": true,
   "license": "MIT",
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
