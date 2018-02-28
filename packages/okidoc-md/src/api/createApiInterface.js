@@ -1,4 +1,4 @@
-import { createJSDocCommentBlock } from '../utils/ast';
+import { createJSDocCommentBlock } from '../utils/JSDocAST';
 
 function createApiInterface(node) {
   // NOTE: add empty JSDoc to force `documentation.js` to add this class to documentation

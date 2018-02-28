@@ -1,4 +1,4 @@
 import buildDocumentation from './buildDocumentation';
-import createFileDirectoryIfNotExists from './utils/createFileDirectoryIfNotExists';
+import * as JSDocASTUtils from './utils/JSDocAST';
 
-export { createFileDirectoryIfNotExists, buildDocumentation };
+export { buildDocumentation, JSDocASTUtils };

@@ -4,10 +4,9 @@ const yaml = require('yamljs');
 const util = require('util');
 const fs = require('fs');
 const path = require('path');
-const {
-  buildDocumentation,
-  createFileDirectoryIfNotExists,
-} = require('../lib');
+const { buildDocumentation } = require('../lib');
+
+const createFileDirectoryIfNotExists = require('../lib/utils/createFileDirectoryIfNotExists');
 
 const writeFile = util.promisify(fs.writeFile);
 

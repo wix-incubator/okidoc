@@ -1,5 +1,5 @@
 import * as t from '@babel/types';
-import { isJSDocComment, createJSDocComment } from '../utils/ast';
+import { isJSDocComment, createJSDocCommentValue } from '../utils/JSDocAST';
 
 import createDocTagParam from './createDocTagParam';
 
@@ -16,7 +16,7 @@ function createApiMethod(apiMethod, docTag) {
   t.addComment(
     apiMethod,
     'leading',
-    createJSDocComment(
+    createJSDocCommentValue(
       apiMethodJSDoc ? removeDocTagFromJSDoc(apiMethodJSDoc.value, docTag) : '',
     ),
   );

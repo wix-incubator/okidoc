@@ -1,4 +1,4 @@
-import { isJSDocIncludes } from '../utils/ast';
+import { isJSDocIncludes } from '../utils/JSDocAST';
 import createDocTagParam from './createDocTagParam';
 
 function createApiVisitor(tag, enter) {

@@ -20,7 +20,7 @@ function createCommentBlock(description) {
   };
 }
 
-function createJSDocComment(description = '') {
+function createJSDocCommentValue(description = '') {
   description = description
     // remove spaces before asterisk
     .replace(/\n\s*/g, '\n');
@@ -29,7 +29,7 @@ function createJSDocComment(description = '') {
 }
 
 function createJSDocCommentBlock(description) {
-  return createCommentBlock(createJSDocComment(description));
+  return createCommentBlock(createJSDocCommentValue(description));
 }
 
 function isJSDocIncludes(node, searchString) {
@@ -41,8 +41,7 @@ function isJSDocIncludes(node, searchString) {
 export {
   isJSDocComment,
   getJSDocComment,
-  createCommentBlock,
-  createJSDocComment,
+  createJSDocCommentValue,
   createJSDocCommentBlock,
   isJSDocIncludes,
 };
