@@ -12,14 +12,14 @@ $ npm install okidoc --save-dev
 
 This installs package and put two commands in your `./node_modules/.bin` path:
 
-* `okidoc` - generate human-readable documentation `md` files using source code with [JSDoc](http://usejsdoc.org) and public method markers
+* `okidoc-md` - generate human-readable documentation `md` files using source code with [JSDoc](http://usejsdoc.org) and public method markers
 * `okidoc-site` - run and build documentation site based on `md` files and site config
 
 You can use these commands in your [npm scripts](https://docs.npmjs.com/misc/scripts#examples):
 
 ```json
 "scripts": {
-  "documentation": "okidoc ./docs.yml ./docs",
+  "documentation": "okidoc-md ./docs.yml ./docs",
   "documentation:gitadd": "npm run documentation && git add ./docs",
   "documentation:site": "okidoc-site develop ./site.yml",
   "documentation:site:build": "npm run documentation && okidoc-site build ./site.yml",
@@ -91,11 +91,11 @@ Add yaml config (for example `docs.yml`):
 
 > NOTE: With `entry` option, all dependency file source will be parsed for doc. Not only imported/exported part.
 
-Run `okidoc` script
+Run `okidoc-md` script
 
 ```sh
 # generate markdown docs using configuration from `./docs.yml` and put them to `./docs` directory
-okidoc ./docs.yml ./docs
+okidoc-md ./docs.yml ./docs
 ```
 
 ## Customize documentation generation
