@@ -6,7 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const { buildDocumentation } = require('../lib');
 
-const createFileDirectoryIfNotExists = require('../lib/utils/createFileDirectoryIfNotExists');
+const createFileDirectoryIfNotExists = require('../lib/utils/createFileDirectoryIfNotExists')
+  .default;
 
 const writeFile = util.promisify(fs.writeFile);
 
