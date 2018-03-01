@@ -1,6 +1,10 @@
 import { isJSDocIncludes } from '../utils/JSDocAST';
 import createDocTagParam from './createDocTagParam';
 
+function isClassMethodAllowedInApi(node) {
+  return node.accessibility !== 'private' && node.kind !== 'constructor';
+}
+
 function createApiVisitor(tag, enter) {
   const DOC_TAG_PARAM = createDocTagParam(tag);
 
@@ -13,7 +17,7 @@ function createApiVisitor(tag, enter) {
       if (hasDocTagInJSDoc(path.node)) {
         path.traverse({
           ClassMethod(path) {
-            if (path.node.accessibility !== 'private') {
+            if (isClassMethodAllowedInApi(path.node)) {
               enter(path);
             }
           },
@@ -21,7 +25,7 @@ function createApiVisitor(tag, enter) {
       }
     },
     ClassMethod(path) {
-      if (hasDocTagInJSDoc(path.node)) {
+      if (hasDocTagInJSDoc(path.node) && isClassMethodAllowedInApi(path.node)) {
         enter(path);
       }
     },
