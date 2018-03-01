@@ -201,7 +201,6 @@ describe('buildMarkdown', () => {
       * @param x - \`x\` description 
       */
       function myFunc1(x: number): number {}
-      
 
       /**
       * myFunc2 description
@@ -214,6 +213,63 @@ describe('buildMarkdown', () => {
       * // {a: '3', b: 2}
       */
       function myFunc2(x: number, y:number): MyFuncResult {}
+    `;
+      const markdown = await documentation
+        .build([{ source: documentationSource }], { shallow: true })
+        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+
+      expect(markdown).toMatchSnapshot();
+    });
+  });
+
+  describe('for functions via var/let/const', async () => {
+    it('should render valid markdown', async () => {
+      const documentationSource = `
+      /**
+       * MyFuncResult interface
+       * @property a - \`a\` description
+       * @property b - \`b\` description
+       */
+      interface MyFuncResult {
+        a: string;
+        b: number;
+      }
+      
+      /**
+       * myConstFunc description
+       *
+       * @example
+       *
+       * myConstFuncFunc()
+       */
+      const myConstFunc = function() {}
+      
+      /**
+       * myVarArrowFunc description
+       * @param x - \`x\` description
+       */
+      var myVarArrowFunc = (x: number): number => {}
+      
+      /**
+       * myLetArrowFunc description
+       * @param x - \`x\` description
+       * @param y - \`y\` description
+       *
+       * @example <caption>MyFunc example</caption>
+       *
+       * console.log(myFunc(3, 2))
+       * // {a: '3', b: 2}
+       */
+      let myLetArrowFunc = (x: number, y: number): MyFuncResult => {}
+      
+      /**
+       * myConstArrowFunc description
+       *
+       * @example
+       *
+       * myConstArrowFunc()
+       */
+      const myConstArrowFunc = () => {}
     `;
       const markdown = await documentation
         .build([{ source: documentationSource }], { shallow: true })
