@@ -565,3 +565,145 @@ myFunc2 description
 </div>
 "
 `;
+
+exports[`buildMarkdown for functions via var/let/const should render valid markdown 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Functions
+
+## myConstFunc
+
+\`\`\`javascript
+myConstFuncFunc()
+\`\`\`
+
+myConstFunc description
+
+## myVarArrowFunc()
+
+myVarArrowFunc description
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+            <p><code>x</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## myLetArrowFunc()
+
+_MyFunc example_
+
+\`\`\`javascript
+console.log(myFunc(3, 2))
+// {a: '3', b: 2}
+\`\`\`
+
+myLetArrowFunc description
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+            <p><code>x</code> description</p>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+            <p><code>y</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>a</code>
+          <div class=\\"type\\">string</div>
+        </td>
+        <td>
+            <p><code>a</code> description</p>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>b</code>
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
+            <p><code>b</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## myConstArrowFunc
+
+\`\`\`javascript
+myConstArrowFunc()
+\`\`\`
+
+myConstArrowFunc description
+"
+`;

@@ -100,7 +100,7 @@ function renderReturns(comment, interfaces) {
 }
 
 function renderComment(comment, { depth, interfaces }) {
-  if (['function', 'member'].includes(comment.kind)) {
+  if (['function', 'member', 'constant', 'var', 'let'].includes(comment.kind)) {
     return renderHeading(comment, depth)
       .concat(renderExamples(comment))
       .concat(renderNotes(comment))
