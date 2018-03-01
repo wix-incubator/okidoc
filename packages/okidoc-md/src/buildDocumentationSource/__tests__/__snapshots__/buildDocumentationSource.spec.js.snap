@@ -1,0 +1,269 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildDocumentationSource by source entry should extract documentation source from entry dependencies 1`] = `
+"/** */
+class API {
+  /**
+  * getter for \`isHidden\` value
+  *
+  * @example
+  * console.log(component.isHidden) // false
+  *
+  * @returns \`true\` if hidden
+  */
+  get isHidden(): boolean {}
+
+  /**
+  * show
+  *
+  * @example
+  * component.show()
+  */
+  show() {}
+
+  /**
+  * Hide
+  *
+  * @example
+  * component.hide()
+  */
+  hide() {}
+
+  /**
+  * Get component node
+  */
+  getNode(): Node {}
+
+  /**
+  * Render component
+  */
+  render() {}
+
+}"
+`;
+
+exports[`buildDocumentationSource by source entry should extract documentation source from entry dependencies 2`] = `
+"/** */
+class API {
+  /**
+  * add event listener
+  */
+  addEventListener(fn: Function) {}
+
+  /**
+  * remove event listener
+  */
+  removeEventListener(fn: Function) {}
+
+}"
+`;
+
+exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 1`] = `
+"/** */
+class API {
+  /**
+  * Get component node
+  */
+  getNode(): Node {}
+
+  /**
+  * Render component
+  */
+  render() {}
+
+  /**
+  * getter for \`isHidden\` value
+  *
+  * @example
+  * console.log(component.isHidden) // false
+  *
+  * @returns \`true\` if hidden
+  */
+  get isHidden(): boolean {}
+
+  /**
+  * show
+  *
+  * @example
+  * component.show()
+  */
+  show() {}
+
+  /**
+  * Hide
+  *
+  * @example
+  * component.hide()
+  */
+  hide() {}
+
+}"
+`;
+
+exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 2`] = `
+"/** */
+class API {}
+
+/**
+* mountComponent
+*
+* 
+*/
+function mountComponent(component: Function, node: Node) {}
+
+/**
+* renderComponent
+*
+* 
+*/
+function renderComponent(component: Function) {}
+
+/**
+* unmountComponent
+*
+* 
+*/
+function unmountComponent(component: Function) {}"
+`;
+
+exports[`buildDocumentationSource for API class with @doc tag on class declaration should extract class members 1`] = `
+"/** */
+class API {
+  /**
+  * \`isHidden\` getter
+  */
+  get isHidden() {}
+
+  /**
+  * show
+  */
+  show() {}
+
+  /**
+  * hide
+  */
+  hide() {}
+
+  /** */
+  disable() {}
+
+}"
+`;
+
+exports[`buildDocumentationSource for API class with @doc tag on class declaration should ignore class constructor and private members 1`] = `
+"/** */
+class API {
+  /** */
+  render() {}
+
+}"
+`;
+
+exports[`buildDocumentationSource for API class with @doc tag on class members should extract getters and setters with tag 1`] = `
+"/** */
+class API {
+  /**
+  * \`width\` getter
+  *
+  * 
+  */
+  get width() {}
+
+  /**
+  * \`width\` setter
+  *
+  * 
+  */
+  set width(value) {}
+
+}"
+`;
+
+exports[`buildDocumentationSource for API class with @doc tag on class members should extract methods with tag 1`] = `
+"/** */
+class API {
+  /**
+  * show
+  *
+  * 
+  * @example
+  * component.show()
+  */
+  show() {}
+
+}"
+`;
+
+exports[`buildDocumentationSource for API class with @doc tag on class members should ignore methods with different tag 1`] = `
+"/** */
+class API {
+  /**
+  * show
+  *
+  * 
+  */
+  show() {}
+
+}"
+`;
+
+exports[`buildDocumentationSource for API class with @doc tag on class members should ignore private methods with tag 1`] = `
+"/** */
+class API {}"
+`;
+
+exports[`buildDocumentationSource for functions with @doc tag on function declaration should extract functions with tag 1`] = `
+"/** */
+class API {}
+
+/**
+* showComponent
+*
+* 
+*/
+function showComponent() {}
+
+/**
+* hideComponent
+*
+* 
+*/
+function hideComponent() {}"
+`;
+
+exports[`buildDocumentationSource for functions with @doc tag on var/let/const declaration should extract functions with tag 1`] = `
+"/** */
+class API {}
+
+/**
+* varFunc
+* 
+*/
+var varFunc = function () {
+  console.log('varFunc');
+};
+
+/**
+* varArrowFunc
+* 
+*/
+var varArrowFunc = () => {
+  console.log('varArrowFunc');
+};
+
+/**
+* letArrowFunc
+* 
+*/
+let letArrowFunc = () => {
+  console.log('letArrowFunc');
+};
+
+/**
+* constArrowFunc
+* 
+*/
+const constArrowFunc = () => {
+  console.log('constArrowFunc');
+};"
+`;

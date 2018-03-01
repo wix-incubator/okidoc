@@ -44,7 +44,8 @@
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/packages/okidoc-md/lib/",
-      "/packages/okidoc-site/site/"
+      "/packages/okidoc-site/site/",
+      "/fixtures/"
     ],
     "collectCoverageFrom": [
       "packages/okidoc-md/src/buildMarkdown/**/*.js"
