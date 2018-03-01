@@ -1,10 +1,10 @@
 import fs from 'fs';
-import parseFileSource from './parseFileSource';
+import parseSource from './parseSource';
 
 function parseFile(filePath) {
   const fileSource = fs.readFileSync(filePath).toString();
 
-  return parseFileSource(fileSource);
+  return parseSource(fileSource);
 }
 
 export default parseFile;
