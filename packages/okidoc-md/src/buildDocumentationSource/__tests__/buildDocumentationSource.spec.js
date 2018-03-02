@@ -186,6 +186,45 @@ describe('buildDocumentationSource', () => {
         ).toMatchSnapshot();
       });
     });
+
+    describe('with custom visitor', () => {
+      it('should extract class members', () => {
+        const sourceCode = `
+        function api() {}
+        
+        class MyComponent {
+          @api()
+          get isHidden() {}
+  
+          /**
+           * show
+           */
+          @api()
+          show() {
+            console.log('show');
+          }
+        
+          /**
+           * hide
+           */
+          @api()
+          hide() {
+            console.log('hide');
+          }
+          
+          disable() {
+            console.log('hide');
+          }
+        }`;
+
+        expect(
+          buildDocumentationSource({
+            source: sourceCode,
+            visitor: require.resolve('./fixtures/customApiVisitor.js'),
+          }),
+        ).toMatchSnapshot();
+      });
+    });
   });
 
   describe('for functions', () => {

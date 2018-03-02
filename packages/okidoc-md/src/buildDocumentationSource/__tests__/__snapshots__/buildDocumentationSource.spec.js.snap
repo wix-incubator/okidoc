@@ -212,6 +212,25 @@ exports[`buildDocumentationSource for API class with @doc tag on class members s
 class API {}"
 `;
 
+exports[`buildDocumentationSource for API class with custom visitor should extract class members 1`] = `
+"/** */
+class API {
+  /** */
+  get isHidden() {}
+
+  /**
+  * show
+  */
+  show() {}
+
+  /**
+  * hide
+  */
+  hide() {}
+
+}"
+`;
+
 exports[`buildDocumentationSource for functions with @doc tag on function declaration should extract functions with tag 1`] = `
 "/** */
 class API {}
