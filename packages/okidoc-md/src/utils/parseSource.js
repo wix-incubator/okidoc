@@ -1,7 +1,7 @@
 import { parse } from 'babylon';
 
-function parseFileSource(fileSource) {
-  return parse(fileSource, {
+function parseSource(source) {
+  return parse(source, {
     sourceType: 'module',
     plugins: [
       'typescript',
@@ -12,4 +12,4 @@ function parseFileSource(fileSource) {
   });
 }
 
-export default parseFileSource;
+export default parseSource;

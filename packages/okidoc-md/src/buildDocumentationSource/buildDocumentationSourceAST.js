@@ -1,14 +1,29 @@
 import fs from 'fs';
 import path from 'path';
 import * as t from '@babel/types';
-import traverseEntries from './utils/traverseEntries';
-import traverseFiles from './utils/traverseFiles';
+import traverseSource from '../utils/traverseSource';
+import traverseEntries from '../utils/traverseEntries';
+import traverseFiles from '../utils/traverseFiles';
 import {
   createApiVisitor,
   createApiMethod,
   createApiInterface,
   buildApiClassDeclaration,
-} from './api';
+} from '../api';
+
+function ensureSourceOptionsValid({ entry, pattern, source }) {
+  if (!entry && !pattern && !source) {
+    throw new Error(
+      `'entry' or/and 'pattern' or 'source' options should be defined`,
+    );
+  }
+
+  if (source && (entry || pattern)) {
+    throw new Error(
+      `if 'source' options provided, 'entry' and 'pattern' should be undefined`,
+    );
+  }
+}
 
 function ensureVisitorExists(apiVisitorPath) {
   if (!fs.existsSync(apiVisitorPath)) {
@@ -46,7 +61,12 @@ function ensureCustomApiVisitorIsCorrect(
   }
 }
 
-function traverse({ entry, pattern }, visitors) {
+function traverse({ entry, pattern, source }, visitors) {
+  if (source) {
+    traverseSource(source, visitors);
+    return;
+  }
+
   if (entry) {
     traverseEntries(entry, visitors, { pattern });
     return;
@@ -55,14 +75,18 @@ function traverse({ entry, pattern }, visitors) {
   traverseFiles(pattern, visitors);
 }
 
-function buildDocumentationAst({ entry, pattern, tag, visitor: visitorPath }) {
+function buildDocumentationSourceAST({
+  entry,
+  pattern,
+  source,
+  tag,
+  visitor: visitorPath,
+}) {
   const apiInterfaces = [];
   const classApiMethods = [];
   const functions = [];
 
-  if (!entry && !pattern) {
-    throw new Error(`'entry' or/and 'pattern' options should be defined`);
-  }
+  ensureSourceOptionsValid({ entry, pattern, source });
 
   if (!tag && !visitorPath) {
     throw new Error(
@@ -125,7 +149,7 @@ function buildDocumentationAst({ entry, pattern, tag, visitor: visitorPath }) {
     Object.assign(visitors, customApiVisitor);
   }
 
-  traverse({ entry, pattern }, visitors);
+  traverse({ entry, pattern, source }, visitors);
 
   const apiClassDeclaration = buildApiClassDeclaration(classApiMethods);
 
@@ -135,4 +159,4 @@ function buildDocumentationAst({ entry, pattern, tag, visitor: visitorPath }) {
   };
 }
 
-export default buildDocumentationAst;
+export default buildDocumentationSourceAST;
