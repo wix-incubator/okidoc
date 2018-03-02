@@ -1,5 +1,6 @@
 import * as t from '@babel/types';
-import { isJSDocComment, createJSDocCommentValue } from '../utils/JSDocAST';
+import { getJSDocComment, createJSDocCommentValue } from '../utils/JSDocAST';
+import { removeNodeDecorators, removeNodeBody } from '../utils/nodeAST';
 
 import createDocTagParam from './createDocTagParam';
 
@@ -8,9 +9,7 @@ function removeDocTagFromJSDoc(value, docTag) {
 }
 
 function createApiMethod(apiMethod, docTag) {
-  const apiMethodComments = apiMethod.leadingComments;
-  const apiMethodJSDoc =
-    apiMethodComments && apiMethodComments.find(isJSDocComment);
+  const apiMethodJSDoc = getJSDocComment(apiMethod);
 
   t.removeComments(apiMethod);
   t.addComment(
@@ -21,8 +20,8 @@ function createApiMethod(apiMethod, docTag) {
     ),
   );
 
-  apiMethod.decorators = [];
-  apiMethod.body = t.blockStatement([]);
+  removeNodeDecorators(apiMethod);
+  removeNodeBody(apiMethod);
 
   return apiMethod;
 }
