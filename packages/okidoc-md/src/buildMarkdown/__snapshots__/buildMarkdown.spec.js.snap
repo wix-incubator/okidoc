@@ -142,7 +142,7 @@ myMethod comment
       <tr>
         <td class=\\"param\\">
           <code>b</code>
-          <div class=\\"type\\">number</div>
+          <div class=\\"type\\">number?</div>
         </td>
         <td>
             <p><code>b</code> description</p>
@@ -266,6 +266,110 @@ myMethod comment
         </td>
         <td>
             <p>returns comment</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for methods with \`...rest\` as param 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod()
+
+myMethod comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>arr</code>
+          <div class=\\"type\\">...Array&#x3C;string></div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">Array&#x3C;string></div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for methods with \`optional\` as param 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod()
+
+myMethod comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+          <div class=\\"type\\">number?</div>
+        </td>
+        <td>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <div class=\\"type\\">number</div>
+        </td>
+        <td>
         </td>
       </tr>
     </tbody>
