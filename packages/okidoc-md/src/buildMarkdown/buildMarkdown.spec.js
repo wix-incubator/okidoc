@@ -117,6 +117,40 @@ describe('buildMarkdown', () => {
       expect(markdown).toMatchSnapshot();
     });
 
+    it('should render markdown for methods with `...rest` as param', async () => {
+      const documentationSource = `
+      /** Example class jsdoc */
+      class API {
+        /**
+        * myMethod comment
+        */
+        myMethod(...arr: string[]): string[] {
+          return arr;
+        }
+      }
+    `;
+      const markdown = await getMarkdown(documentationSource, 'API Methods');
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it.only('should render markdown for methods with `optional` as param', async () => {
+      const documentationSource = `
+      /** Example class jsdoc */
+      class API {
+        /**
+        * myMethod comment
+        */
+        myMethod(x: ?number): number {
+          return number;
+        }
+      }
+    `;
+      const markdown = await getMarkdown(documentationSource, 'API Methods');
+
+      expect(markdown).toMatchSnapshot();
+    });
+
     it('should render markdown for methods interface as return type', async () => {
       const documentationSource = `
      /**
@@ -126,7 +160,7 @@ describe('buildMarkdown', () => {
       */
       interface MyResult {
         a: string;
-        b: number;
+        b?: number;
       }
 
       /** Example class jsdoc */

@@ -109,18 +109,22 @@ function formatType(node) {
     case Syntax.RestType:
       // note that here we diverge from doctrine itself, which
       // lets the expression be omitted.
-      return [t('...'), formatType(node.expression)];
+      return [t('...'), ...formatType(node.expression)];
     case Syntax.OptionalType:
       if (node.default) {
-        return [formatType(node.expression), t('?'), t('= ' + c(node.default))];
+        return [
+          ...formatType(node.expression),
+          t('?'),
+          t('= ' + c(node.default)),
+        ];
       }
-      return [formatType(node.expression), t('?')];
+      return [...formatType(node.expression), t('?')];
     case Syntax.NonNullableType:
       return node.prefix
-        ? [t('?'), formatType(node.expression)]
-        : [formatType(node.expression), t('?')];
+        ? [t('?'), ...formatType(node.expression)]
+        : [...formatType(node.expression), t('?')];
     case Syntax.NullableType:
-      return [formatType(node.expression), t('?')];
+      return [...formatType(node.expression), t('?')];
     case Syntax.StringLiteralType:
       return [c(JSON.stringify(node.value))];
     case Syntax.NumericLiteralType:
