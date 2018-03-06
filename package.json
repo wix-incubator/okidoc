@@ -48,6 +48,7 @@
       "/fixtures/"
     ],
     "collectCoverageFrom": [
+      "packages/okidoc-md/src/buildDocumentationSource/**/*.js",
       "packages/okidoc-md/src/buildMarkdown/**/*.js"
     ]
   },
