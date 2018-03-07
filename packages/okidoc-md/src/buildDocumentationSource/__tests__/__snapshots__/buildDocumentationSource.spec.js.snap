@@ -107,21 +107,18 @@ class API {}
 /**
 * mountComponent
 *
-* 
 */
 function mountComponent(component: Function, node: Node) {}
 
 /**
 * renderComponent
 *
-* 
 */
 function renderComponent(component: Function) {}
 
 /**
 * unmountComponent
 *
-* 
 */
 function unmountComponent(component: Function) {}"
 `;
@@ -165,14 +162,12 @@ class API {
   /**
   * \`width\` getter
   *
-  * 
   */
   get width() {}
 
   /**
   * \`width\` setter
   *
-  * 
   */
   set width(value) {}
 
@@ -185,7 +180,6 @@ class API {
   /**
   * show
   *
-  * 
   * @example
   * component.show()
   */
@@ -200,7 +194,6 @@ class API {
   /**
   * show
   *
-  * 
   */
   show() {}
 
@@ -238,14 +231,12 @@ class API {}
 /**
 * showComponent
 *
-* 
 */
 function showComponent() {}
 
 /**
 * hideComponent
 *
-* 
 */
 function hideComponent() {}"
 `;
@@ -256,7 +247,6 @@ class API {}
 
 /**
 * varFunc
-* 
 */
 var varFunc = function () {
   console.log('varFunc');
@@ -264,7 +254,6 @@ var varFunc = function () {
 
 /**
 * varArrowFunc
-* 
 */
 var varArrowFunc = () => {
   console.log('varArrowFunc');
@@ -272,7 +261,6 @@ var varArrowFunc = () => {
 
 /**
 * letArrowFunc
-* 
 */
 let letArrowFunc = () => {
   console.log('letArrowFunc');
@@ -280,7 +268,6 @@ let letArrowFunc = () => {
 
 /**
 * constArrowFunc
-* 
 */
 const constArrowFunc = () => {
   console.log('constArrowFunc');
