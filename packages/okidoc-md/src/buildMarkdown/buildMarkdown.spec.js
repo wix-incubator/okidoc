@@ -134,7 +134,7 @@ describe('buildMarkdown', () => {
       expect(markdown).toMatchSnapshot();
     });
 
-    it.only('should render markdown for methods with `optional` as param', async () => {
+    it('should render markdown for methods with `optional` as param', async () => {
       const documentationSource = `
       /** Example class jsdoc */
       class API {
