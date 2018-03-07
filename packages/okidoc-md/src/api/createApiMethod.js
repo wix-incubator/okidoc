@@ -1,11 +1,19 @@
 import * as t from '@babel/types';
 import { getJSDocComment, createJSDocCommentValue } from '../utils/JSDocAST';
 import { removeNodeDecorators, removeNodeBody } from '../utils/nodeAST';
+import escapeRegExp from '../utils/escapeRegExp';
 
 import createDocTagParam from './createDocTagParam';
 
 function removeDocTagFromJSDoc(value, docTag) {
-  return value.replace(createDocTagParam(docTag), '');
+  if (!docTag) {
+    return value;
+  }
+
+  const DOC_TAG_PARAM = escapeRegExp(createDocTagParam(docTag));
+  const REPLACE_PATTERN = new RegExp(`\\s*\\*\\s*${DOC_TAG_PARAM}`, 'g');
+
+  return value.replace(REPLACE_PATTERN, '');
 }
 
 function createApiMethod(apiMethod, docTag) {
