@@ -3,9 +3,10 @@ import documentation from 'documentation';
 import buildDocumentationSource from './buildDocumentationSource';
 import buildMarkdown from './buildMarkdown';
 
-function buildDocumentation({ title, entry, pattern, tag, visitor }) {
+function buildDocumentation({ title, entry, source, pattern, tag, visitor }) {
   const documentationSource = buildDocumentationSource({
     entry,
+    source,
     pattern,
     tag,
     visitor,

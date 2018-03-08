@@ -3,6 +3,7 @@ import buildApiClassDeclaration, {
 } from './buildApiClassDeclaration';
 import createApiVisitor from './createApiVisitor';
 import createApiMethod from './createApiMethod';
+import createApiFunction from './createApiFunction';
 import createApiInterface from './createApiInterface';
 
 export {
@@ -10,5 +11,6 @@ export {
   buildApiClassDeclaration,
   createApiVisitor,
   createApiMethod,
+  createApiFunction,
   createApiInterface,
 };

@@ -1,12 +1,12 @@
 import fs from 'fs';
 import path from 'path';
-import * as t from '@babel/types';
 import traverseSource from '../utils/traverseSource';
 import traverseEntries from '../utils/traverseEntries';
 import traverseFiles from '../utils/traverseFiles';
 import {
   createApiVisitor,
   createApiMethod,
+  createApiFunction,
   createApiInterface,
   buildApiClassDeclaration,
 } from '../api';
@@ -106,17 +106,17 @@ function buildDocumentationSourceAST({
   if (tag) {
     Object.assign(
       visitors,
-      createApiVisitor(tag, path => {
-        if (t.isClassMethod(path.node || t.isClassProperty(path.node))) {
-          classApiMethods.push(createApiMethod(path.node, tag));
+      createApiVisitor(tag, (path, options) => {
+        if (path.isClassMethod() || path.isClassProperty(path)) {
+          classApiMethods.push(createApiMethod(path.node, path, options));
         }
 
         if (
-          t.isVariableDeclaration(path.node) ||
-          t.isExportNamedDeclaration(path.node) ||
-          t.isFunctionDeclaration(path.node)
+          path.isFunctionDeclaration() ||
+          path.isFunctionExpression() ||
+          path.isArrowFunctionExpression()
         ) {
-          functions.push(createApiMethod(path.node, tag));
+          functions.push(createApiFunction(path.node, path, options));
         }
       }),
     );
@@ -130,16 +130,29 @@ function buildDocumentationSourceAST({
     const {
       createApiVisitor: createCustomApiVisitor,
       createApiMethod: createCustomApiMethod,
+      createApiFunction: createCustomApiFunction,
     } = require(visitorPath);
 
     ensureCreateApiVisitorIsFunction(createCustomApiVisitor);
 
-    const customApiVisitor = createCustomApiVisitor(path => {
-      if (t.isClassMethod(path.node || t.isClassProperty(path.node))) {
+    const customApiVisitor = createCustomApiVisitor((path, options) => {
+      if (path.isClassMethod() || path.isClassProperty()) {
         classApiMethods.push(
           typeof createCustomApiMethod === 'function'
-            ? createCustomApiMethod(path.node)
-            : createApiMethod(path.node),
+            ? createCustomApiMethod(path.node, path, options)
+            : createApiMethod(path.node, path, options),
+        );
+      }
+
+      if (
+        path.isFunctionDeclaration() ||
+        path.isFunctionExpression() ||
+        path.isArrowFunctionExpression()
+      ) {
+        functions.push(
+          typeof createCustomApiFunction === 'function'
+            ? createCustomApiFunction(path.node, path, options)
+            : createApiFunction(path.node, path, options),
         );
       }
     });

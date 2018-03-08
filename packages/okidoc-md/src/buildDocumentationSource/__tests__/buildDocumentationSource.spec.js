@@ -280,7 +280,7 @@ describe('buildDocumentationSource', () => {
        * varFunc
        * @doc UI
        */
-      var varFunc = function () {
+      var varFunctionExpression = function () {
         console.log('varFunc');
       }
       
@@ -288,7 +288,7 @@ describe('buildDocumentationSource', () => {
        * varArrowFunc
        * @doc UI
        */
-      var varArrowFunc = () => {
+      var varArrowFunctionExpression = () => {
         console.log('varArrowFunc');
       }
 
@@ -296,7 +296,7 @@ describe('buildDocumentationSource', () => {
        * letArrowFunc
        * @doc UI
        */
-      let letArrowFunc = () => {
+      let letArrowFunctionExpression = () => {
         console.log('letArrowFunc');
       }
       
@@ -304,9 +304,40 @@ describe('buildDocumentationSource', () => {
        * constArrowFunc
        * @doc UI
        */
-      const constArrowFunc = () => {
+      const constArrowFunctionExpression = () => {
         console.log('constArrowFunc');
       }
+      `;
+
+        expect(
+          buildDocumentationSource({
+            source: sourceCode,
+            tag: 'UI',
+          }),
+        ).toMatchSnapshot();
+      });
+    });
+
+    describe('with @doc tag on export declaration', () => {
+      it('should extract functions with tag', () => {
+        const sourceCode = `
+      /**
+       * f1 description
+       * @doc UI
+       */
+      export function exportFunctionDeclaration(x) {}
+
+      /**
+       * f2 description
+       * @doc UI
+       */
+      export const exportConstArrowFunctionExpression = (x) => {}
+      
+      /**
+       * f3 description
+       * @doc UI
+       */
+      export default exportDefaultConstArrowFunctionExpression = (x) => {}
       `;
 
         expect(
