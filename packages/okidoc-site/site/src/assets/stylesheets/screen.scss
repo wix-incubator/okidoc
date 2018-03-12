@@ -573,6 +573,12 @@ body {
       width: 100%;
     }
 
+    td {
+      p {
+        margin: 0;
+      }
+    }
+
     .param {
       width: 140px;
 
@@ -644,14 +650,6 @@ body {
     }
   }
 
-  pre {
-    padding: 2em $main-padding;
-    padding-top: 2em;
-    padding-bottom: 2em;
-
-    @extend %code-font;
-  }
-
   blockquote {
     & > p {
       padding: $code-annotation-padding $main-padding;
@@ -659,6 +657,12 @@ body {
       color: #eee;
       background-color: $code-annotation-bg;
     }
+  }
+
+  pre {
+    padding: 2em $main-padding;
+
+    @extend %code-font;
   }
 }
 
