@@ -224,6 +224,26 @@ class API {
 }"
 `;
 
+exports[`buildDocumentationSource for functions with @doc tag on export declaration should extract functions with tag 1`] = `
+"/** */
+class API {}
+
+/**
+* f1 description
+*/
+function exportFunctionDeclaration(x) {}
+
+/**
+* f2 description
+*/
+function exportConstArrowFunctionExpression(x) {}
+
+/**
+* f3 description
+*/
+function exportDefaultConstArrowFunctionExpression(x) {}"
+`;
+
 exports[`buildDocumentationSource for functions with @doc tag on function declaration should extract functions with tag 1`] = `
 "/** */
 class API {}
@@ -248,28 +268,20 @@ class API {}
 /**
 * varFunc
 */
-var varFunc = function () {
-  console.log('varFunc');
-};
+function varFunctionExpression() {}
 
 /**
 * varArrowFunc
 */
-var varArrowFunc = () => {
-  console.log('varArrowFunc');
-};
+function varArrowFunctionExpression() {}
 
 /**
 * letArrowFunc
 */
-let letArrowFunc = () => {
-  console.log('letArrowFunc');
-};
+function letArrowFunctionExpression() {}
 
 /**
 * constArrowFunc
 */
-const constArrowFunc = () => {
-  console.log('constArrowFunc');
-};"
+function constArrowFunctionExpression() {}"
 `;

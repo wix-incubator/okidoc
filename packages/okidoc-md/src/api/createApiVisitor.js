@@ -1,47 +1,164 @@
-import { isJSDocIncludes } from '../utils/JSDocAST';
+import { isJSDocIncludes, getJSDocComment } from '../utils/JSDocAST';
 import createDocTagParam from './createDocTagParam';
 
 function isClassMethodAllowedInApi(node) {
   return node.accessibility !== 'private' && node.kind !== 'constructor';
 }
 
-function createApiVisitor(tag, enter) {
-  const DOC_TAG_PARAM = createDocTagParam(tag);
+function createApiVisitor(docTag, enter) {
+  const docTagParam = createDocTagParam(docTag);
+  const visited = [];
 
   function hasDocTagInJSDoc(node) {
-    return isJSDocIncludes(node, DOC_TAG_PARAM);
+    return isJSDocIncludes(node, docTagParam);
+  }
+
+  function enterIfNotVisited(path, options) {
+    if (visited.includes(path.node)) {
+      return;
+    }
+
+    enter(path, {
+      docTag,
+      ...options,
+    });
+
+    visited.push(path.node);
+  }
+
+  function enterAssignmentExpression(
+    assignmentExpressionPath,
+    { JSDocComment } = {},
+  ) {
+    const leftPath = assignmentExpressionPath.get('left');
+    const rightPath = assignmentExpressionPath.get('right');
+
+    if (
+      leftPath.isIdentifier() &&
+      (rightPath.isFunctionExpression() ||
+        rightPath.isArrowFunctionExpression())
+    ) {
+      enterIfNotVisited(rightPath, {
+        identifierName: leftPath.node.name,
+        JSDocComment: JSDocComment,
+      });
+
+      return;
+    }
+
+    console.warn(
+      `${leftPath.type} = ${
+        rightPath.type
+      } is currently not supported by okidoc-md`,
+    );
+  }
+
+  function enterVariableDeclaration(
+    variableDeclarationPath,
+    { JSDocComment } = {},
+  ) {
+    const variableDeclaratorId = variableDeclarationPath.get(
+      'declarations.0.id',
+    );
+    const variableDeclaratorInit = variableDeclarationPath.get(
+      'declarations.0.init',
+    );
+
+    if (
+      variableDeclaratorInit.isFunctionExpression() ||
+      variableDeclaratorInit.isArrowFunctionExpression()
+    ) {
+      enterIfNotVisited(variableDeclaratorInit, {
+        identifierName: variableDeclaratorId.node.name,
+        JSDocComment: JSDocComment,
+      });
+
+      return;
+    }
+
+    // TODO: add logic for 'var', 'let', 'constant', ...
+
+    console.warn(
+      `${variableDeclaratorInit.type} is currently not supported by okidoc-md`,
+    );
+  }
+
+  function enterClassMethod(classMethodPath) {
+    if (isClassMethodAllowedInApi(classMethodPath.node)) {
+      enterIfNotVisited(classMethodPath);
+    }
   }
 
   return {
-    'ExportDefaultDeclaration|ClassDeclaration'(path) {
+    'ExportNamedDeclaration|ExportDefaultDeclaration'(path) {
+      if (!hasDocTagInJSDoc(path.node)) {
+        return;
+      }
+
+      const declarationPath = path.get('declaration');
+      const JSDocComment = getJSDocComment(path.node);
+
+      if (declarationPath.isClassDeclaration()) {
+        declarationPath.traverse({
+          ClassMethod(path) {
+            enterClassMethod(path);
+          },
+        });
+        return;
+      }
+
+      if (declarationPath.isFunctionDeclaration()) {
+        enterIfNotVisited(declarationPath, {
+          JSDocComment,
+        });
+        return;
+      }
+
+      if (declarationPath.isAssignmentExpression()) {
+        enterAssignmentExpression(declarationPath, {
+          JSDocComment,
+        });
+
+        return;
+      }
+
+      if (declarationPath.isVariableDeclaration()) {
+        enterVariableDeclaration(declarationPath, {
+          JSDocComment,
+        });
+        return;
+      }
+
+      // TODO: add logic for other node types
+
+      console.warn(
+        `${declarationPath.type} is currently not supported by okidoc-md`,
+      );
+    },
+    ClassDeclaration(path) {
       if (hasDocTagInJSDoc(path.node)) {
         path.traverse({
           ClassMethod(path) {
-            if (isClassMethodAllowedInApi(path.node)) {
-              enter(path);
-            }
+            enterClassMethod(path);
           },
         });
       }
     },
     ClassMethod(path) {
-      if (hasDocTagInJSDoc(path.node) && isClassMethodAllowedInApi(path.node)) {
-        enter(path);
+      if (hasDocTagInJSDoc(path.node)) {
+        enterClassMethod(path);
       }
     },
     FunctionDeclaration(path) {
       if (hasDocTagInJSDoc(path.node)) {
-        enter(path);
-      }
-    },
-    ExportNamedDeclaration(path) {
-      if (hasDocTagInJSDoc(path.node)) {
-        enter(path);
+        enterIfNotVisited(path);
       }
     },
     VariableDeclaration(path) {
       if (hasDocTagInJSDoc(path.node)) {
-        enter(path);
+        enterVariableDeclaration(path, {
+          JSDocComment: getJSDocComment(path.node),
+        });
       }
     },
   };

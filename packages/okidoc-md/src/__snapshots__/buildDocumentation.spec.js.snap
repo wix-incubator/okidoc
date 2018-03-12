@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildDocumentation should build documentation for class  1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Documentation
+
+## m1()
+
+## m2()
+
+## m3()
+"
+`;
+
+exports[`buildDocumentation should build documentation for functions  1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Documentation
+
+## functionDeclaration()
+
+## varFunctionExpression()
+
+## letFunctionExpression()
+
+## constFunctionExpression()
+
+## constArrowFunction()
+
+## exportConstArrowFunction()
+
+## exportDefaultConstArrowFunction()
+"
+`;

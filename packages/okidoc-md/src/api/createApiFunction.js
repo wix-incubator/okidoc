@@ -1,18 +1,24 @@
 import * as t from '@babel/types';
 import { getJSDocComment } from '../utils/JSDocAST';
 import { removeNodeDecorators, removeNodeBody } from '../utils/nodeAST';
-
 import cleanUpNodeJSDoc from './cleanUpNodeJSDoc';
 
-function createApiMethod(
+function createApiFunction(
   node,
   path,
   { docTag, JSDocComment, identifierName } = {},
 ) {
   JSDocComment = JSDocComment || getJSDocComment(node);
 
+  if (path.isArrowFunctionExpression()) {
+    path.arrowFunctionToExpression({
+      allowInsertArrow: false,
+      specCompliant: false,
+    });
+  }
+
   if (identifierName) {
-    node.key = t.identifier(identifierName);
+    node.id = t.identifier(identifierName);
   }
 
   cleanUpNodeJSDoc(node, JSDocComment, { docTag });
@@ -22,4 +28,4 @@ function createApiMethod(
   return node;
 }
 
-export default createApiMethod;
+export default createApiFunction;
