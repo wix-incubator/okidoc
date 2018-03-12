@@ -254,5 +254,61 @@ describe('buildMarkdown', () => {
 
       expect(markdown).toMatchSnapshot();
     });
+
+    it('should render valid markdown with function as argument', async () => {
+      const documentationSource = `
+        /**
+        * @param name - event name 
+        * @param fn - event handler 
+        */
+        function myFunc(name: string, fn: (name: string, data: Object) => any) {}
+      `;
+      const markdown = await documentation
+        .build([{ source: documentationSource }], { shallow: true })
+        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it('should render valid markdown with function as return type', async () => {
+      const documentationSource = `
+        /**
+        * @returns myFunc result function
+        */
+        function myFunc(): (flag: boolean) => void {}
+      `;
+      const markdown = await documentation
+        .build([{ source: documentationSource }], { shallow: true })
+        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it('should render valid markdown with function in return type interface', async () => {
+      const documentationSource = `
+        /**
+        * @property update - update entity
+        * @property destroy - destroy entity
+        */
+        interface MyEntity {
+          id: string;
+          title: string;
+          updateTitle(id: string, title: string): Promise<any>;
+          destroy(): void;
+        }
+      
+        /**
+        * create new entity
+        * @param title - entity title
+        * @returns new entity
+        */
+        function create(title: string): MyEntity {}
+      `;
+      const markdown = await documentation
+        .build([{ source: documentationSource }], { shallow: true })
+        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+
+      expect(markdown).toMatchSnapshot();
+    });
   });
 });

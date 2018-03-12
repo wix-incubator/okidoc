@@ -14,8 +14,8 @@ function renderParamsHTML(params, title) {
     );
   }
 
-  function hasUnionType(param) {
-    return !!(param.type && param.type.type === Syntax.UnionType);
+  function hasType(param, type) {
+    return !!(param.type && param.type.type === type);
   }
 
   function renderParamType(param) {
@@ -39,19 +39,21 @@ function renderParamsHTML(params, title) {
         <td class="param">
           ${param.name ? `<code>${param.name}</code>` : ''}
           ${hasDefault(param) ? `<div class="optional">(Optional)</div>` : ''}
-          ${
-            param.type && !hasUnionType(param)
-              ? `<div class="type">${renderParamType(param)}</div>`
-              : ''
-          }
         </td>
         <td>
+            ${
+              param.type && !hasType(param, Syntax.UnionType)
+                ? hasType(param, Syntax.FunctionType)
+                  ? `<code>${renderParamType(param)}</code>`
+                  : `<div class="type">${renderParamType(param)}</div>`
+                : ''
+            }
             ${
               hasDescription(param)
                 ? cleanupHTML(renderHTML(param.description))
                 : ''
             }
-            ${hasUnionType(param) ? renderParamType(param) : ''}
+            ${hasType(param, Syntax.UnionType) ? renderParamType(param) : ''}
         </td>
       </tr>
     `,

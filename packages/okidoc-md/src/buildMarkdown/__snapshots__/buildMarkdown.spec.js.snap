@@ -20,9 +20,9 @@ exports[`buildMarkdown for API class should render markdown for getters/setters 
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">boolean</div>
         </td>
         <td>
+            <div class=\\"type\\">boolean</div>
         </td>
       </tr>
     </tbody>
@@ -45,9 +45,9 @@ exports[`buildMarkdown for API class should render markdown for getters/setters 
       <tr>
         <td class=\\"param\\">
           <code>value</code>
-          <div class=\\"type\\">number</div>
         </td>
         <td>
+            <div class=\\"type\\">number</div>
         </td>
       </tr>
     </tbody>
@@ -78,9 +78,9 @@ myMethod comment
         <td class=\\"param\\">
           <code>x</code>
           <div class=\\"optional\\">(Optional)</div>
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
             <p><code>x</code> description</p>
         </td>
       </tr>
@@ -133,18 +133,18 @@ myMethod comment
       <tr>
         <td class=\\"param\\">
           <code>a</code>
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
             <p><code>a</code> description</p>
         </td>
       </tr>
       <tr>
         <td class=\\"param\\">
           <code>b</code>
-          <div class=\\"type\\">number?</div>
         </td>
         <td>
+            <div class=\\"type\\">number?</div>
             <p><code>b</code> description</p>
         </td>
       </tr>
@@ -188,9 +188,9 @@ myMethod comment
       <tr>
         <td class=\\"param\\">
           <code>x</code>
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
             <p><code>x</code> description. see <a href=\\"http://example.com\\">http://example.com</a></p>
         </td>
       </tr>
@@ -209,9 +209,9 @@ myMethod comment
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
         </td>
       </tr>
     </tbody>
@@ -241,9 +241,9 @@ myMethod comment
       <tr>
         <td class=\\"param\\">
           <code>x</code>
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
             <p><code>x</code> description</p>
         </td>
       </tr>
@@ -262,9 +262,9 @@ myMethod comment
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
             <p>returns comment</p>
         </td>
       </tr>
@@ -295,9 +295,9 @@ myMethod comment
       <tr>
         <td class=\\"param\\">
           <code>arr</code>
-          <div class=\\"type\\">...Array&#x3C;string></div>
         </td>
         <td>
+            <div class=\\"type\\">...Array&#x3C;string></div>
         </td>
       </tr>
     </tbody>
@@ -315,9 +315,9 @@ myMethod comment
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">Array&#x3C;string></div>
         </td>
         <td>
+            <div class=\\"type\\">Array&#x3C;string></div>
         </td>
       </tr>
     </tbody>
@@ -347,9 +347,9 @@ myMethod comment
       <tr>
         <td class=\\"param\\">
           <code>x</code>
-          <div class=\\"type\\">number?</div>
         </td>
         <td>
+            <div class=\\"type\\">number?</div>
         </td>
       </tr>
     </tbody>
@@ -367,9 +367,9 @@ myMethod comment
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">number</div>
         </td>
         <td>
+            <div class=\\"type\\">number</div>
         </td>
       </tr>
     </tbody>
@@ -420,9 +420,9 @@ myMethod comment
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
         </td>
       </tr>
     </tbody>
@@ -461,9 +461,9 @@ myMethod1 comment
       <tr>
         <td class=\\"param\\">
           <code>x</code>
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
             <p><code>x</code> description</p>
         </td>
       </tr>
@@ -482,9 +482,9 @@ myMethod1 comment
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
             <p>returns comment</p>
         </td>
       </tr>
@@ -533,9 +533,9 @@ myMethod2 comment
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
         </td>
       </tr>
     </tbody>
@@ -565,9 +565,9 @@ myFunc1 description
       <tr>
         <td class=\\"param\\">
           <code>x</code>
-          <div class=\\"type\\">number</div>
         </td>
         <td>
+            <div class=\\"type\\">number</div>
             <p><code>x</code> description</p>
         </td>
       </tr>
@@ -586,9 +586,9 @@ myFunc1 description
     <tbody>
       <tr>
         <td class=\\"param\\">
-          <div class=\\"type\\">number</div>
         </td>
         <td>
+            <div class=\\"type\\">number</div>
         </td>
       </tr>
     </tbody>
@@ -618,18 +618,18 @@ myFunc2 description
       <tr>
         <td class=\\"param\\">
           <code>x</code>
-          <div class=\\"type\\">number</div>
         </td>
         <td>
+            <div class=\\"type\\">number</div>
             <p><code>x</code> description</p>
         </td>
       </tr>
       <tr>
         <td class=\\"param\\">
           <code>y</code>
-          <div class=\\"type\\">number</div>
         </td>
         <td>
+            <div class=\\"type\\">number</div>
             <p><code>y</code> description</p>
         </td>
       </tr>
@@ -649,19 +649,168 @@ myFunc2 description
       <tr>
         <td class=\\"param\\">
           <code>a</code>
-          <div class=\\"type\\">string</div>
         </td>
         <td>
+            <div class=\\"type\\">string</div>
             <p><code>a</code> description</p>
         </td>
       </tr>
       <tr>
         <td class=\\"param\\">
           <code>b</code>
-          <div class=\\"type\\">number</div>
         </td>
         <td>
+            <div class=\\"type\\">number</div>
             <p><code>b</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for functions should render valid markdown with function as argument 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Functions
+
+## myFunc()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>name</code>
+        </td>
+        <td>
+            <div class=\\"type\\">string</div>
+            <p>event name</p>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>fn</code>
+        </td>
+        <td>
+            <code>function(<code>name</code>: string, <code>data</code>: Object): any</code>
+            <p>event handler</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for functions should render valid markdown with function as return type 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Functions
+
+## myFunc()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+        </td>
+        <td>
+            <code>function(<code>flag</code>: boolean): void</code>
+            <p>myFunc result function</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for functions should render valid markdown with function in return type interface 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Functions
+
+## create()
+
+create new entity
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>title</code>
+        </td>
+        <td>
+            <div class=\\"type\\">string</div>
+            <p>entity title</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>id</code>
+        </td>
+        <td>
+            <div class=\\"type\\">string</div>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>title</code>
+        </td>
+        <td>
+            <div class=\\"type\\">string</div>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>updateTitle</code>
+        </td>
+        <td>
+            <code>function(<code>id</code>: string, <code>title</code>: string): Promise&#x3C;any></code>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>destroy</code>
+        </td>
+        <td>
+            <code>function(): void</code>
+            <p>destroy entity</p>
         </td>
       </tr>
     </tbody>
