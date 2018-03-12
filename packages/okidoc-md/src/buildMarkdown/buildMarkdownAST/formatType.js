@@ -57,7 +57,7 @@ function formatType(node) {
       result = [];
 
       if (node.name) {
-        result.push(c(node.name + ': '));
+        result.push(c(node.name), t(': '));
       }
 
       return result.concat(formatType(node.expression));
@@ -83,7 +83,7 @@ function formatType(node) {
       return [t(node.key)];
 
     case Syntax.FunctionType:
-      result = [t('function (')];
+      result = [t('function(')];
 
       if (node['this']) {
         if (node['new']) {
