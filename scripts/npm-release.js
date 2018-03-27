@@ -45,7 +45,6 @@ getPublishedVersions()
       shouldPublish(lernaJSON.version, publishedVersions)
     ) {
       // NOTE: use `private: false` to allow publish to npm
-      // https://github.com/wix-private/wix-ci/blob/master/ci-scripts/wix-agent-scripts/src/npmBuild.sh#L72
       return writeFile(
         packageJSONPath,
         stringify(Object.assign({}, packageJSON, { private: false })),
