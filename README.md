@@ -223,18 +223,10 @@ config:
 
 # [optional] navigation config. Use if you need more than one page in navigation block
 navigation:
- - path: /player-config
+ - path: /config
    title: Configuration
- - path: /video-source
-   title: Video source
- - path: /api
-   title: API reference
- - path: /modules
-   title: Modules
- - path: /events
-   title: Player events
- - path: /adapters
-   title: Playback adapters
+ - path: /methods
+   title: Methods
 ```
 
 Run `okidoc-site` script
