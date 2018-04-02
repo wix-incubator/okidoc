@@ -366,6 +366,15 @@ describe('buildDocumentationSource', () => {
         }),
       ).toMatchSnapshot();
     });
+
+    it('should show readable error if source from entry is invalid', () => {
+      expect(() => {
+        buildDocumentationSource({
+          entry: require.resolve('./fixtures/invalid-src/index.ts'),
+          tag: 'Events',
+        });
+      }).toThrowErrorMatchingSnapshot();
+    });
   });
 
   describe('by source glob pattern', () => {
@@ -383,6 +392,15 @@ describe('buildDocumentationSource', () => {
           tag: 'utils',
         }),
       ).toMatchSnapshot();
+    });
+
+    it('should show readable error if source from matched file is invalid', () => {
+      expect(() => {
+        buildDocumentationSource({
+          pattern: `${path.join(__dirname, 'fixtures/invalid-src')}/**/*.ts`,
+          tag: 'Events',
+        });
+      }).toThrowErrorMatchingSnapshot();
     });
   });
 });
