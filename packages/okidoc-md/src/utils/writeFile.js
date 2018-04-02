@@ -1,5 +1,8 @@
 import fs from 'fs';
 import path from 'path';
+import util from 'util';
+
+const _writeFile = util.promisify(fs.writeFile);
 
 function createFileDirectoryIfNotExists(filePath) {
   const fileDirectory = path.dirname(filePath);
@@ -12,4 +15,10 @@ function createFileDirectoryIfNotExists(filePath) {
   fs.mkdirSync(fileDirectory);
 }
 
-export default createFileDirectoryIfNotExists;
+function writeFile(filePath, fileData) {
+  createFileDirectoryIfNotExists(filePath);
+
+  return _writeFile(filePath, fileData);
+}
+
+export default writeFile;
