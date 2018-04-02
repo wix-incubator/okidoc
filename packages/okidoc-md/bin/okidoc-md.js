@@ -1,15 +1,11 @@
 #!/usr/bin/env node
 
 const yaml = require('yamljs');
-const util = require('util');
 const fs = require('fs');
 const path = require('path');
 const { buildDocumentation } = require('../lib');
 
-const createFileDirectoryIfNotExists = require('../lib/utils/createFileDirectoryIfNotExists')
-  .default;
-
-const writeFile = util.promisify(fs.writeFile);
+const writeFile = require('../lib/utils/writeFile').default;
 
 // NOTE: ignore first 2 arguments (node and path of this file)
 const [docsYamlPath, outputDir] = process.argv.slice(2);
@@ -46,24 +42,25 @@ try {
 }
 
 Promise.all(
-  docs.map(doc =>
-    buildDocumentation({
+  docs.map(doc => {
+    const start = Date.now();
+    const markdownPath = path.join(
+      outputDir,
+      doc.path.endsWith('.md') ? doc.path : doc.path + '.md',
+    );
+
+    return buildDocumentation({
       title: doc.title,
       entry: doc.entry,
       pattern: doc.glob,
       tag: doc.tag,
       visitor: doc.visitor,
-    }).then(markdown => {
-      const markdownPath = path.join(
-        outputDir,
-        doc.path.endsWith('.md') ? doc.path : doc.path + '.md',
-      );
-
-      createFileDirectoryIfNotExists(markdownPath);
-
-      return writeFile(markdownPath, markdown);
-    }),
-  ),
+    })
+      .then(markdown => writeFile(markdownPath, markdown))
+      .then(() => {
+        console.log(`${markdownPath} ${Date.now() - start}ms`);
+      });
+  }),
 ).catch(err => {
   console.error('An error occurred while building documentation', err);
 
