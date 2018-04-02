@@ -58,6 +58,14 @@ class API {
 }"
 `;
 
+exports[`buildDocumentationSource by source entry should show readable error if source from entry is invalid 1`] = `
+"packages/okidoc-md/src/buildDocumentationSource/__tests__/fixtures/invalid-src/index.ts: Unterminated string constant (1:22)
+> 1 | import Component from './Component;
+    |                      ^
+  2 | 
+  3 | export { Component };"
+`;
+
 exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 1`] = `
 "/** */
 class API {
@@ -121,6 +129,14 @@ function renderComponent(component: Function) {}
 *
 */
 function unmountComponent(component: Function) {}"
+`;
+
+exports[`buildDocumentationSource by source glob pattern should show readable error if source from matched file is invalid 1`] = `
+"packages/okidoc-md/src/buildDocumentationSource/__tests__/fixtures/invalid-src/index.ts: Unterminated string constant (1:22)
+> 1 | import Component from './Component;
+    |                      ^
+  2 | 
+  3 | export { Component };"
 `;
 
 exports[`buildDocumentationSource for API class with @doc tag on class declaration should extract class members 1`] = `
