@@ -96,6 +96,9 @@ describe('buildMarkdown', () => {
         * myMethod comment
         * @param x - \`x\` description. see http://example.com
         * 
+        * @note
+        * \`myMethod\` note 1
+        *
         * @example <caption>test example caption</caption>
         * console.log('example')
         *
@@ -103,7 +106,7 @@ describe('buildMarkdown', () => {
         * console.log('example')
         *
         * @note
-        * \`myMethod\` note 
+        * \`myMethod\` note 2
         * Read more about [myMethod](/my-method)
         *
         */

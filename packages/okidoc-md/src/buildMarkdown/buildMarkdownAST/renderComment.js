@@ -42,32 +42,30 @@ function renderParams(comment) {
   );
 }
 
-function renderExamples(comment) {
+function renderExamplesAndNotes(comment) {
   return (
-    comment.examples.length > 0 &&
-    comment.examples.reduce(
-      (memo, example) =>
-        memo
-          .concat(
-            example.caption
-              ? [u('paragraph', [u('emphasis', example.caption)])]
-              : [],
-          )
-          .concat([u('code', { lang: 'javascript' }, example.description)]),
-      [],
-    )
-  );
-}
+    comment.tags.length > 0 &&
+    comment.tags.reduce((memo, tag) => {
+      if (tag.title === 'example') {
+        const exampleCaption = tag.caption;
+        const exampleCode = tag.description;
 
-function renderNotes(comment) {
-  const notes = comment.tags.filter(tag => tag.title === 'note');
-  return (
-    notes.length &&
-    notes.reduce(
-      (memo, note) =>
-        memo.concat([u('blockquote', parseMarkdown(note.description))]),
-      [],
-    )
+        return memo.concat(
+          exampleCaption
+            ? [
+                u('blockquote', parseMarkdown(exampleCaption)),
+                u('code', { lang: 'javascript' }, exampleCode),
+              ]
+            : [u('code', { lang: 'javascript' }, exampleCode)],
+        );
+      }
+
+      if (tag.title === 'note') {
+        return memo.concat([u('blockquote', parseMarkdown(tag.description))]);
+      }
+
+      return memo;
+    }, [])
   );
 }
 
@@ -104,8 +102,7 @@ function renderComment(comment, { depth, interfaces }) {
 
   if (['function', 'member'].includes(comment.kind)) {
     return renderHeading(comment, depth)
-      .concat(renderExamples(comment))
-      .concat(renderNotes(comment))
+      .concat(renderExamplesAndNotes(comment))
       .concat(comment.description ? comment.description.children : [])
       .concat(renderSeeLink(comment))
       .concat(renderParams(comment))

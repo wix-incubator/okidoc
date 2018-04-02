@@ -161,7 +161,9 @@ exports[`buildMarkdown for API class should render markdown for methods with @ex
 
 ## myMethod()
 
-_test example caption_
+> \`myMethod\` note 1
+
+> test example caption
 
 \`\`\`javascript
 console.log('example')
@@ -171,7 +173,7 @@ console.log('example')
 console.log('example')
 \`\`\`
 
-> \`myMethod\` note 
+> \`myMethod\` note 2
 > Read more about [myMethod](/my-method)
 
 myMethod comment
@@ -438,7 +440,7 @@ exports[`buildMarkdown for API class should render markdown sections in valid or
 
 ## myMethod1()
 
-_test example caption_
+> test example caption
 
 \`\`\`javascript
 console.log('example')
@@ -597,7 +599,7 @@ myFunc1 description
 
 ## myFunc2()
 
-_MyFunc example_
+> MyFunc example
 
 \`\`\`javascript
 console.log(myFunc(3, 2))
