@@ -1,1 +1,2 @@
 packages/okidoc-md/src/output/templates
+packages/okidoc-md/src/buildDocumentationSource/__tests__/fixtures/invalid-src

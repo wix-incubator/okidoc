@@ -7,14 +7,14 @@ class Events {
    * add event listener
    */
   addEventListener(fn: Function) {
-    console.log('addEventListener')
+    console.log('addEventListener');
   }
 
   /**
    * remove event listener
    */
   removeEventListener(fn: Function) {
-    console.log('removeEventListener')
+    console.log('removeEventListener');
   }
 }
 

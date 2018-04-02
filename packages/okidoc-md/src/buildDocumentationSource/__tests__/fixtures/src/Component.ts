@@ -20,13 +20,11 @@ class Component extends View {
   }
 
   /**
-  * Render component
-  */
+   * Render component
+   */
   render() {
     console.log('render component');
   }
 }
 
-
 export default Component;
-
