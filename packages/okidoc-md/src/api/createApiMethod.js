@@ -15,6 +15,11 @@ function createApiMethod(
     node.key = t.identifier(identifierName);
   }
 
+  // NOTE: ensure TS code is compatible with documentation.js (babel 7 flow preset)
+  if (node.accessibility) {
+    node.accessibility = null;
+  }
+
   cleanUpNodeJSDoc(node, JSDocComment, { docTag });
   removeNodeDecorators(node);
   removeNodeBody(node);

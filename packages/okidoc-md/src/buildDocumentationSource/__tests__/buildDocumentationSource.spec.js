@@ -225,6 +225,41 @@ describe('buildDocumentationSource', () => {
         ).toMatchSnapshot();
       });
     });
+
+    describe('should cleanup typescript vs flow difference', () => {
+      it('interface void method', () => {
+        const sourceCode = `
+        interface IView {
+          show();
+        }
+      `;
+
+        expect(
+          buildDocumentationSource({
+            source: sourceCode,
+            tag: 'UI',
+          }),
+        ).toMatchSnapshot();
+      });
+
+      it('class public method', () => {
+        const sourceCode = `
+        /**
+        * @doc UI
+        */
+        class View {
+          public show() {}
+        }
+      `;
+
+        expect(
+          buildDocumentationSource({
+            source: sourceCode,
+            tag: 'UI',
+          }),
+        ).toMatchSnapshot();
+      });
+    });
   });
 
   describe('for functions', () => {
