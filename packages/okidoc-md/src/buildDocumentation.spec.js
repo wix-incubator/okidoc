@@ -1,4 +1,5 @@
 import buildDocumentation from './buildDocumentation';
+import buildDocumentationSource from './buildDocumentationSource';
 
 describe('buildDocumentation', () => {
   it('should build documentation for class ', async () => {
@@ -79,5 +80,28 @@ describe('buildDocumentation', () => {
         title: 'Documentation',
       }),
     ).toMatchSnapshot();
+  });
+
+  it('should show readable error from `documentation.js`', async () => {
+    const sourceCode = `
+      /**
+      * @doc UI
+      */
+      class UI {
+        public show() {}
+      }
+    `;
+
+    expect.assertions(1);
+
+    try {
+      await buildDocumentation({
+        source: sourceCode,
+        tag: 'UI',
+        title: 'Documentation',
+      });
+    } catch (e) {
+      expect(e).toMatchSnapshot();
+    }
   });
 });

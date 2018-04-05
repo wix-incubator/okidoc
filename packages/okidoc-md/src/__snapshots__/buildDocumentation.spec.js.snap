@@ -33,3 +33,13 @@ exports[`buildDocumentation should build documentation for functions  1`] = `
 ## exportDefaultConstArrowFunction()
 "
 `;
+
+exports[`buildDocumentation should show readable error from \`documentation.js\` 1`] = `
+[SyntaxError: documentation source: Unexpected token (4:9)
+  2 | class API {
+  3 |   /** */
+> 4 |   public show() {}
+    |         ^
+  5 | 
+  6 | }]
+`;
