@@ -83,13 +83,12 @@ describe('buildDocumentation', () => {
   });
 
   it('should show readable error from `documentation.js`', async () => {
+    // NOTE: https://github.com/niieani/typescript-vs-flowtype#bounded-polymorphism
     const sourceCode = `
       /**
       * @doc UI
       */
-      class UI {
-        public show() {}
-      }
+      function fooGood<T extends { x: number }>(obj: T): T {}
     `;
 
     expect.assertions(1);

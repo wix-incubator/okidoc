@@ -35,11 +35,11 @@ exports[`buildDocumentation should build documentation for functions  1`] = `
 `;
 
 exports[`buildDocumentation should show readable error from \`documentation.js\` 1`] = `
-[SyntaxError: documentation source: Unexpected token (4:9)
-  2 | class API {
-  3 |   /** */
-> 4 |   public show() {}
-    |         ^
-  5 | 
-  6 | }]
+[SyntaxError: documentation source: Unexpected token, expected , (6:19)
+  4 | /**
+  5 | */
+> 6 | function fooGood<T extends {
+    |                   ^
+  7 |   x: number;
+  8 | }>(obj: T): T {}]
 `;

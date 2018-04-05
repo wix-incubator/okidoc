@@ -139,6 +139,25 @@ exports[`buildDocumentationSource by source glob pattern should show readable er
   3 | export { Component };"
 `;
 
+exports[`buildDocumentationSource for API class should cleanup typescript vs flow difference class public method 1`] = `
+"/** */
+class API {
+  /** */
+  show() {}
+
+}"
+`;
+
+exports[`buildDocumentationSource for API class should cleanup typescript vs flow difference interface void method 1`] = `
+"/** */
+interface IView {
+  show(): void;
+}
+
+/** */
+class API {}"
+`;
+
 exports[`buildDocumentationSource for API class with @doc tag on class declaration should extract class members 1`] = `
 "/** */
 class API {

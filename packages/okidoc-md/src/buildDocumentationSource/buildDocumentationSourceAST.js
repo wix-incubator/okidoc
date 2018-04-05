@@ -99,7 +99,7 @@ function buildDocumentationSourceAST({
   // https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
   const visitors = {
     'InterfaceDeclaration|TSInterfaceDeclaration': path => {
-      apiInterfaces.push(createApiInterface(path.node));
+      apiInterfaces.push(createApiInterface(path.node, path));
     },
   };
 
