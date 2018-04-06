@@ -380,7 +380,40 @@ myMethod comment
 "
 `;
 
-exports[`buildMarkdown for API class should render markdown for methods with union as @param type 1`] = `
+exports[`buildMarkdown for API class should render markdown for methods with UnionType with NOT literal as @param type 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myMethod()
+
+myMethod comment
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+        </td>
+        <td>
+            <div class=\\"type\\">(number | null)</div>
+            <p><code>y</code> comment</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for methods with UnionType with literals as @param type 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
 # API Methods
@@ -404,27 +437,7 @@ myMethod comment
         </td>
         <td>
             <p><code>y</code> comment</p>
-            Possible values are <code>\\"bla\\"</code>, <code>\\"not bla\\"</code>.
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<div class=\\"method-list\\">
-  <table>
-    <thead>
-      <tr>
-        <th>RETURN VALUE</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td class=\\"param\\">
-        </td>
-        <td>
-            <div class=\\"type\\">string</div>
+            Possible values are <code>\\"bla\\"</code>, <code>\\"not bla\\"</code>, <code>7</code>, null.
         </td>
       </tr>
     </tbody>
@@ -664,6 +677,37 @@ myFunc2 description
         <td>
             <div class=\\"type\\">number</div>
             <p><code>b</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for functions should render valid markdown with UnionType in TypeApplication as argument 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Functions
+
+## myFunc()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>fn</code>
+        </td>
+        <td>
+            <code>function(<code>value</code>: (string | null)): void</code>
+            <p>event handler</p>
         </td>
       </tr>
     </tbody>
