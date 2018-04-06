@@ -70,7 +70,7 @@ describe('buildMarkdown', () => {
       expect(markdown).toMatchSnapshot();
     });
 
-    it('should render markdown for methods with union as @param type', async () => {
+    it('should render markdown for methods with UnionType with literals as @param type', async () => {
       const documentationSource = `
       /** Example class jsdoc */
       class API {
@@ -78,7 +78,25 @@ describe('buildMarkdown', () => {
         * myMethod comment
         * @param y - \`y\` comment
         */
-        myMethod(y: 'bla' | 'not bla'): string {
+        myMethod(y: 'bla' | 'not bla' | 7 | null) {
+          return y;
+        }
+      }
+    `;
+      const markdown = await getMarkdown(documentationSource, 'API Methods');
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it('should render markdown for methods with UnionType with NOT literal as @param type', async () => {
+      const documentationSource = `
+      /** Example class jsdoc */
+      class API {
+        /**
+        * myMethod comment
+        * @param y - \`y\` comment
+        */
+        myMethod(y: number | null) {
           return y;
         }
       }
@@ -265,6 +283,20 @@ describe('buildMarkdown', () => {
         * @param fn - event handler 
         */
         function myFunc(name: string, fn: (name: string, data: Object) => any) {}
+      `;
+      const markdown = await documentation
+        .build([{ source: documentationSource }], { shallow: true })
+        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it('should render valid markdown with UnionType in TypeApplication as argument', async () => {
+      const documentationSource = `
+        /**
+        * @param fn - event handler 
+        */
+        function myFunc(fn: (value: string | null) => void) {}
       `;
       const markdown = await documentation
         .build([{ source: documentationSource }], { shallow: true })

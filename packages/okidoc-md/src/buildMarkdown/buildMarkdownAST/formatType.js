@@ -67,10 +67,8 @@ function formatType(node) {
         commaList(node.applications, '<', '>'),
       );
     case Syntax.UnionType:
-      return [t('Possible values are ')].concat(
-        commaList(node.elements),
-        t('.'),
-      );
+      return commaList(node.elements, '(', ')', ' | ');
+
     case Syntax.ArrayType:
       return commaList(node.elements, '[', ']');
     case Syntax.RecordType:
@@ -136,6 +134,6 @@ function formatType(node) {
   }
 }
 
-export { Syntax };
+export { commaList, Syntax };
 
 export default formatType;

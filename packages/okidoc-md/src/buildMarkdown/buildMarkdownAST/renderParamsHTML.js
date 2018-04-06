@@ -1,5 +1,9 @@
-import renderHTML, { inlineHTML, cleanupHTML } from './renderHTML';
-import formatType, { Syntax } from './formatType';
+import {
+  renderInlineHTML,
+  renderMultilineHTML,
+  cleanUpMultilineHTML,
+} from './renderHTML';
+import formatType, { Syntax, commaList } from './formatType';
 
 function renderParamsHTML(params, title) {
   function hasDefault(param) {
@@ -18,11 +22,27 @@ function renderParamsHTML(params, title) {
     return !!(param.type && param.type.type === type);
   }
 
-  function renderParamType(param) {
-    return inlineHTML(renderHTML(formatType(param.type)));
+  function isUnionWithLiterals(param) {
+    const literalTypes = [
+      Syntax.NullLiteral,
+      Syntax.UndefinedLiteral,
+      Syntax.StringLiteralType,
+      Syntax.NumericLiteralType,
+      Syntax.BooleanLiteralType,
+    ];
+
+    return (
+      param.type &&
+      param.type.type === Syntax.UnionType &&
+      param.type.elements.every(item => literalTypes.includes(item.type))
+    );
   }
 
-  return cleanupHTML(`
+  function renderParamType(param) {
+    return renderInlineHTML(formatType(param.type));
+  }
+
+  return cleanUpMultilineHTML(`
 <div class="method-list">
   <table>
     <thead>
@@ -42,7 +62,7 @@ function renderParamsHTML(params, title) {
         </td>
         <td>
             ${
-              param.type && !hasType(param, Syntax.UnionType)
+              !isUnionWithLiterals(param)
                 ? hasType(param, Syntax.FunctionType)
                   ? `<code>${renderParamType(param)}</code>`
                   : `<div class="type">${renderParamType(param)}</div>`
@@ -50,10 +70,16 @@ function renderParamsHTML(params, title) {
             }
             ${
               hasDescription(param)
-                ? cleanupHTML(renderHTML(param.description))
+                ? renderMultilineHTML(param.description)
                 : ''
             }
-            ${hasType(param, Syntax.UnionType) ? renderParamType(param) : ''}
+            ${
+              isUnionWithLiterals(param)
+                ? `Possible values are ${renderInlineHTML(
+                    commaList(param.type.elements),
+                  )}.`
+                : ''
+            }
         </td>
       </tr>
     `,
