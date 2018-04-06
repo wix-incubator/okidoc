@@ -1,6 +1,7 @@
 import {
   renderInlineHTML,
   renderMultilineHTML,
+  cleanUpInlineHTML,
   cleanUpMultilineHTML,
 } from './renderHTML';
 import formatType, { Syntax, commaList } from './formatType';
@@ -42,6 +43,17 @@ function renderParamsHTML(params, title) {
     return renderInlineHTML(formatType(param.type));
   }
 
+  function renderFunctionParamType(param) {
+    return cleanUpInlineHTML(`
+      <div class="expandable-type">
+        <div class="type">function</div>
+        <div class="type-details">
+            <code>${renderParamType(param)}</code>
+        </div>
+      </div>
+    `);
+  }
+
   return cleanUpMultilineHTML(`
 <div class="method-list">
   <table>
@@ -64,7 +76,7 @@ function renderParamsHTML(params, title) {
             ${
               !isUnionWithLiterals(param)
                 ? hasType(param, Syntax.FunctionType)
-                  ? `<code>${renderParamType(param)}</code>`
+                  ? renderFunctionParamType(param)
                   : `<div class="type">${renderParamType(param)}</div>`
                 : ''
             }

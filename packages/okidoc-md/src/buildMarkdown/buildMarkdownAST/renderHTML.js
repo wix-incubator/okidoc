@@ -35,6 +35,11 @@ function renderMultilineHTML(node) {
   return cleanUpMultilineHTML(renderHTML(node));
 }
 
-export { renderInlineHTML, renderMultilineHTML, cleanUpMultilineHTML };
+export {
+  renderInlineHTML,
+  renderMultilineHTML,
+  cleanUpInlineHTML,
+  cleanUpMultilineHTML,
+};
 
 export default renderHTML;

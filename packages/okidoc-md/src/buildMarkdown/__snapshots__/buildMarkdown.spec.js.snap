@@ -706,7 +706,7 @@ exports[`buildMarkdown for functions should render valid markdown with UnionType
           <code>fn</code>
         </td>
         <td>
-            <code>function(<code>value</code>: (string | null)): void</code>
+            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(<code>value</code>: (string | null)): void</code> </div> </div>
             <p>event handler</p>
         </td>
       </tr>
@@ -746,7 +746,7 @@ exports[`buildMarkdown for functions should render valid markdown with function 
           <code>fn</code>
         </td>
         <td>
-            <code>function(<code>name</code>: string, <code>data</code>: Object): any</code>
+            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(<code>name</code>: string, <code>data</code>: Object): any</code> </div> </div>
             <p>event handler</p>
         </td>
       </tr>
@@ -776,7 +776,7 @@ exports[`buildMarkdown for functions should render valid markdown with function 
         <td class=\\"param\\">
         </td>
         <td>
-            <code>function(<code>flag</code>: boolean): void</code>
+            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(<code>flag</code>: boolean): void</code> </div> </div>
             <p>myFunc result function</p>
         </td>
       </tr>
@@ -847,7 +847,7 @@ create new entity
           <code>updateTitle</code>
         </td>
         <td>
-            <code>function(<code>id</code>: string, <code>title</code>: string): Promise&#x3C;any></code>
+            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(<code>id</code>: string, <code>title</code>: string): Promise&#x3C;any></code> </div> </div>
         </td>
       </tr>
       <tr>
@@ -855,7 +855,7 @@ create new entity
           <code>destroy</code>
         </td>
         <td>
-            <code>function(): void</code>
+            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(): void</code> </div> </div>
             <p>destroy entity</p>
         </td>
       </tr>

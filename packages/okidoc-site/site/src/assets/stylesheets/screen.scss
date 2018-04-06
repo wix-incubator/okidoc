@@ -594,6 +594,20 @@ body {
 
       @extend %code-font;
     }
+
+    .expandable-type {
+      position: relative;
+      display: inline-block;
+
+      .type-details {
+        position: absolute;
+        visibility: hidden;
+      }
+
+      &:hover .type-details {
+        visibility: visible;
+      }
+    }
   }
 
   .title-anchor {
