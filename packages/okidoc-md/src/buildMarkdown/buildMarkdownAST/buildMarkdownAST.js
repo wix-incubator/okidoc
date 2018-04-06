@@ -6,6 +6,8 @@ const GENERATOR_COMMENT = `<!-- Generated automatically. Update this documentati
 function buildMarkdownAST(comments, { title } = {}) {
   const docInterfaces = comments.filter(({ kind }) => kind === 'interface');
 
+  // NOTE: use https://eslint.org/doctrine/demo/ to better understand `comments` format
+
   const root = u('root', [
     u('html', GENERATOR_COMMENT),
     u('heading', { depth: 1 }, [u('text', title || '')]),
