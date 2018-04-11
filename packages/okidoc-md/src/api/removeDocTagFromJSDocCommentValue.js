@@ -2,7 +2,7 @@ import createDocTagParam from './createDocTagParam';
 import escapeRegExp from '../utils/escapeRegExp';
 
 function removeDocTagFromJSDocCommentValue(value, docTag) {
-  if (!docTag) {
+  if (!value || !docTag) {
     return value;
   }
 

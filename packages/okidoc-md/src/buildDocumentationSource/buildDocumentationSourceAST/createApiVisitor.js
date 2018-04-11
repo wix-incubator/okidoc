@@ -38,24 +38,21 @@ function createApiVisitor({ visitorPath, tag }, enter) {
 
     ensureVisitorExists(visitorPath);
 
-    const visitor = require(visitorPath);
+    const customVisitorApi = require(visitorPath);
 
-    ensureCreateApiVisitorIsFunction(visitor.createApiVisitor);
+    ensureCreateApiVisitorIsFunction(customVisitorApi.createApiVisitor);
 
-    return visitor.createApiVisitor((path, options) => {
+    return customVisitorApi.createApiVisitor((path, options) => {
       enter(path, options, {
-        createApiMethod: visitor.createApiMethod || visitorApi.createApiMethod,
-        createApiFunction:
-          visitor.createApiFunction || visitorApi.createApiFunction,
+        createApiClassMethod: customVisitorApi.createApiClassMethod,
+        createApiClassProperty: customVisitorApi.createApiClassProperty,
+        createApiFunction: customVisitorApi.createApiFunction,
       });
     });
   }
 
   return visitorApi.createApiVisitor(tag, (path, options) => {
-    enter(path, options, {
-      createApiMethod: visitorApi.createApiMethod,
-      createApiFunction: visitorApi.createApiFunction,
-    });
+    enter(path, options);
   });
 }
 

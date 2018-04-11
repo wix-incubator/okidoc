@@ -1,6 +1,7 @@
-import { getJSDocComment } from '../utils/JSDocAST';
+import { getJSDocCommentValue } from '../utils/JSDocAST';
 import escapeRegExp from '../utils/escapeRegExp';
 import createDocTagParam from './createDocTagParam';
+import removeDocTagFromJSDocCommentValue from './removeDocTagFromJSDocCommentValue';
 
 function isClassMethodAllowedInApi(node) {
   return node.accessibility !== 'private' && node.kind !== 'constructor';
@@ -13,20 +14,25 @@ function createApiVisitor(docTag, enter) {
   const visited = [];
 
   function hasDocTagInJSDoc(node) {
-    const JSDocComment = getJSDocComment(node);
-    const JSDocCommentValue = JSDocComment && JSDocComment.value;
+    const JSDocCommentValue = getJSDocCommentValue(node);
 
     return !!JSDocCommentValue && DOC_TAG_PARAM_PATTERN.test(JSDocCommentValue);
   }
 
-  function enterIfNotVisited(path, options) {
+  function enterIfNotVisited(path, options = {}) {
     if (visited.includes(path.node)) {
       return;
     }
 
+    const JSDocCommentValue =
+      options.JSDocCommentValue || getJSDocCommentValue(path.node);
+
     enter(path, {
-      docTag,
       ...options,
+      JSDocCommentValue: removeDocTagFromJSDocCommentValue(
+        JSDocCommentValue,
+        docTag,
+      ),
     });
 
     visited.push(path.node);
@@ -34,7 +40,7 @@ function createApiVisitor(docTag, enter) {
 
   function enterAssignmentExpression(
     assignmentExpressionPath,
-    { JSDocComment } = {},
+    { JSDocCommentValue },
   ) {
     const leftPath = assignmentExpressionPath.get('left');
     const rightPath = assignmentExpressionPath.get('right');
@@ -46,7 +52,7 @@ function createApiVisitor(docTag, enter) {
     ) {
       enterIfNotVisited(rightPath, {
         identifierName: leftPath.node.name,
-        JSDocComment: JSDocComment,
+        JSDocCommentValue: JSDocCommentValue,
       });
 
       return;
@@ -61,7 +67,7 @@ function createApiVisitor(docTag, enter) {
 
   function enterVariableDeclaration(
     variableDeclarationPath,
-    { JSDocComment } = {},
+    { JSDocCommentValue },
   ) {
     const variableDeclaratorId = variableDeclarationPath.get(
       'declarations.0.id',
@@ -76,7 +82,7 @@ function createApiVisitor(docTag, enter) {
     ) {
       enterIfNotVisited(variableDeclaratorInit, {
         identifierName: variableDeclaratorId.node.name,
-        JSDocComment: JSDocComment,
+        JSDocCommentValue: JSDocCommentValue,
       });
 
       return;
@@ -102,7 +108,7 @@ function createApiVisitor(docTag, enter) {
       }
 
       const declarationPath = path.get('declaration');
-      const JSDocComment = getJSDocComment(path.node);
+      const JSDocCommentValue = getJSDocCommentValue(path.node);
 
       if (declarationPath.isClassDeclaration()) {
         declarationPath.traverse({
@@ -115,14 +121,14 @@ function createApiVisitor(docTag, enter) {
 
       if (declarationPath.isFunctionDeclaration()) {
         enterIfNotVisited(declarationPath, {
-          JSDocComment,
+          JSDocCommentValue: JSDocCommentValue,
         });
         return;
       }
 
       if (declarationPath.isAssignmentExpression()) {
         enterAssignmentExpression(declarationPath, {
-          JSDocComment,
+          JSDocCommentValue: JSDocCommentValue,
         });
 
         return;
@@ -130,7 +136,7 @@ function createApiVisitor(docTag, enter) {
 
       if (declarationPath.isVariableDeclaration()) {
         enterVariableDeclaration(declarationPath, {
-          JSDocComment,
+          JSDocCommentValue: JSDocCommentValue,
         });
         return;
       }
@@ -163,7 +169,7 @@ function createApiVisitor(docTag, enter) {
     VariableDeclaration(path) {
       if (hasDocTagInJSDoc(path.node)) {
         enterVariableDeclaration(path, {
-          JSDocComment: getJSDocComment(path.node),
+          JSDocCommentValue: getJSDocCommentValue(path.node),
         });
       }
     },

@@ -1,15 +1,10 @@
-import * as t from '@babel/types';
-import { getJSDocComment } from '../utils/JSDocAST';
-import { removeNodeDecorators, removeNodeBody } from '../utils/nodeAST';
-import cleanUpNodeJSDoc from './cleanUpNodeJSDoc';
+import { cleanUpFunction } from '../utils/nodeAST';
 
 function createApiFunction(
   node,
   path,
-  { docTag, JSDocComment, identifierName } = {},
+  { JSDocCommentValue, identifierName } = {},
 ) {
-  JSDocComment = JSDocComment || getJSDocComment(node);
-
   if (path.isArrowFunctionExpression()) {
     path.arrowFunctionToExpression({
       allowInsertArrow: false,
@@ -17,13 +12,7 @@ function createApiFunction(
     });
   }
 
-  if (identifierName) {
-    node.id = t.identifier(identifierName);
-  }
-
-  cleanUpNodeJSDoc(node, JSDocComment, { docTag });
-  removeNodeDecorators(node);
-  removeNodeBody(node);
+  cleanUpFunction(node, { JSDocCommentValue, identifierName });
 
   return node;
 }
