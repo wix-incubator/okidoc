@@ -1,11 +1,8 @@
 import u from 'unist-builder';
-import remark from 'remark';
 import { API_CLASS_IDENTIFIER } from '../../api';
+import parseMarkdown from './parseMarkdown';
+import parseReturnsComment from './parseReturnsComment';
 import renderParamsHTML from './renderParamsHTML';
-
-function parseMarkdown(markdown) {
-  return remark().parse(markdown);
-}
 
 function renderHeading(comment, depth) {
   return (
@@ -38,7 +35,7 @@ function renderSeeLink(comment) {
 function renderParams(comment) {
   return (
     comment.params.length > 0 &&
-    u('html', renderParamsHTML(comment.params, 'ARGUMENTS'))
+    u('html', renderParamsHTML(comment.params, { title: 'ARGUMENTS' }))
   );
 }
 
@@ -76,25 +73,15 @@ function renderReturns(comment, interfaces) {
     return false;
   }
 
-  const localInterface = interfaces.find(
-    ({ name }) => name === returns.type.name,
+  const { applicationType, params } = parseReturnsComment(returns, interfaces);
+
+  return u(
+    'html',
+    renderParamsHTML(params, {
+      title: 'RETURN VALUE',
+      applicationType: applicationType,
+    }),
   );
-
-  const params =
-    !localInterface || !localInterface.properties.length
-      ? [returns]
-      : localInterface.properties.map(property => {
-          const tag = localInterface.tags.find(
-            tag => tag.title === 'property' && tag.name === property.name,
-          );
-
-          return {
-            ...property,
-            description: tag && parseMarkdown(tag.description),
-          };
-        });
-
-  return u('html', renderParamsHTML(params, 'RETURN VALUE'));
 }
 
 function renderComment(comment, { depth, interfaces }) {

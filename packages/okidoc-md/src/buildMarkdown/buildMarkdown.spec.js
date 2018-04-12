@@ -346,4 +346,74 @@ describe('buildMarkdown', () => {
       expect(markdown).toMatchSnapshot();
     });
   });
+
+  describe('with ApplicationType as return type', () => {
+    it('should render markdown for methods with Promise as @returns type', async () => {
+      const documentationSource = `
+      /**
+      * @returns returns comment
+      */
+      function myFn(): Promise<string> {
+        return x;
+      }
+      `;
+      const markdown = await getMarkdown(documentationSource, 'API Methods');
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it('should render markdown for methods with Promise & interface as @returns type', async () => {
+      const documentationSource = `
+      /** */
+      interface IResult {
+        x: number;
+        y: number;
+      }
+
+      /**
+      * @returns returns comment
+      */
+      function myFn(): Promise<IResult> {
+        return {x: 1, y: 1};
+      }
+      `;
+      const markdown = await getMarkdown(documentationSource, 'API Methods');
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it('should render markdown for methods with Array as @returns type', async () => {
+      const documentationSource = `
+      /**
+      * @returns returns comment
+      */
+      function myFn(): string[] {
+        return [''];
+      }
+      `;
+      const markdown = await getMarkdown(documentationSource, 'API Methods');
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it('should render markdown for methods with Array & interface as @returns type', async () => {
+      const documentationSource = `
+      /** */
+      interface IResult {
+        x: number;
+        y: number;
+      }
+
+      /**
+      * @returns returns comment
+      */
+      function myFn(): IResult[] {
+        return [{x: 1, y: 1}];
+      }
+      `;
+      const markdown = await getMarkdown(documentationSource, 'API Methods');
+
+      expect(markdown).toMatchSnapshot();
+    });
+  });
 });
