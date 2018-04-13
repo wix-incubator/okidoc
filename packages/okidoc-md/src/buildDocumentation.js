@@ -28,7 +28,9 @@ function buildDocumentation({ title, entry, source, pattern, tag, visitor }) {
           error.message += `\n${error.codeFrame}`;
         }
 
-        error.message = `documentation source: ${error.message}`;
+        error.message = `"${title}" documentation source${
+          source ? '' : ` (${entry || pattern})`
+        } - ${error.message}`;
 
         throw error;
       },
