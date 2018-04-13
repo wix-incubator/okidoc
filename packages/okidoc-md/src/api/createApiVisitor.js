@@ -1,4 +1,5 @@
-import { isJSDocIncludes, getJSDocComment } from '../utils/JSDocAST';
+import { getJSDocComment } from '../utils/JSDocAST';
+import escapeRegExp from '../utils/escapeRegExp';
 import createDocTagParam from './createDocTagParam';
 
 function isClassMethodAllowedInApi(node) {
@@ -6,11 +7,16 @@ function isClassMethodAllowedInApi(node) {
 }
 
 function createApiVisitor(docTag, enter) {
-  const docTagParam = createDocTagParam(docTag);
+  const DOC_TAG_PARAM = escapeRegExp(createDocTagParam(docTag));
+  const DOC_TAG_PARAM_PATTERN = new RegExp(`\\s${DOC_TAG_PARAM}\\s`);
+
   const visited = [];
 
   function hasDocTagInJSDoc(node) {
-    return isJSDocIncludes(node, docTagParam);
+    const JSDocComment = getJSDocComment(node);
+    const JSDocCommentValue = JSDocComment && JSDocComment.value;
+
+    return !!JSDocCommentValue && DOC_TAG_PARAM_PATTERN.test(JSDocCommentValue);
   }
 
   function enterIfNotVisited(path, options) {
