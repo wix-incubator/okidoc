@@ -1,6 +1,7 @@
 import * as t from '@babel/types';
 import { createJSDocCommentValue } from '../utils/JSDocAST';
 
+// TODO: use more unique name
 const API_CLASS_IDENTIFIER = 'API';
 
 function buildApiClassDeclaration(apiMethods) {

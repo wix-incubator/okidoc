@@ -5,11 +5,17 @@ exports[`buildDocumentation should build documentation for class  1`] = `
 
 # Documentation
 
-## m1()
+## C1
 
-## m2()
+### m1()
 
-## m3()
+## C2
+
+### m2()
+
+## C3
+
+### m3()
 "
 `;
 

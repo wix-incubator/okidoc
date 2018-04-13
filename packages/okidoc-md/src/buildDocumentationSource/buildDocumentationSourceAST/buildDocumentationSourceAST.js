@@ -27,11 +27,19 @@ function buildDocumentationSourceAST({
         path,
         options,
         {
+          createApiClassDeclaration = visitorApi.createApiClassDeclaration,
           createApiClassMethod = visitorApi.createApiClassMethod,
           createApiClassProperty = visitorApi.createApiClassProperty,
           createApiFunction = visitorApi.createApiFunction,
         } = {},
       ) => {
+        if (path.isClassDeclaration()) {
+          classDeclarations.push(
+            createApiClassDeclaration(path.node, path, options),
+          );
+          return;
+        }
+
         if (path.isClassMethod()) {
           classBodyItems.push(createApiClassMethod(path.node, path, options));
           return;

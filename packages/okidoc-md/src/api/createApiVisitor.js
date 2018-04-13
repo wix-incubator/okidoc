@@ -3,10 +3,6 @@ import escapeRegExp from '../utils/escapeRegExp';
 import createDocTagParam from './createDocTagParam';
 import removeDocTagFromJSDocCommentValue from './removeDocTagFromJSDocCommentValue';
 
-function isClassMethodAllowedInApi(node) {
-  return node.accessibility !== 'private' && node.kind !== 'constructor';
-}
-
 function createApiVisitor(docTag, enter) {
   const DOC_TAG_PARAM = escapeRegExp(createDocTagParam(docTag));
   const DOC_TAG_PARAM_PATTERN = new RegExp(`\\s${DOC_TAG_PARAM}\\s`);
@@ -19,7 +15,7 @@ function createApiVisitor(docTag, enter) {
     return !!JSDocCommentValue && DOC_TAG_PARAM_PATTERN.test(JSDocCommentValue);
   }
 
-  function enterIfNotVisited(path, options = {}) {
+  function enterApi(path, options = {}) {
     if (visited.includes(path.node)) {
       return;
     }
@@ -50,7 +46,7 @@ function createApiVisitor(docTag, enter) {
       (rightPath.isFunctionExpression() ||
         rightPath.isArrowFunctionExpression())
     ) {
-      enterIfNotVisited(rightPath, {
+      enterApi(rightPath, {
         identifierName: leftPath.node.name,
         JSDocCommentValue: JSDocCommentValue,
       });
@@ -80,7 +76,7 @@ function createApiVisitor(docTag, enter) {
       variableDeclaratorInit.isFunctionExpression() ||
       variableDeclaratorInit.isArrowFunctionExpression()
     ) {
-      enterIfNotVisited(variableDeclaratorInit, {
+      enterApi(variableDeclaratorInit, {
         identifierName: variableDeclaratorId.node.name,
         JSDocCommentValue: JSDocCommentValue,
       });
@@ -95,12 +91,6 @@ function createApiVisitor(docTag, enter) {
     );
   }
 
-  function enterClassMethod(classMethodPath) {
-    if (isClassMethodAllowedInApi(classMethodPath.node)) {
-      enterIfNotVisited(classMethodPath);
-    }
-  }
-
   return {
     'ExportNamedDeclaration|ExportDefaultDeclaration'(path) {
       if (!hasDocTagInJSDoc(path.node)) {
@@ -111,16 +101,17 @@ function createApiVisitor(docTag, enter) {
       const JSDocCommentValue = getJSDocCommentValue(path.node);
 
       if (declarationPath.isClassDeclaration()) {
-        declarationPath.traverse({
-          ClassMethod(path) {
-            enterClassMethod(path);
-          },
+        enterApi(declarationPath, {
+          JSDocCommentValue: JSDocCommentValue,
         });
+
+        // skip nested visitors like ClassMethod
+        path.skip();
         return;
       }
 
       if (declarationPath.isFunctionDeclaration()) {
-        enterIfNotVisited(declarationPath, {
+        enterApi(declarationPath, {
           JSDocCommentValue: JSDocCommentValue,
         });
         return;
@@ -147,30 +138,32 @@ function createApiVisitor(docTag, enter) {
         `${declarationPath.type} is currently not supported by okidoc-md`,
       );
     },
-    ClassDeclaration(path) {
-      if (hasDocTagInJSDoc(path.node)) {
-        path.traverse({
-          ClassMethod(path) {
-            enterClassMethod(path);
-          },
-        });
-      }
-    },
-    ClassMethod(path) {
-      if (hasDocTagInJSDoc(path.node)) {
-        enterClassMethod(path);
-      }
-    },
-    FunctionDeclaration(path) {
-      if (hasDocTagInJSDoc(path.node)) {
-        enterIfNotVisited(path);
-      }
-    },
     VariableDeclaration(path) {
       if (hasDocTagInJSDoc(path.node)) {
         enterVariableDeclaration(path, {
           JSDocCommentValue: getJSDocCommentValue(path.node),
         });
+      }
+    },
+    ClassDeclaration(path) {
+      if (hasDocTagInJSDoc(path.node)) {
+        enterApi(path);
+
+        // skip nested visitors like ClassMethod
+        path.skip();
+      }
+    },
+    'ClassMethod|ClassProperty'(path) {
+      if (
+        hasDocTagInJSDoc(path.node) &&
+        path.node.accessibility !== 'private'
+      ) {
+        enterApi(path);
+      }
+    },
+    FunctionDeclaration(path) {
+      if (hasDocTagInJSDoc(path.node)) {
+        enterApi(path);
       }
     },
   };

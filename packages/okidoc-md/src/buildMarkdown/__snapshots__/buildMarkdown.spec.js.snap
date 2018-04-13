@@ -578,6 +578,48 @@ myMethod2 comment
 "
 `;
 
+exports[`buildMarkdown for class should render markdown for class with constructor 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Component
+
+\`\`\`javascript
+new Component({visible: true})
+\`\`\`
+
+Component description
+
+\`new Component()\`
+
+creates new Component
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>config</code>
+        </td>
+        <td>
+            <div class=\\"type\\">any</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## show()
+
+show
+"
+`;
+
 exports[`buildMarkdown for functions should render valid markdown 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
@@ -1017,18 +1059,5 @@ exports[`buildMarkdown with ApplicationType as return type should render markdow
     </tbody>
   </table>
 </div>
-"
-`;
-
-exports[`buildMarkdown with custom args should render markdown without title arg 1`] = `
-"<!-- Generated automatically. Update this documentation by updating the source code. -->
-
-# myFunc1()
-
-myFunc1 description
-
-# myFunc2()
-
-myFunc2 description
 "
 `;

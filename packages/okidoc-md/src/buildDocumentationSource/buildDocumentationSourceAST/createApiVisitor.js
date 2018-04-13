@@ -44,6 +44,7 @@ function createApiVisitor({ visitorPath, tag }, enter) {
 
     return customVisitorApi.createApiVisitor((path, options) => {
       enter(path, options, {
+        createApiClassDeclaration: customVisitorApi.createApiClassDeclaration,
         createApiClassMethod: customVisitorApi.createApiClassMethod,
         createApiClassProperty: customVisitorApi.createApiClassProperty,
         createApiFunction: customVisitorApi.createApiFunction,

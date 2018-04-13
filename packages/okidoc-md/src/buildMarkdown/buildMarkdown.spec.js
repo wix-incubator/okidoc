@@ -8,6 +8,33 @@ function getMarkdown(documentationSource, args) {
 }
 
 describe('buildMarkdown', () => {
+  describe('for class', () => {
+    it('should render markdown for class with constructor', async () => {
+      const documentationSource = `
+      /**
+      * Component description
+      * 
+      * @example
+      * new Component({visible: true})
+      */
+      class Component {
+        /**
+        * creates new Component
+        */ 
+        constructor(config: any) {}
+      
+        /**
+        * show
+        */
+        show() {}
+      }
+    `;
+      const markdown = await getMarkdown(documentationSource);
+
+      expect(markdown).toMatchSnapshot();
+    });
+  });
+
   describe('for API class', () => {
     const title = 'API Methods';
 
@@ -429,25 +456,6 @@ describe('buildMarkdown', () => {
       }
       `;
       const markdown = await getMarkdown(documentationSource, { title });
-
-      expect(markdown).toMatchSnapshot();
-    });
-  });
-
-  describe('with custom args', () => {
-    it('should render markdown without title arg', async () => {
-      const documentationSource = `
-      /**
-      * myFunc1 description
-      */
-      function myFunc1() {}
-
-      /**
-      * myFunc2 description
-      */
-      function myFunc2() {}
-    `;
-      const markdown = await getMarkdown(documentationSource);
 
       expect(markdown).toMatchSnapshot();
     });

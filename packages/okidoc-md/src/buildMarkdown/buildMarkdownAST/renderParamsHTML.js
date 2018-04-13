@@ -42,6 +42,8 @@ function renderParamsHTML(params, { title, applicationType }) {
     return renderInlineHTML(formatType(type));
   }
 
+  // TODO: render destruction/rest/.. correctly https://github.com/documentationjs/documentation/blob/v6.2.0/__tests__/fixture/es6.output-toc.md
+
   return cleanUpMultilineHTML(`
 <div class="method-list">
   <table>
