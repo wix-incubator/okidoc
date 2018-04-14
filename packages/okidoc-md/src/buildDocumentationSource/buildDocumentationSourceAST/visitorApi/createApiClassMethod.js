@@ -1,4 +1,4 @@
-import { cleanUpClassMethod } from '../utils/nodeAST';
+import { cleanUpClassMethod } from '../../../utils/nodeAST';
 
 function createApiClassMethod(
   node,

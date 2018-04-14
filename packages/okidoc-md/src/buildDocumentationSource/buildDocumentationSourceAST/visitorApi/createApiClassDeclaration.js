@@ -1,4 +1,4 @@
-import { cleanUpClassDeclaration } from '../utils/nodeAST';
+import { cleanUpClassDeclaration } from '../../../utils/nodeAST';
 
 function createApiClassDeclaration(
   node,

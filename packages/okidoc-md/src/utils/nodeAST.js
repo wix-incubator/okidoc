@@ -94,10 +94,17 @@ function cleanUpClassDeclaration(
   );
 }
 
+function withJSDoc(node, JSDocCommentValue) {
+  t.addComment(node, 'leading', createJSDocCommentValue(JSDocCommentValue));
+
+  return node;
+}
+
 export {
   cleanUpNodeJSDoc,
   cleanUpFunction,
   cleanUpClassMethod,
   cleanUpClassProperty,
   cleanUpClassDeclaration,
+  withJSDoc,
 };

@@ -1,5 +1,5 @@
 import createDocTagParam from './createDocTagParam';
-import escapeRegExp from '../utils/escapeRegExp';
+import escapeRegExp from '../../../utils/escapeRegExp';
 
 function removeDocTagFromJSDocCommentValue(value, docTag) {
   if (!value || !docTag) {

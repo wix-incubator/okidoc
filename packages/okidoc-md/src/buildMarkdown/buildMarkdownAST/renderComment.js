@@ -1,5 +1,5 @@
 import u from 'unist-builder';
-import { API_CLASS_IDENTIFIER } from '../../api';
+import { API_CLASS_IDENTIFIER } from '../../constants';
 import parseMarkdown from './parseMarkdown';
 import parseReturnsComment from './parseReturnsComment';
 import renderParamsHTML from './renderParamsHTML';

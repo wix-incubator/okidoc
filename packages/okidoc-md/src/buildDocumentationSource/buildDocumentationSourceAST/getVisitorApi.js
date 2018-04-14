@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import * as visitorApi from '../../api';
+import visitorApi from './visitorApi';
 
 function ensureVisitorOptionsValid({ tag, visitorPath }) {
   if (!tag && !visitorPath) {
@@ -30,7 +30,7 @@ function ensureCreateApiVisitorIsFunction(createCustomApiVisitor) {
   }
 }
 
-function createApiVisitor({ visitorPath, tag }, enter) {
+function getVisitorApi({ visitorPath, tag }) {
   ensureVisitorOptionsValid({ tag, visitorPath });
 
   if (visitorPath) {
@@ -42,19 +42,18 @@ function createApiVisitor({ visitorPath, tag }, enter) {
 
     ensureCreateApiVisitorIsFunction(customVisitorApi.createApiVisitor);
 
-    return customVisitorApi.createApiVisitor((path, options) => {
-      enter(path, options, {
-        createApiClassDeclaration: customVisitorApi.createApiClassDeclaration,
-        createApiClassMethod: customVisitorApi.createApiClassMethod,
-        createApiClassProperty: customVisitorApi.createApiClassProperty,
-        createApiFunction: customVisitorApi.createApiFunction,
-      });
-    });
+    return {
+      ...visitorApi,
+      ...customVisitorApi,
+    };
   }
 
-  return visitorApi.createApiVisitor(tag, (path, options) => {
-    enter(path, options);
-  });
+  return {
+    ...visitorApi,
+    createApiVisitor(enter) {
+      return visitorApi.createApiVisitor(tag, enter);
+    },
+  };
 }
 
-export default createApiVisitor;
+export default getVisitorApi;

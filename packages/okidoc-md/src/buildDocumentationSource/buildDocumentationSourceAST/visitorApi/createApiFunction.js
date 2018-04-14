@@ -1,4 +1,4 @@
-import { cleanUpFunction } from '../utils/nodeAST';
+import { cleanUpFunction } from '../../../utils/nodeAST';
 
 function createApiFunction(
   node,

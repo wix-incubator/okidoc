@@ -1,4 +1,4 @@
-import { cleanUpClassProperty } from '../utils/nodeAST';
+import { cleanUpClassProperty } from '../../../utils/nodeAST';
 
 function createApiClassProperty(
   node,

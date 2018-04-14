@@ -1,5 +1,5 @@
-import { getJSDocCommentValue } from '../utils/JSDocAST';
-import escapeRegExp from '../utils/escapeRegExp';
+import { getJSDocCommentValue } from '../../../utils/JSDocAST';
+import escapeRegExp from '../../../utils/escapeRegExp';
 import createDocTagParam from './createDocTagParam';
 import removeDocTagFromJSDocCommentValue from './removeDocTagFromJSDocCommentValue';
 
