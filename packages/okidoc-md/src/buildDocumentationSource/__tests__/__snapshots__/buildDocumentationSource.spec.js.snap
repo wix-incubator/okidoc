@@ -109,10 +109,7 @@ class API {
 `;
 
 exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 2`] = `
-"/** */
-class API {}
-
-/**
+"/**
 * mountComponent
 */
 function mountComponent(component: Function, node: Node) {}
@@ -149,10 +146,7 @@ exports[`buildDocumentationSource for API class should cleanup typescript vs flo
 "/** */
 interface IView {
   show(): void;
-}
-
-/** */
-class API {}"
+}"
 `;
 
 exports[`buildDocumentationSource for API class with @doc tag on class declaration should extract class members 1`] = `
@@ -229,10 +223,7 @@ class API {
 }"
 `;
 
-exports[`buildDocumentationSource for API class with @doc tag on class members should ignore private methods with tag 1`] = `
-"/** */
-class API {}"
-`;
+exports[`buildDocumentationSource for API class with @doc tag on class members should ignore private methods with tag 1`] = `""`;
 
 exports[`buildDocumentationSource for API class with custom visitor should extract class members 1`] = `
 "/** */
@@ -254,10 +245,7 @@ class API {
 `;
 
 exports[`buildDocumentationSource for functions with @doc tag on export declaration should extract functions with tag 1`] = `
-"/** */
-class API {}
-
-/**
+"/**
 * f1 description
 */
 function exportFunctionDeclaration(x) {}
@@ -274,10 +262,7 @@ function exportDefaultConstArrowFunctionExpression(x) {}"
 `;
 
 exports[`buildDocumentationSource for functions with @doc tag on function declaration should extract functions with tag 1`] = `
-"/** */
-class API {}
-
-/**
+"/**
 * showComponent
 */
 function showComponent() {}
@@ -289,10 +274,7 @@ function hideComponent() {}"
 `;
 
 exports[`buildDocumentationSource for functions with @doc tag on var/let/const declaration should extract functions with tag 1`] = `
-"/** */
-class API {}
-
-/**
+"/**
 * varFunc
 */
 function varFunctionExpression() {}

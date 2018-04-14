@@ -82,8 +82,9 @@ function buildDocumentationSourceAST({
   tag,
   visitor: visitorPath,
 }) {
-  const apiInterfaces = [];
-  const classApiMethods = [];
+  const interfaces = [];
+  const classDeclarations = [];
+  const classBodyItems = [];
   const functions = [];
 
   ensureSourceOptionsValid({ entry, pattern, source });
@@ -99,7 +100,7 @@ function buildDocumentationSourceAST({
   // https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
   const visitors = {
     'InterfaceDeclaration|TSInterfaceDeclaration': path => {
-      apiInterfaces.push(createApiInterface(path.node, path));
+      interfaces.push(createApiInterface(path.node, path));
     },
   };
 
@@ -108,7 +109,7 @@ function buildDocumentationSourceAST({
       visitors,
       createApiVisitor(tag, (path, options) => {
         if (path.isClassMethod() || path.isClassProperty(path)) {
-          classApiMethods.push(createApiMethod(path.node, path, options));
+          classBodyItems.push(createApiMethod(path.node, path, options));
         }
 
         if (
@@ -137,7 +138,7 @@ function buildDocumentationSourceAST({
 
     const customApiVisitor = createCustomApiVisitor((path, options) => {
       if (path.isClassMethod() || path.isClassProperty()) {
-        classApiMethods.push(
+        classBodyItems.push(
           typeof createCustomApiMethod === 'function'
             ? createCustomApiMethod(path.node, path, options)
             : createApiMethod(path.node, path, options),
@@ -164,11 +165,13 @@ function buildDocumentationSourceAST({
 
   traverse({ entry, pattern, source }, visitors);
 
-  const apiClassDeclaration = buildApiClassDeclaration(classApiMethods);
+  if (classBodyItems.length) {
+    classDeclarations.push(buildApiClassDeclaration(classBodyItems));
+  }
 
   return {
     type: 'Program',
-    body: apiInterfaces.concat(apiClassDeclaration, functions),
+    body: interfaces.concat(classDeclarations, functions),
   };
 }
 
