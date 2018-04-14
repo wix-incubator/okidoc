@@ -35,11 +35,11 @@ exports[`buildDocumentation should build documentation for functions  1`] = `
 `;
 
 exports[`buildDocumentation should show readable error from \`documentation.js\` 1`] = `
-[SyntaxError: "Documentation" documentation source - Unexpected token, expected , (6:19)
-  4 | /**
-  5 | */
-> 6 | function fooGood<T extends {
+[SyntaxError: "Documentation" documentation source - Unexpected token, expected , (5:19)
+  3 | 
+  4 | /** */
+> 5 | function fooGood<T extends {
     |                   ^
-  7 |   x: number;
-  8 | }>(obj: T): T {}]
+  6 |   x: number;
+  7 | }>(obj: T): T {}]
 `;

@@ -114,19 +114,16 @@ class API {}
 
 /**
 * mountComponent
-*
 */
 function mountComponent(component: Function, node: Node) {}
 
 /**
 * renderComponent
-*
 */
 function renderComponent(component: Function) {}
 
 /**
 * unmountComponent
-*
 */
 function unmountComponent(component: Function) {}"
 `;
@@ -196,13 +193,11 @@ exports[`buildDocumentationSource for API class with @doc tag on class members s
 class API {
   /**
   * \`width\` getter
-  *
   */
   get width() {}
 
   /**
   * \`width\` setter
-  *
   */
   set width(value) {}
 
@@ -228,7 +223,6 @@ exports[`buildDocumentationSource for API class with @doc tag on class members s
 class API {
   /**
   * show
-  *
   */
   show() {}
 
@@ -285,13 +279,11 @@ class API {}
 
 /**
 * showComponent
-*
 */
 function showComponent() {}
 
 /**
 * hideComponent
-*
 */
 function hideComponent() {}"
 `;
