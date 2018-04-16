@@ -6,6 +6,7 @@ const path = require('path');
 const { buildDocumentation } = require('../lib');
 
 const writeFile = require('../lib/utils/writeFile').default;
+const { colorFgGreen, colorFgCyan } = require('../lib/utils/consoleUtils');
 
 // NOTE: ignore first 2 arguments (node and path of this file)
 const [docsYamlPath, outputDir] = process.argv.slice(2);
@@ -49,6 +50,8 @@ Promise.all(
       doc.path.endsWith('.md') ? doc.path : doc.path + '.md',
     );
 
+    console.log(`${colorFgGreen('starting')} ${markdownPath}`);
+
     return buildDocumentation({
       title: doc.title,
       entry: doc.entry,
@@ -58,7 +61,9 @@ Promise.all(
     })
       .then(markdown => writeFile(markdownPath, markdown))
       .then(() => {
-        console.log(`${markdownPath} ${Date.now() - start}ms`);
+        console.log(
+          `${colorFgCyan('finished')} ${markdownPath} ${Date.now() - start}ms`,
+        );
       });
   }),
 ).catch(err => {
