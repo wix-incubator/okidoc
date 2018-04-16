@@ -57,7 +57,7 @@ function createApiVisitor(docTag, enter) {
     console.warn(
       `${leftPath.type} = ${
         rightPath.type
-      } is currently not supported by okidoc-md`,
+      } is currently not supported by okidoc-md @doc tag visitor`,
     );
   }
 
@@ -87,7 +87,9 @@ function createApiVisitor(docTag, enter) {
     // TODO: add logic for 'var', 'let', 'constant', ...
 
     console.warn(
-      `${variableDeclaratorInit.type} is currently not supported by okidoc-md`,
+      `${
+        variableDeclaratorInit.type
+      } is currently not supported by okidoc-md @doc tag visitor`,
     );
   }
 
@@ -135,7 +137,9 @@ function createApiVisitor(docTag, enter) {
       // TODO: add logic for other node types
 
       console.warn(
-        `${declarationPath.type} is currently not supported by okidoc-md`,
+        `${
+          declarationPath.type
+        } is currently not supported by okidoc-md @doc tag visitor`,
       );
     },
     VariableDeclaration(path) {
