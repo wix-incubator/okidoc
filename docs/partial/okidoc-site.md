@@ -2,7 +2,7 @@
 
 Site logic is based on [gatsby](https://www.gatsbyjs.org/docs/).
 
-Instead of default gatsby directory `src/pages`, **use your docs path** ([example](https://github.com/wix/playable/blob/25d9d506c3d640b9cbd614d4e9b476390ada51b9/docs/)):
+Instead of default gatsby directory `src/pages`, **use your docs path** ([example](https://github.com/wix/playable/tree/master/docs)):
 
 ```
 .
@@ -15,7 +15,7 @@ Instead of default gatsby directory `src/pages`, **use your docs path** ([exampl
 ```
 
 > IMPORTANT: For site index page use `index.md` file
-> ([example](https://github.com/wix/playable/blob/25d9d506c3d640b9cbd614d4e9b476390ada51b9/docs/index.md)).
+> ([example](https://github.com/wix/playable/tree/master/docs/index.md)).
 > It is **required** file in your documentation directory.
 > Other pages are available by file name without `.md` extension.
 
