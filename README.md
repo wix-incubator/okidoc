@@ -69,7 +69,7 @@ class MySuperUIEvents {
 }
 ```
 
-Add yaml config (for example `docs.yml`):
+Add yaml config (default config path is `docs.yml`):
 
 ```yaml
 # Get files using `entry` or/and `glob` (could be `.js` or `.ts` files),
@@ -94,9 +94,13 @@ Add yaml config (for example `docs.yml`):
 Run `okidoc-md` script
 
 ```sh
-# generate markdown docs using configuration from `./docs.yml` and put them to `./docs` directory
 okidoc-md ./docs.yml ./docs
 ```
+
+It will generates docs markdown using configuration from `./docs.yml` and put them to `./docs` directory
+
+> NOTE: `./docs.yml` and `./docs` are default values for `configPath` and `outputDir` arguments and can be omitted.
+> Run `okidoc-md --help` for help.
 
 ## Customize documentation generation
 
