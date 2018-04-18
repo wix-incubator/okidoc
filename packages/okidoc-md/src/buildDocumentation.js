@@ -14,7 +14,7 @@ function buildDocumentation({ title, entry, source, pattern, tag, visitor }) {
   });
 
   return documentation
-    .build([{ source: documentationSource }], { shallow: true })
+    .build([{ source: documentationSource || ' ' }], { shallow: true })
     .then(
       comments =>
         buildMarkdown(comments, {
