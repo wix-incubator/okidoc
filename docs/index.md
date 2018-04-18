@@ -10,7 +10,7 @@ include:
 
 # okidoc
 
-Documentation tool
+Tool to document your code easy and flexible
 
 ## Installation
 
