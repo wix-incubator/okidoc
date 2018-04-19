@@ -8,14 +8,17 @@ function buildMarkdownAST(comments, { title } = {}) {
 
   // NOTE: use https://eslint.org/doctrine/demo/ to better understand `comments` format
 
+  const hasHeading = !!title;
+  const depth = hasHeading ? 1 : 0;
+
   const root = u('root', [
     u('html', GENERATOR_COMMENT),
-    u('heading', { depth: 1 }, [u('text', title || '')]),
+    ...(hasHeading ? [u('heading', { depth: depth }, [u('text', title)])] : []),
     ...comments.reduce(
       (memo, comment) =>
         memo.concat(
           renderComment(comment, {
-            depth: 2,
+            depth: depth + 1,
             interfaces: docInterfaces,
           }),
         ),

@@ -1000,3 +1000,16 @@ exports[`buildMarkdown with ApplicationType as return type should render markdow
 </div>
 "
 `;
+
+exports[`buildMarkdown with custom args should render markdown without title arg 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# myFunc1()
+
+myFunc1 description
+
+# myFunc2()
+
+myFunc2 description
+"
+`;

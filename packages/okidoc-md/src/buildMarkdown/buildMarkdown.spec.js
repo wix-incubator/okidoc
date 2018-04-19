@@ -412,4 +412,23 @@ describe('buildMarkdown', () => {
       expect(markdown).toMatchSnapshot();
     });
   });
+
+  describe('with custom args', () => {
+    it('should render markdown without title arg', async () => {
+      const documentationSource = `
+      /**
+      * myFunc1 description
+      */
+      function myFunc1() {}
+
+      /**
+      * myFunc2 description
+      */
+      function myFunc2() {}
+    `;
+      const markdown = await getMarkdown(documentationSource);
+
+      expect(markdown).toMatchSnapshot();
+    });
+  });
 });
