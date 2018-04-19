@@ -140,6 +140,27 @@ describe('buildMarkdown', () => {
       expect(markdown).toMatchSnapshot();
     });
 
+    it('should render markdown for methods with @deprecated', async () => {
+      const documentationSource = `
+      /** Example class jsdoc */
+      class API {
+        /**
+        * show component 
+        * @deprecated use method \`show()\`
+        */
+        doShow() {}
+        
+        /**
+        * show component
+        */
+        show() {}
+      }
+    `;
+      const markdown = await getMarkdown(documentationSource, { title });
+
+      expect(markdown).toMatchSnapshot();
+    });
+
     it('should render markdown for methods with `...rest` as param', async () => {
       const documentationSource = `
       /** Example class jsdoc */

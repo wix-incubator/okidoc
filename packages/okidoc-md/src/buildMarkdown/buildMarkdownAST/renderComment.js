@@ -66,6 +66,13 @@ function renderExamplesAndNotes(comment) {
   );
 }
 
+function renderDeprecated(comment) {
+  return (
+    !!comment.deprecated &&
+    [u('text', u('strong', 'DEPRECATED!'))].concat(comment.deprecated.children)
+  );
+}
+
 function renderReturns(comment, interfaces) {
   const returns = comment.returns && comment.returns[0];
 
@@ -90,6 +97,7 @@ function renderComment(comment, { depth, interfaces }) {
   if (['function', 'member'].includes(comment.kind)) {
     return renderHeading(comment, depth)
       .concat(renderExamplesAndNotes(comment))
+      .concat(renderDeprecated(comment))
       .concat(comment.description ? comment.description.children : [])
       .concat(renderSeeLink(comment))
       .concat(renderParams(comment))
