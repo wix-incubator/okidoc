@@ -1,14 +1,16 @@
 import documentation from 'documentation';
 import buildMarkdown from './';
 
-function getMarkdown(documentationSource, title) {
+function getMarkdown(documentationSource, args) {
   return documentation
     .build([{ source: documentationSource }], { shallow: true })
-    .then(comments => buildMarkdown(comments, { title: title }));
+    .then(comments => buildMarkdown(comments, args));
 }
 
 describe('buildMarkdown', () => {
   describe('for API class', () => {
+    const title = 'API Methods';
+
     it('should render markdown for getters/setters', async () => {
       const documentationSource = `
       /** Example class jsdoc */
@@ -28,7 +30,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -45,7 +47,7 @@ describe('buildMarkdown', () => {
         myMethod(x: string) {}
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -65,7 +67,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -83,7 +85,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -101,7 +103,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -133,7 +135,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -150,7 +152,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -167,7 +169,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -195,7 +197,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -232,13 +234,15 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
   });
 
   describe('for functions', async () => {
+    const title = 'Functions';
+
     it('should render valid markdown', async () => {
       const documentationSource = `
       /**
@@ -269,9 +273,7 @@ describe('buildMarkdown', () => {
       */
       function myFunc2(x: number, y:number): MyFuncResult {}
     `;
-      const markdown = await documentation
-        .build([{ source: documentationSource }], { shallow: true })
-        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -284,9 +286,7 @@ describe('buildMarkdown', () => {
         */
         function myFunc(name: string, fn: (name: string, data: Object) => any) {}
       `;
-      const markdown = await documentation
-        .build([{ source: documentationSource }], { shallow: true })
-        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -298,9 +298,7 @@ describe('buildMarkdown', () => {
         */
         function myFunc(fn: (value: string | null) => void) {}
       `;
-      const markdown = await documentation
-        .build([{ source: documentationSource }], { shallow: true })
-        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -312,9 +310,7 @@ describe('buildMarkdown', () => {
         */
         function myFunc(): (flag: boolean) => void {}
       `;
-      const markdown = await documentation
-        .build([{ source: documentationSource }], { shallow: true })
-        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -339,15 +335,15 @@ describe('buildMarkdown', () => {
         */
         function create(title: string): MyEntity {}
       `;
-      const markdown = await documentation
-        .build([{ source: documentationSource }], { shallow: true })
-        .then(comments => buildMarkdown(comments, { title: 'Functions' }));
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
   });
 
   describe('with ApplicationType as return type', () => {
+    const title = 'API Methods';
+
     it('should render markdown for methods with Promise as @returns type', async () => {
       const documentationSource = `
       /**
@@ -357,7 +353,7 @@ describe('buildMarkdown', () => {
         return x;
       }
       `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -377,7 +373,7 @@ describe('buildMarkdown', () => {
         return {x: 1, y: 1};
       }
       `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -391,7 +387,7 @@ describe('buildMarkdown', () => {
         return [''];
       }
       `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -411,7 +407,7 @@ describe('buildMarkdown', () => {
         return [{x: 1, y: 1}];
       }
       `;
-      const markdown = await getMarkdown(documentationSource, 'API Methods');
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
