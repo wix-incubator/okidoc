@@ -6,7 +6,11 @@ const GENERATOR_COMMENT = `<!-- Generated automatically. Update this documentati
 function buildMarkdownAST(comments, { title } = {}) {
   const docInterfaces = comments.filter(({ kind }) => kind === 'interface');
 
-  // NOTE: use https://eslint.org/doctrine/demo/ to better understand `comments` format
+  // NOTE: to better understand `comments` format see:
+  // - https://github.com/documentationjs/documentation/blob/v6.2.0/declarations/comment.js
+  // - https://github.com/syntax-tree/mdast
+  // - https://eslint.org/doctrine/demo/
+  // - https://unifiedjs.github.io/
 
   const hasHeading = !!title;
   const depth = hasHeading ? 1 : 0;
