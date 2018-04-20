@@ -8,7 +8,7 @@
     "documentation:site": "npm run okidoc-site -- develop ./docs/site.yml",
     "documentation:site:build": "npm run okidoc-site -- build ./docs/site.yml",
     "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d sitedist",
-    "format": "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin}/**/*.{ts,js}' 'packages/*/*.{ts,js}'",
+    "format": "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin,site/src}/**/*.{ts,js}' 'packages/*/*.{ts,js}'",
     "test": "jest",
     "test:coverage": "jest --coverage",
     "precommit": "lint-staged",
