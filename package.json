@@ -4,10 +4,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
     "build": "npm run bootstrap",
-    "readme2docs": "cp ./README.md ./docs/README.md",
     "okidoc-site": "node ./packages/okidoc-site/bin/okidoc-site.js",
-    "documentation:site": "npm run readme2docs && npm run okidoc-site -- develop ./docs/site.yml",
-    "documentation:site:build": "npm run readme2docs && npm run okidoc-site -- build ./docs/site.yml",
+    "documentation:site": "npm run okidoc-site -- develop ./docs/site.yml",
+    "documentation:site:build": "npm run okidoc-site -- build ./docs/site.yml",
     "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d sitedist",
     "format": "prettier --write 'scripts/**/*.js' 'packages/*/{src,bin}/**/*.{ts,js}' 'packages/*/*.{ts,js}'",
     "test": "jest",
