@@ -154,6 +154,25 @@ myMethod comment
 "
 `;
 
+exports[`buildMarkdown for API class should render markdown for methods with @deprecated 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## doShow()
+
+DEPRECATED!
+
+use method \`show()\`
+
+show component
+
+## show()
+
+show component
+"
+`;
+
 exports[`buildMarkdown for API class should render markdown for methods with @example end @note 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
