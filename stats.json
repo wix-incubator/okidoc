@@ -1,5 +1,9 @@
 {
   "assetsByChunkName": {
+    "path---partial-okidoc-site": [
+      "path---partial-okidoc-site-d1688affd8c504d2457d.js",
+      "path---partial-okidoc-site-d1688affd8c504d2457d.js.map"
+    ],
     "component---src-pages-index-js": [
       "component---src-pages-index-js-a177a06de1e835e2327f.js",
       "component---src-pages-index-js-a177a06de1e835e2327f.js.map"
@@ -9,20 +13,20 @@
       "path----4e7c8c3c551e409229f6.js.map"
     ],
     "path---readme": [
-      "path---readme-8c4b62a6413038bb424c.js",
-      "path---readme-8c4b62a6413038bb424c.js.map"
-    ],
-    "path---vgsdk": [
-      "path---vgsdk-ded2fca6bd499206873f.js",
-      "path---vgsdk-ded2fca6bd499206873f.js.map"
+      "path---readme-cdd729e5fcea3711d396.js",
+      "path---readme-cdd729e5fcea3711d396.js.map"
     ],
     "component---src-layouts-index-js": [
       "component---src-layouts-index-js-f879f5b1410ade490fe7.js",
       "component---src-layouts-index-js-f879f5b1410ade490fe7.js.map"
     ],
+    "path---partial-okidoc-md": [
+      "path---partial-okidoc-md-18a89057f7aa8159bad3.js",
+      "path---partial-okidoc-md-18a89057f7aa8159bad3.js.map"
+    ],
     "path---index": [
-      "path---index-ea7cf6258ffa8b893982.js",
-      "path---index-ea7cf6258ffa8b893982.js.map"
+      "path---index-b986bf29260082a909a1.js",
+      "path---index-b986bf29260082a909a1.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -38,27 +42,35 @@
       "path---404-html-a0e39f21c11f6a62c5ab.js",
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
-    "path---vgplayer": [
-      "path---vgplayer-565ba895ae59cd1e1e77.js",
-      "path---vgplayer-565ba895ae59cd1e1e77.js.map"
+    "path---okidoc-md-visitor": [
+      "path---okidoc-md-visitor-e58086bdbe2bd977c3e5.js",
+      "path---okidoc-md-visitor-e58086bdbe2bd977c3e5.js.map"
     ],
     "path---pages-page-fix": [
-      "path---pages-page-fix-4c7196b6b3da3a195766.js",
-      "path---pages-page-fix-4c7196b6b3da3a195766.js.map"
+      "path---pages-page-fix-1a28f1a277ae4b6e771f.js",
+      "path---pages-page-fix-1a28f1a277ae4b6e771f.js.map"
     ],
     "component---src-templates-md-js": [
       "component---src-templates-md-js-70df4193d6dcd24a4019.js",
       "component---src-templates-md-js-70df4193d6dcd24a4019.js.map"
     ],
     "app": [
-      "app-9c4b7985f14125c5dd16.js",
+      "app-91474ca098c8d588f8ff.js",
       "build-js-styles.css",
-      "app-9c4b7985f14125c5dd16.js.map",
+      "app-91474ca098c8d588f8ff.js.map",
       "build-js-styles.css.map"
+    ],
+    "path---partial-okidoc-site-deploy": [
+      "path---partial-okidoc-site-deploy-16cc1db0184fb4bf5a2e.js",
+      "path---partial-okidoc-site-deploy-16cc1db0184fb4bf5a2e.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
       "path---404-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---partial-okidoc-site-files": [
+      "path---partial-okidoc-site-files-a3e5e35c6f152086635d.js",
+      "path---partial-okidoc-site-files-a3e5e35c6f152086635d.js.map"
     ]
   }
 }
