@@ -21,6 +21,7 @@
     "gatsby-source-filesystem": "1.5.34",
     "gatsby-transformer-remark": "1.7.40",
     "github-slugger": "^1.2.0",
+    "hast-to-hyperscript": "^4.0.0",
     "joi": "^13.2.0",
     "prismjs": "^1.14.0",
     "prop-types": "^15.6.1",

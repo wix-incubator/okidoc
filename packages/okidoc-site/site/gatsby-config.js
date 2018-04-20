@@ -1,5 +1,9 @@
 const site = require('./getSiteConfig');
 
+if (site.mdComponents) {
+  process.env.GATSBY_MD_COMPONENTS_PATH = site.mdComponents.path;
+}
+
 if (site.config.algoliaApiKey) {
   process.env.GATSBY_ALGOLIA_API_KEY = site.config.algoliaApiKey;
 }
@@ -61,5 +65,13 @@ module.exports = {
         ],
       },
     },
+    ...(site.mdComponents
+      ? [
+          {
+            resolve: 'gatsby-md-components',
+            options: site.mdComponents,
+          },
+        ]
+      : []),
   ],
 };
