@@ -30,7 +30,7 @@
     "babylon": "7.0.0-beta.40",
     "caporal": "^0.10.0",
     "doctrine-temporary-fork": "2.0.1",
-    "documentation": "^6.2.0",
+    "documentation": "6.2.0",
     "ejs": "^2.5.7",
     "filing-cabinet": "^1.13.1",
     "glob": "^7.1.2",
