@@ -27,6 +27,12 @@ const configSchema = {
     externalStyles: Joi.array().items(Joi.string()),
     externalScripts: Joi.array().items(Joi.string()),
   }),
+  codeExamples: Joi.object({
+    path: Joi.string().required(),
+    html: Joi.string(),
+    externalStyles: Joi.array().items(Joi.string()),
+    externalScripts: Joi.array().items(Joi.string()),
+  }),
   navigation: Joi.alternatives().try(
     Joi.string(),
     Joi.array().items(navigationItemSchema),
@@ -92,6 +98,10 @@ if (site.mdComponents) {
     SITE_CWD,
     site.mdComponents.path,
   );
+}
+
+if (site.codeExamples) {
+  site.codeExamples.path = resolveExistingPath(SITE_CWD, site.codeExamples.path);
 }
 
 if (site.navigation) {

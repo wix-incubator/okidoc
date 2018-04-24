@@ -71,6 +71,13 @@ module.exports = {
             resolve: 'gatsby-md-components',
             options: site.mdComponents,
           },
+      ] : []),
+    ...(site.codeExamples
+      ? [
+          {
+            resolve: 'gatsby-code-examples',
+            options: site.codeExamples,
+          },
         ]
       : []),
   ],

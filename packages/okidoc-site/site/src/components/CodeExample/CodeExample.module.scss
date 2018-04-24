@@ -1,0 +1,54 @@
+.wrapper {
+  background: #2e3336;
+  height: 100vh;
+}
+
+.actions {
+  display: flex;
+  height: 30px;
+  background: #1c1f21;
+
+  button.actionButton {
+    background:none;
+    outline: none;
+    border: none;
+    color: white;
+
+    opacity: 0.5;
+
+    &.actionButtonActive {
+      opacity: 1;
+    }
+  }
+}
+
+.sandboxButtons {
+  display: flex;
+  margin-left: auto;
+
+  form {
+    display: flex;
+  }
+
+  button.sandboxButton {
+    background:none;
+    outline: none;
+    border: none;
+    color: white;
+    opacity: 0.8;
+  }
+}
+
+.tabs {
+  // TODO: review it
+  height: calc(100vh - 50px);
+
+  .tab {
+    display: none;
+    height: 100%;
+
+    &.tabActive {
+      display: block;
+    }
+  }
+}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import DemoModal from './DemoModal';
 import getClosestAnchor from './getClosestAnchor';
+import getDemoEmbedLink from './getDemoEmbedLink';
 
 class CatchDemoLinks extends Component {
   static propTypes = {
@@ -42,15 +43,18 @@ class CatchDemoLinks extends Component {
     }
 
     const anchor = getClosestAnchor(e.target, this.node);
+    const anchorHref = anchor && anchor.getAttribute('href');
 
-    if (!anchor || !anchor.href) {
+    if (!anchorHref) {
       return;
     }
 
-    if (anchor.href.includes('jsfiddle')) {
+    const demoEmbedLink = getDemoEmbedLink(anchorHref);
+
+    if (demoEmbedLink) {
       e.preventDefault();
 
-      this.onOpenDemoModal(anchor.href + 'embedded/result,js/dark/');
+      this.onOpenDemoModal(demoEmbedLink);
     }
   }
 
