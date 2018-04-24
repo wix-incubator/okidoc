@@ -1,22 +1,16 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
 
+import SiteMetadata from '../components/SiteMetadata';
 import Header from '../components/Header';
 
 // import '../assets/stylesheets/print.scss';
 import '../assets/stylesheets/screen.scss';
 
 function TemplateWrapper({ children, data }) {
-  const { title, description, keywords } = data.site.siteMetadata;
-
   return (
     <Fragment>
-      <Helmet>
-        {title && <title>{title}</title>}
-        {description && <meta name="description" content={description} />}
-        {keywords && <meta name="keywords" content={keywords} />}
-      </Helmet>
+      <SiteMetadata siteMetadata={data.site.siteMetadata} />
       <Header />
       {children()}
     </Fragment>
@@ -25,6 +19,7 @@ function TemplateWrapper({ children, data }) {
 
 TemplateWrapper.propTypes = {
   children: PropTypes.func,
+  data: PropTypes.any,
 };
 
 export const query = graphql`
