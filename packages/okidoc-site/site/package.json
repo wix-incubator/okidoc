@@ -21,6 +21,7 @@
     "gatsby-source-filesystem": "1.5.26",
     "gatsby-transformer-remark": "1.7.34",
     "github-slugger": "^1.2.0",
+    "joi": "^13.2.0",
     "prop-types": "^15.6.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
