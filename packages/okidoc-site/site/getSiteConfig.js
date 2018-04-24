@@ -52,6 +52,16 @@ function getConfig(configPath) {
   }
 }
 
+function resolveExistingPath(cwd, _path) {
+  _path = path.join(cwd, _path);
+
+  if (!fs.existsSync(_path)) {
+    throw Error(`path "${_path}" not exists`);
+  }
+
+  return _path;
+}
+
 checkProcessEnv(process.env);
 
 const { SITE_YAML_PATH, SITE_CWD } = process.env;
@@ -63,6 +73,6 @@ Joi.assert(
   `Invalid site config yaml file (${SITE_YAML_PATH}).`,
 );
 
-site.docsPath = path.join(SITE_CWD, site.docsPath);
+site.docsPath = resolveExistingPath(SITE_CWD, site.docsPath);
 
 module.exports = site;
