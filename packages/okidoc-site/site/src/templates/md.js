@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
 
+import '../assets/stylesheets/prism.scss';
+
 const SIMPLE_LAYOUT = 'simple';
 const INDEX_PAGE_REQUIRED_MESSAGE = `For site index page create <code>./docs/index.md</code> file`;
 

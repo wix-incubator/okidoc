@@ -6,7 +6,6 @@ import Header from '../components/Header';
 
 // import '../assets/stylesheets/print.scss';
 import '../assets/stylesheets/screen.scss';
-import '../assets/stylesheets/prism.scss';
 
 function TemplateWrapper({ children, data }) {
   const { title, description, keywords } = data.site.siteMetadata;
