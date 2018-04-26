@@ -1,4 +1,5 @@
 node_modules
 .cache/
 public/
+src/__navigation.json
 

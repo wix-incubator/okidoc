@@ -8,6 +8,10 @@ import '../assets/stylesheets/prism.scss';
 const SIMPLE_LAYOUT = 'simple';
 const INDEX_PAGE_REQUIRED_MESSAGE = `For site index page create <code>./docs/index.md</code> file`;
 
+const NAVIGATION = process.env.GATSBY_NAVIGATION_PATH
+  ? require(process.env.GATSBY_NAVIGATION_PATH)
+  : [];
+
 function Template({ match, location, data: { site, page } }) {
   if (!page && match.path === '/') {
     page = {
@@ -35,7 +39,7 @@ function Template({ match, location, data: { site, page } }) {
       <Navigation
         location={location}
         headings={headings}
-        navigation={site.siteMetadata.navigation}
+        navigation={NAVIGATION}
       />
       <div className={`page-wrapper ${layout}-layout`}>
         {!isSimpleLayout && <div className="dark-box" />}
@@ -52,9 +56,7 @@ Template.propTypes = {
   location: PropTypes.any.isRequired,
   data: PropTypes.shape({
     site: PropTypes.shape({
-      siteMetadata: PropTypes.shape({
-        navigation: PropTypes.array.isRequired,
-      }),
+      siteMetadata: PropTypes.object,
     }),
     page: PropTypes.shape({
       headings: PropTypes.array.isRequired,
@@ -66,10 +68,7 @@ Template.propTypes = {
 export const siteFragment = graphql`
   fragment mdTemplateSiteFields on Site {
     siteMetadata {
-      navigation {
-        path
-        title
-      }
+      title
     }
   }
 `;
