@@ -19,12 +19,32 @@ function Template({ match, location, data: { site, page } }) {
   let headings = page.headings;
   let html = page.html;
 
-  const includes = page.frontmatter && page.frontmatter.include;
-  const layout = (page.frontmatter && page.frontmatter.layout) || 'two-column';
+  const frontMatter = page.frontmatter;
+  const includes = frontMatter && frontMatter.include;
+  const layout = (frontMatter && frontMatter.layout) || 'two-column';
   const isSimpleLayout = layout === SIMPLE_LAYOUT;
 
   if (includes) {
-    includes.forEach(({ childMarkdownRemark }) => {
+    includes.forEach(file => {
+      if (!file) {
+        console.error(
+          `'${
+            location.pathname
+          }': invalid file path in md front matter 'include' property`,
+        );
+      }
+
+      if (!file.childMarkdownRemark) {
+        console.error(
+          `'${
+            location.pathname
+          }': invalid file in md front matter 'include' property`,
+        );
+        return;
+      }
+
+      const childMarkdownRemark = file.childMarkdownRemark;
+
       headings = headings.concat(childMarkdownRemark.headings);
       html += childMarkdownRemark.html;
     });
