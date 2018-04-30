@@ -4,6 +4,7 @@
   "homepage": "https://wix.github.io/okidoc",
   "license": "MIT",
   "files": [
+    "cli.js",
     "bin",
     "site"
   ],
