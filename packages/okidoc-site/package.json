@@ -19,5 +19,9 @@
     "cross-spawn": "^6.0.4",
     "ncp": "^2.0.0",
     "yamljs": "^0.3.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "logLevel": "verbose"
   }
 }
