@@ -9,7 +9,6 @@
     "okidoc-site": "^1.7.0-0"
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "logLevel": "verbose"
+    "registry": "https://registry.npmjs.org/"
   }
 }

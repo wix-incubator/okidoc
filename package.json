@@ -50,7 +50,6 @@
     ]
   },
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/",
-    "logLevel": "verbose"
+    "registry": "https://registry.npmjs.org/"
   }
 }
