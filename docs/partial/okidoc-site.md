@@ -21,7 +21,7 @@ Instead of default gatsby directory `src/pages`, **use your docs path** ([exampl
 
 > Only `md` files are served by `okidoc-site`.
 
-To configure your site, use yaml config (for example `site.yml`):
+To configure your site, use yaml config (default config path is `./site.yml`):
 
 ```yaml
 # Markdown files path
