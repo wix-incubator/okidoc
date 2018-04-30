@@ -15,6 +15,7 @@
     "postinstall": "cd site && npm install"
   },
   "dependencies": {
+    "caporal": "^0.10.0",
     "cross-spawn": "^6.0.4",
     "ncp": "^2.0.0",
     "yamljs": "^0.3.0"
