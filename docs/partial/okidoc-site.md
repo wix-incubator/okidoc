@@ -53,6 +53,8 @@ navigation:
    title: Methods
 ```
 
+Read more about cross-page navigation [here](/okidoc-site-navigation)
+
 Run `okidoc-site` script
 
 ```sh

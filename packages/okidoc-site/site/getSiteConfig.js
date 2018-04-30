@@ -3,6 +3,15 @@ const path = require('path');
 const yaml = require('yamljs');
 const Joi = require('joi');
 
+const navigationItemSchema = Joi.object({
+  path: Joi.string().when('items', {
+    is: Joi.array().min(1),
+    otherwise: Joi.string().required(),
+  }),
+  title: Joi.string().required(),
+  items: Joi.array().items(Joi.lazy(() => navigationItemSchema)),
+});
+
 const configSchema = {
   docsPath: Joi.string().required(),
   distPath: Joi.string(),
@@ -13,11 +22,9 @@ const configSchema = {
     algoliaIndexName: Joi.string(),
     githubLink: Joi.string(),
   }),
-  navigation: Joi.array().items(
-    Joi.object({
-      path: Joi.string().required(),
-      title: Joi.string().required(),
-    }),
+  navigation: Joi.alternatives().try(
+    Joi.string(),
+    Joi.array().items(navigationItemSchema),
   ),
 };
 
@@ -74,5 +81,20 @@ Joi.assert(
 );
 
 site.docsPath = resolveExistingPath(SITE_CWD, site.docsPath);
+
+if (site.navigation) {
+  const navigationData = site.navigation;
+  let navigationPath;
+
+  if (typeof navigationData === 'string') {
+    navigationPath = resolveExistingPath(SITE_CWD, navigationData);
+  } else if (Array.isArray(navigationData) && navigationData.length) {
+    navigationPath = path.resolve(__dirname, './src/__navigation.json');
+
+    fs.writeFileSync(navigationPath, JSON.stringify(navigationData));
+  }
+
+  site.navigation = navigationPath;
+}
 
 module.exports = site;
