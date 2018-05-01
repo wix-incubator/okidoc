@@ -45,6 +45,10 @@ config:
  # [optional] Link to your github repository
  githubLink: YOUR_GITHUB_REPOSITORY
 
+# [optional] react components inside markdown
+mdComponents:
+  path: ./docs/playground-components.js
+
 # [optional] navigation config. Use if you need more than one page in navigation block
 navigation:
  - path: /config
@@ -53,7 +57,10 @@ navigation:
    title: Methods
 ```
 
-Read more about cross-page navigation [here](/okidoc-site-navigation)
+Read more:
+
+* [react components inside markdown](/okidoc-site-md-components)
+* [navigation config](/okidoc-site-navigation)
 
 Run `okidoc-site` script
 
