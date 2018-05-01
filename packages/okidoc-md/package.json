@@ -1,6 +1,6 @@
 {
   "name": "okidoc-md",
-  "version": "1.7.0-1",
+  "version": "2.0.0-beta.0",
   "homepage": "https://wix.github.io/okidoc",
   "license": "MIT",
   "files": [
@@ -13,7 +13,7 @@
     "okidoc": "./bin/okidoc-md.js",
     "okidoc-md": "./bin/okidoc-md.js"
   },
-  "repository": "https://github.com/wix/okidoc/tree/master/packages/okidoc-md",
+  "repository": "https://github.com/wix/okidoc",
   "scripts": {
     "build": "rm -rf lib && babel src -d lib --ignore *.spec.js",
     "build:watch": "npm run build -- --watch",
