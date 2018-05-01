@@ -5,6 +5,8 @@ import renderHtmlAst from '../utils/renderHtmlAst';
 import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
 
+import getPageHeadingsAndHtmlAst from '../utils/getPageHeadingsAndHtmlAst';
+
 import '../assets/stylesheets/prism.scss';
 
 const SIMPLE_LAYOUT = 'simple';
@@ -25,39 +27,10 @@ function Template({ match, location, data: { site, page } }) {
     );
   }
 
-  const headings = page.headings;
-  const htmlAst = page.htmlAst;
+  const { headings, htmlAst } = getPageHeadingsAndHtmlAst(page);
 
-  const frontMatter = page.frontmatter;
-  const includes = frontMatter && frontMatter.include;
-  const layout = (frontMatter && frontMatter.layout) || 'two-column';
+  const layout = (page.frontmatter && page.frontmatter.layout) || 'two-column';
   const isSimpleLayout = layout === SIMPLE_LAYOUT;
-
-  if (includes) {
-    includes.forEach(file => {
-      if (!file) {
-        console.error(
-          `'${
-            location.pathname
-          }': invalid file path in md front matter 'include' property`,
-        );
-      }
-
-      if (!file.childMarkdownRemark) {
-        console.error(
-          `'${
-            location.pathname
-          }': invalid file in md front matter 'include' property`,
-        );
-        return;
-      }
-
-      const childMarkdownRemark = file.childMarkdownRemark;
-
-      headings.push(...childMarkdownRemark.headings);
-      htmlAst.children.push(...childMarkdownRemark.htmlAst.children);
-    });
-  }
 
   return (
     <Fragment>
