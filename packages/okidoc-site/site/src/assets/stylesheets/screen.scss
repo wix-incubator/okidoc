@@ -178,6 +178,10 @@ body {
     padding-left: $nav-padding;
   }
 
+  .toc-h3 {
+    padding-left: $nav-padding + 10px;
+  }
+
   .toc-footer {
     margin-top: 1em;
     padding: 1em 0;

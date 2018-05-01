@@ -1,8 +1,4 @@
-const {
-  cleanUpNodeJSDoc,
-  removeNodeDecorators,
-  removeNodeBody,
-} = require('../../../utils/nodeAST');
+const { cleanUpClassMethod } = require('../../../utils/nodeAST');
 
 function createApiVisitor(enter) {
   return {
@@ -14,15 +10,17 @@ function createApiVisitor(enter) {
   };
 }
 
-function createApiMethod(node) {
-  cleanUpNodeJSDoc(node);
-  removeNodeDecorators(node);
-  removeNodeBody(node);
+function createApiClassMethod(
+  node,
+  path,
+  { JSDocCommentValue, identifierName } = {},
+) {
+  cleanUpClassMethod(node, { JSDocCommentValue, identifierName });
 
   return node;
 }
 
 module.exports = {
   createApiVisitor,
-  createApiMethod,
+  createApiClassMethod,
 };

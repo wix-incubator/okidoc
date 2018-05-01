@@ -13,6 +13,12 @@ function getJSDocComment(node) {
   return comments && comments.find(isJSDocComment);
 }
 
+function getJSDocCommentValue(node) {
+  const JSDocComment = getJSDocComment(node);
+
+  return JSDocComment && JSDocComment.value;
+}
+
 function createCommentBlock(description) {
   return {
     type: COMMENT_BLOCK_TYPE,
@@ -43,6 +49,7 @@ function isJSDocIncludes(node, searchString) {
 export {
   isJSDocComment,
   getJSDocComment,
+  getJSDocCommentValue,
   createJSDocCommentValue,
   createJSDocCommentBlock,
   isJSDocIncludes,

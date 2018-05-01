@@ -1,5 +1,5 @@
 import u from 'unist-builder';
-import { API_CLASS_IDENTIFIER } from '../../api';
+import { API_CLASS_IDENTIFIER } from '../../constants';
 import parseMarkdown from './parseMarkdown';
 import parseReturnsComment from './parseReturnsComment';
 import renderParamsHTML from './renderParamsHTML';
@@ -17,6 +17,10 @@ function renderHeading(comment, depth) {
   );
 }
 
+function renderDescription(comment) {
+  return !!comment.description && comment.description.children;
+}
+
 function renderSeeLink(comment) {
   return (
     comment.sees.length > 0 &&
@@ -29,6 +33,33 @@ function renderSeeLink(comment) {
         ]),
       ),
     )
+  );
+}
+
+function renderConstructor(comment) {
+  if (!comment.constructorComment) {
+    return false;
+  }
+
+  const constructorComment = comment.constructorComment;
+  // TODO: decide which params to render.
+  const paramsToRender = constructorComment.params.length
+    ? constructorComment.params
+    : comment.params;
+
+  return (
+    !!constructorComment &&
+    [u('inlineCode', `new ${comment.name}()`)]
+      .concat(renderDescription(constructorComment))
+      .concat(
+        paramsToRender.length > 0 &&
+          u(
+            'html',
+            renderParamsHTML(paramsToRender, {
+              title: 'ARGUMENTS',
+            }),
+          ),
+      )
   );
 }
 
@@ -91,6 +122,13 @@ function renderReturns(comment, interfaces) {
   );
 }
 
+function renderClassMembers(comment, { depth, interfaces }) {
+  return comment.members.instance.reduce(
+    (memo, child) => memo.concat(renderComment(child, { depth, interfaces })),
+    [],
+  );
+}
+
 function renderComment(comment, { depth, interfaces }) {
   // TODO: add render logic for 'var', 'let', 'constant', 'interface', etc
 
@@ -98,28 +136,36 @@ function renderComment(comment, { depth, interfaces }) {
     return renderHeading(comment, depth)
       .concat(renderExamplesAndNotes(comment))
       .concat(renderDeprecated(comment))
-      .concat(comment.description ? comment.description.children : [])
+      .concat(renderDescription(comment))
       .concat(renderSeeLink(comment))
       .concat(renderParams(comment))
       .concat(renderReturns(comment, interfaces))
       .filter(Boolean);
   }
 
-  if (
-    comment.name === API_CLASS_IDENTIFIER &&
-    comment.kind === 'class' &&
-    !!comment.members.instance.length
-  ) {
-    return comment.members.instance.reduce(
-      (memo, child) =>
-        memo.concat(
-          renderComment(child, {
-            depth: depth,
-            interfaces: interfaces,
-          }),
-        ),
-      [],
-    );
+  if (comment.kind === 'class') {
+    if (
+      comment.name === API_CLASS_IDENTIFIER &&
+      !!comment.members.instance.length
+    ) {
+      return renderClassMembers(comment, {
+        depth: depth,
+        interfaces: interfaces,
+      });
+    }
+
+    return renderHeading(comment, depth)
+      .concat(renderExamplesAndNotes(comment))
+      .concat(renderDescription(comment))
+      .concat(renderSeeLink(comment))
+      .concat(renderConstructor(comment))
+      .concat(
+        renderClassMembers(comment, {
+          depth: depth + 1,
+          interfaces: interfaces,
+        }),
+      )
+      .filter(Boolean);
   }
 
   return [];

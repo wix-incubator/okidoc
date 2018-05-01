@@ -1,5 +1,5 @@
 import * as t from '@babel/types';
-import { createJSDocCommentBlock } from '../utils/JSDocAST';
+import { createJSDocCommentBlock } from '../../../utils/JSDocAST';
 
 function createApiInterface(node, path) {
   // NOTE: add empty JSDoc to force `documentation.js` to add this class to documentation
