@@ -1,12 +1,18 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import renderHtmlAst from '../utils/renderHtmlAst';
+
 import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
+
+import getPageHeadingsAndHtmlAst from '../utils/getPageHeadingsAndHtmlAst';
 
 import '../assets/stylesheets/prism.scss';
 
 const SIMPLE_LAYOUT = 'simple';
-const INDEX_PAGE_REQUIRED_MESSAGE = `For site index page create <code>./docs/index.md</code> file`;
+const MD_COMPONENTS = process.env.GATSBY_MD_COMPONENTS_PATH
+  ? require(process.env.GATSBY_MD_COMPONENTS_PATH)
+  : {};
 
 const NAVIGATION = process.env.GATSBY_NAVIGATION_PATH
   ? require(process.env.GATSBY_NAVIGATION_PATH)
@@ -14,45 +20,17 @@ const NAVIGATION = process.env.GATSBY_NAVIGATION_PATH
 
 function Template({ match, location, data: { site, page } }) {
   if (!page && match.path === '/') {
-    page = {
-      headings: [],
-      html: INDEX_PAGE_REQUIRED_MESSAGE,
-    };
+    return (
+      <div className="page-wrapper">
+        For site index page create <code>./docs/index.md</code> file
+      </div>
+    );
   }
 
-  let headings = page.headings;
-  let html = page.html;
+  const { headings, htmlAst } = getPageHeadingsAndHtmlAst(page);
 
-  const frontMatter = page.frontmatter;
-  const includes = frontMatter && frontMatter.include;
-  const layout = (frontMatter && frontMatter.layout) || 'two-column';
+  const layout = (page.frontmatter && page.frontmatter.layout) || 'two-column';
   const isSimpleLayout = layout === SIMPLE_LAYOUT;
-
-  if (includes) {
-    includes.forEach(file => {
-      if (!file) {
-        console.error(
-          `'${
-            location.pathname
-          }': invalid file path in md front matter 'include' property`,
-        );
-      }
-
-      if (!file.childMarkdownRemark) {
-        console.error(
-          `'${
-            location.pathname
-          }': invalid file in md front matter 'include' property`,
-        );
-        return;
-      }
-
-      const childMarkdownRemark = file.childMarkdownRemark;
-
-      headings = headings.concat(childMarkdownRemark.headings);
-      html += childMarkdownRemark.html;
-    });
-  }
 
   return (
     <Fragment>
@@ -64,7 +42,9 @@ function Template({ match, location, data: { site, page } }) {
       <div className={`page-wrapper ${layout}-layout`}>
         {!isSimpleLayout && <div className="dark-box" />}
         <CatchDemoLinks>
-          <div className="content" dangerouslySetInnerHTML={{ __html: html }} />
+          <div className="content">
+            {renderHtmlAst(htmlAst, { components: MD_COMPONENTS })}
+          </div>
         </CatchDemoLinks>
         {!isSimpleLayout && <div className="dark-box" />}
       </div>
@@ -80,7 +60,7 @@ Template.propTypes = {
     }),
     page: PropTypes.shape({
       headings: PropTypes.array.isRequired,
-      html: PropTypes.string.isRequired,
+      htmlAst: PropTypes.object.isRequired,
     }),
   }),
 };
@@ -104,7 +84,7 @@ export const markdownFragment = graphql`
             value
             depth
           }
-          html
+          htmlAst
         }
       }
     }
@@ -112,7 +92,7 @@ export const markdownFragment = graphql`
       depth
       value
     }
-    html
+    htmlAst
   }
 `;
 

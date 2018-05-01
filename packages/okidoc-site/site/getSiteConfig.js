@@ -22,6 +22,11 @@ const configSchema = {
     algoliaIndexName: Joi.string(),
     githubLink: Joi.string(),
   }),
+  mdComponents: Joi.object({
+    path: Joi.string().required(),
+    externalStyles: Joi.array().items(Joi.string()),
+    externalScripts: Joi.array().items(Joi.string()),
+  }),
   navigation: Joi.alternatives().try(
     Joi.string(),
     Joi.array().items(navigationItemSchema),
@@ -81,6 +86,13 @@ Joi.assert(
 );
 
 site.docsPath = resolveExistingPath(SITE_CWD, site.docsPath);
+
+if (site.mdComponents) {
+  site.mdComponents.path = resolveExistingPath(
+    SITE_CWD,
+    site.mdComponents.path,
+  );
+}
 
 if (site.navigation) {
   const navigationData = site.navigation;
