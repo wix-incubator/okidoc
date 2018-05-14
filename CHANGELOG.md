@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0-beta.1"></a>
+# [2.0.0-beta.1](https://github.com/wix/okidoc/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2018-05-14)
+
+
+### Bug Fixes
+
+* **okidoc-md:** fix issue with optional interface property ts vs flow ([39ddff0](https://github.com/wix/okidoc/commit/39ddff0))
+
+
+
+
 <a name="2.0.0-beta.0"></a>
 
 # [2.0.0-beta.0](https://github.com/wix/okidoc/compare/v1.6.0...v2.0.0-beta.0) (2018-05-01)
