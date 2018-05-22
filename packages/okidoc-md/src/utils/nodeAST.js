@@ -94,6 +94,36 @@ function cleanUpClassDeclaration(
   );
 }
 
+function cleanUpInterfaceDeclaration(
+  node,
+  { identifierName, JSDocCommentValue } = {},
+) {
+  if (identifierName) {
+    node.key = t.identifier(identifierName);
+  }
+
+  cleanUpNodeJSDoc(node, JSDocCommentValue);
+
+  // NOTE: ensure TS code is compatible with documentation.js (babel 7 flow preset)
+  // https://github.com/niieani/typescript-vs-flowtype
+  // https://github.com/babel/babel/blob/v7.0.0-beta.44/packages/babel-plugin-transform-typescript/src/index.js#L155-L168
+  node.body.body.forEach(item => {
+    if (item.type === 'TSPropertySignature') {
+      // NOTE: fix issue with ts vs flow optional
+      // TODO: add some tests
+      // https://astexplorer.net/#/gist/cacc96434025f24c9e9f929270b1e42e/fc63289dc754ada2eb8a2abf4aacbb5fb431efde
+      item.optional = false;
+    }
+
+    if (item.type === 'TSMethodSignature') {
+      // convert code like `show();` to `show(): void;`
+      if (!item.typeAnnotation) {
+        item.typeAnnotation = t.tsTypeAnnotation(t.tsVoidKeyword());
+      }
+    }
+  });
+}
+
 function withJSDoc(node, JSDocCommentValue) {
   t.addComment(node, 'leading', createJSDocCommentValue(JSDocCommentValue));
 
@@ -106,5 +136,6 @@ export {
   cleanUpClassMethod,
   cleanUpClassProperty,
   cleanUpClassDeclaration,
+  cleanUpInterfaceDeclaration,
   withJSDoc,
 };
