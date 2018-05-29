@@ -12,6 +12,8 @@ include:
 
 Tool to document your code easy and flexible
 
+> [Live Demo](examples/player-set-title)
+
 ## Installation
 
 Install using the [npm](https://www.npmjs.com/) package manager:
