@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+<a name="2.0.0-beta.2"></a>
+# [2.0.0-beta.2](https://github.com/wix/okidoc/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2018-05-30)
+
+
+### Bug Fixes
+
+* **okidoc-md:** fix issue ts vs flow issue for optional class property ([2703a07](https://github.com/wix/okidoc/commit/2703a07))
+* **okidoc-md:** fix issue with interface trailing JSDoc comments ([b77f417](https://github.com/wix/okidoc/commit/b77f417))
+
+
+
+
 <a name="2.0.0-beta.1"></a>
 # [2.0.0-beta.1](https://github.com/wix/okidoc/compare/v2.0.0-beta.0...v2.0.0-beta.1) (2018-05-14)
 
