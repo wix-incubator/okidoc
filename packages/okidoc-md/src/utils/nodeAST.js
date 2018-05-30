@@ -56,7 +56,7 @@ function cleanUpClassProperty(
   // https://github.com/babel/babel/blob/v7.0.0-beta.44/packages/babel-plugin-transform-typescript/src/index.js#L155-L168
   node.accessibility = null;
   node.decorators = [];
-  item.optional = false;
+  node.optional = false;
 
   cleanUpNodeJSDoc(node, JSDocCommentValue);
 }
