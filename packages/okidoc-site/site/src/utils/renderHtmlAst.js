@@ -2,7 +2,11 @@ import React, { Fragment } from 'react';
 import toH from 'hast-to-hyperscript';
 
 function getReactElement(name, components) {
-  if (components && components.hasOwnProperty(name)) {
+  if (
+    typeof name === 'string' &&
+    components &&
+    components.hasOwnProperty(name)
+  ) {
     return components[name];
   }
 
@@ -31,17 +35,13 @@ function getReactChildren(name, children) {
  */
 function renderHtmlAst(node, { components }) {
   if (node.type === 'root') {
-    if (node.children.length === 1 && node.children[0].type === 'element') {
-      node = node.children[0];
-    } else {
-      // NOTE: wrap children with React.Fragment, to avoid div wrapper from `hast-to-hyperscript`
-      node = {
-        type: 'element',
-        tagName: Fragment,
-        properties: {},
-        children: node.children,
-      };
-    }
+    // NOTE: wrap children with React.Fragment, to avoid div wrapper from `hast-to-hyperscript`
+    node = {
+      type: 'element',
+      tagName: Fragment,
+      properties: {},
+      children: node.children,
+    };
   }
 
   function h(name, props, children) {
