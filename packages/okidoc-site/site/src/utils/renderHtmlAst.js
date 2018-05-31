@@ -1,13 +1,7 @@
 import React, { Fragment } from 'react';
 import toH from 'hast-to-hyperscript';
 
-const FRAGMENT_TAG_NAME = '__Fragment__';
-
 function getReactElement(name, components) {
-  if (name === FRAGMENT_TAG_NAME) {
-    return Fragment;
-  }
-
   if (components && components.hasOwnProperty(name)) {
     return components[name];
   }
@@ -40,9 +34,10 @@ function renderHtmlAst(node, { components }) {
     if (node.children.length === 1 && node.children[0].type === 'element') {
       node = node.children[0];
     } else {
+      // NOTE: wrap children with React.Fragment, to avoid div wrapper from `hast-to-hyperscript`
       node = {
         type: 'element',
-        tagName: FRAGMENT_TAG_NAME,
+        tagName: Fragment,
         properties: {},
         children: node.children,
       };
