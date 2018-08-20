@@ -161,7 +161,7 @@ exports[`buildMarkdown for API class should render markdown for methods with @de
 
 ## doShow()
 
-DEPRECATED!
+**DEPRECATED!**
 
 use method \`show()\`
 

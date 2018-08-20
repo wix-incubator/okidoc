@@ -81,7 +81,7 @@ function renderExamplesAndNotes(comment) {
         return memo.concat(
           exampleCaption
             ? [
-                u('blockquote', parseMarkdown(exampleCaption)),
+                u('blockquote', [parseMarkdown(exampleCaption)]),
                 u('code', { lang: 'javascript' }, exampleCode),
               ]
             : [u('code', { lang: 'javascript' }, exampleCode)],
@@ -89,7 +89,7 @@ function renderExamplesAndNotes(comment) {
       }
 
       if (tag.title === 'note') {
-        return memo.concat([u('blockquote', parseMarkdown(tag.description))]);
+        return memo.concat([u('blockquote', [parseMarkdown(tag.description)])]);
       }
 
       return memo;
@@ -100,7 +100,9 @@ function renderExamplesAndNotes(comment) {
 function renderDeprecated(comment) {
   return (
     !!comment.deprecated &&
-    [u('text', u('strong', 'DEPRECATED!'))].concat(comment.deprecated.children)
+    [u('strong', [u('text', 'DEPRECATED!')])].concat(
+      comment.deprecated.children,
+    )
   );
 }
 
