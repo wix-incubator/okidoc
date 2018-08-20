@@ -39,7 +39,7 @@
     "precinct": "^4.0.0",
     "remark": "^9.0.0",
     "remark-html": "^7.0.0",
-    "unist-builder": "^1.0.2",
+    "unist-builder": "1.0.2",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
