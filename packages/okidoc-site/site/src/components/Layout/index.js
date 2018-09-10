@@ -34,7 +34,7 @@ function TemplateWrapper({ children }) {
 }
 
 TemplateWrapper.propTypes = {
-  children: PropTypes.func,
+  children: PropTypes.any,
   data: PropTypes.any,
 };
 
