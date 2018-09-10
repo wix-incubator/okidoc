@@ -1,8 +1,8 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
-exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators;
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  const { createNodeField } = actions;
   const parentNode = getNode(node.parent);
 
   if (
@@ -23,8 +23,8 @@ exports.onCreateNode = ({ node, getNode, boundActionCreators }) => {
   }
 };
 
-exports.createPages = ({ graphql, boundActionCreators }) => {
-  const { createPage } = boundActionCreators;
+exports.createPages = ({ graphql, actions }) => {
+  const { createPage } = actions;
 
   return graphql(`
     {
@@ -64,11 +64,4 @@ exports.createPages = ({ graphql, boundActionCreators }) => {
       }
     });
   });
-};
-
-// TODO: review when issue resolved https://github.com/gatsbyjs/gatsby/issues/2792#issuecomment-361944910
-exports.modifyWebpackConfig = ({ config }) => {
-  config._loaders.js.config.exclude = new RegExp(
-    process.cwd() + '/node_modules/',
-  );
 };

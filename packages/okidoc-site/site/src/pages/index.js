@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby';
 import MdTemplate from '../templates/md';
 
 // NOTE: use `MdTemplate` as index page template with docs/index.md markdown

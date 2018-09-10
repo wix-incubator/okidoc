@@ -17,7 +17,14 @@ function Header() {
       </div>
       <DocSearch />
       {githubLink && (
-        <a href={githubLink} target="_blank" className={styles.githubLink} />
+        <a
+          href={githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.githubLink}
+        >
+          <span>GitHub</span>
+        </a>
       )}
     </div>
   );

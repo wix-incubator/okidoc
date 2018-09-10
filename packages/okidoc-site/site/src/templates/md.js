@@ -1,9 +1,11 @@
+import { graphql } from 'gatsby';
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import renderHtmlAst from '../utils/renderHtmlAst';
 
 import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
+import Layout from '../components/Layout';
 
 import getPageHeadingsAndHtmlAst from '../utils/getPageHeadingsAndHtmlAst';
 
@@ -33,22 +35,24 @@ function Template({ match, location, data: { site, page } }) {
   const isSimpleLayout = layout === SIMPLE_LAYOUT;
 
   return (
-    <Fragment>
-      <Navigation
-        location={location}
-        headings={headings}
-        navigation={NAVIGATION}
-      />
-      <div className={`page-wrapper ${layout}-layout`}>
-        {!isSimpleLayout && <div className="dark-box" />}
-        <CatchDemoLinks>
-          <div className="content">
-            {renderHtmlAst(htmlAst, { components: MD_COMPONENTS })}
-          </div>
-        </CatchDemoLinks>
-        {!isSimpleLayout && <div className="dark-box" />}
-      </div>
-    </Fragment>
+    <Layout>
+      <Fragment>
+        <Navigation
+          location={location}
+          headings={headings}
+          navigation={NAVIGATION}
+        />
+        <div className={`page-wrapper ${layout}-layout`}>
+          {!isSimpleLayout && <div className="dark-box" />}
+          <CatchDemoLinks>
+            <div className="content">
+              {renderHtmlAst(htmlAst, { components: MD_COMPONENTS })}
+            </div>
+          </CatchDemoLinks>
+          {!isSimpleLayout && <div className="dark-box" />}
+        </div>
+      </Fragment>
+    </Layout>
   );
 }
 

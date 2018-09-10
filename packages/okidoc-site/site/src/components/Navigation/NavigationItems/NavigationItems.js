@@ -11,6 +11,7 @@ function NavigationItems({ items }) {
           {item.path ? (
             <Link to={item.path}>{item.title}</Link>
           ) : (
+            // eslint-disable-next-line
             <a>{item.title}</a>
           )}
           {item.items &&

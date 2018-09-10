@@ -28,6 +28,7 @@ class DemoModal extends Component {
         className={styles.content}
       >
         <iframe
+          title="DemoModal"
           width="100%"
           height="100%"
           src={src}
