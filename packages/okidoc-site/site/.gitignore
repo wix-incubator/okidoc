@@ -2,4 +2,6 @@ node_modules
 .cache/
 public/
 src/__navigation.json
+config/__tmp_navigation.json
+config/__tmp_mdComponents.json
 
