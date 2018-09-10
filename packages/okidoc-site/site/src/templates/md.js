@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import React, { Fragment } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import renderHtmlAst from '../utils/renderHtmlAst';
 
@@ -36,22 +36,20 @@ function Template({ match, location, data: { site, page } }) {
 
   return (
     <Layout>
-      <Fragment>
-        <Navigation
-          location={location}
-          headings={headings}
-          navigation={NAVIGATION}
-        />
-        <div className={`page-wrapper ${layout}-layout`}>
-          {!isSimpleLayout && <div className="dark-box" />}
-          <CatchDemoLinks>
-            <div className="content">
-              {renderHtmlAst(htmlAst, { components: MD_COMPONENTS })}
-            </div>
-          </CatchDemoLinks>
-          {!isSimpleLayout && <div className="dark-box" />}
-        </div>
-      </Fragment>
+      <Navigation
+        location={location}
+        headings={headings}
+        navigation={NAVIGATION}
+      />
+      <div className={`page-wrapper ${layout}-layout`}>
+        {!isSimpleLayout && <div className="dark-box" />}
+        <CatchDemoLinks>
+          <div className="content">
+            {renderHtmlAst(htmlAst, { components: MD_COMPONENTS })}
+          </div>
+        </CatchDemoLinks>
+        {!isSimpleLayout && <div className="dark-box" />}
+      </div>
     </Layout>
   );
 }
