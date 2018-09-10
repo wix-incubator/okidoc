@@ -1,7 +1,13 @@
 import React, { Fragment } from 'react';
 import toH from 'hast-to-hyperscript';
 
+const FRAGMENT_TAG_NAME = '__fragment';
+
 function getReactElement(name, components) {
+  if (name === FRAGMENT_TAG_NAME) {
+    return Fragment;
+  }
+
   if (
     typeof name === 'string' &&
     components &&
@@ -38,7 +44,7 @@ function renderHtmlAst(node, { components }) {
     // NOTE: wrap children with React.Fragment, to avoid div wrapper from `hast-to-hyperscript`
     node = {
       type: 'element',
-      tagName: Fragment,
+      tagName: FRAGMENT_TAG_NAME,
       properties: {},
       children: node.children,
     };
