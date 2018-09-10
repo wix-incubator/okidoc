@@ -10,7 +10,6 @@
     "classnames": "^2.2.5",
     "docsearch.js": "^2.5.2",
     "gatsby": "next",
-    "gatsby-link": "next",
     "gatsby-plugin-catch-links": "next",
     "gatsby-plugin-react-helmet": "next",
     "gatsby-plugin-react-next": "next",
