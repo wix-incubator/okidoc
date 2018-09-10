@@ -65,3 +65,32 @@ exports.createPages = ({ graphql, actions }) => {
     });
   });
 };
+
+const JS_PATTERN = /\.jsx?$/;
+exports.onCreateWebpackConfig = ({ actions, loaders }) => {
+  const { GATSBY_NAVIGATION_PATH, GATSBY_MD_COMPONENTS_PATH } = process.env;
+  const includeJS = [];
+
+  if (GATSBY_NAVIGATION_PATH && JS_PATTERN.test(GATSBY_NAVIGATION_PATH)) {
+    includeJS.push(GATSBY_NAVIGATION_PATH);
+  }
+
+  if (GATSBY_MD_COMPONENTS_PATH && JS_PATTERN.test(GATSBY_MD_COMPONENTS_PATH)) {
+    includeJS.push(GATSBY_MD_COMPONENTS_PATH);
+  }
+
+  if (includeJS.length) {
+    // NOTE: ensure js outside src is processed by js loaders
+    actions.setWebpackConfig({
+      module: {
+        rules: [
+          {
+            test: JS_PATTERN,
+            include: includeJS,
+            use: [loaders.js()],
+          },
+        ],
+      },
+    });
+  }
+};
