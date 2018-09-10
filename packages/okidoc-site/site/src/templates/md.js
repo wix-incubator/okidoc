@@ -10,16 +10,11 @@ import Layout from '../components/Layout';
 
 import getPageHeadingsAndHtmlAst from '../utils/getPageHeadingsAndHtmlAst';
 
+import { NAVIGATION, MD_COMPONENTS } from '../config';
+
 import '../assets/stylesheets/prism.scss';
 
 const SIMPLE_LAYOUT = 'simple';
-const MD_COMPONENTS = process.env.GATSBY_MD_COMPONENTS_PATH
-  ? require(process.env.GATSBY_MD_COMPONENTS_PATH)
-  : {};
-
-const NAVIGATION = process.env.GATSBY_NAVIGATION_PATH
-  ? require(process.env.GATSBY_NAVIGATION_PATH)
-  : [];
 
 function Template({ match, location, data: { site, page } }) {
   if (!page && match.path === '/') {
