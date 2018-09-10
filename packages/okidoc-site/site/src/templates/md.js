@@ -1,10 +1,12 @@
-import React, { Fragment } from 'react';
+import { graphql } from 'gatsby';
+import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import renderHtmlAst from '../utils/renderHtmlAst';
 
 import Navigation from '../components/Navigation';
 import CatchDemoLinks from '../components/CatchDemoLinks';
+import Layout from '../components/Layout';
 
 import getPageHeadingsAndHtmlAst from '../utils/getPageHeadingsAndHtmlAst';
 
@@ -36,7 +38,7 @@ function Template({ match, location, data: { site, page } }) {
     (headings && headings.length <= 1) || NAVIGATION.length === 0;
 
   return (
-    <Fragment>
+    <Layout>
       <Navigation
         location={location}
         headings={headings}
@@ -56,7 +58,7 @@ function Template({ match, location, data: { site, page } }) {
         </CatchDemoLinks>
         {!isSimpleLayout && <div className="dark-box" />}
       </div>
-    </Fragment>
+    </Layout>
   );
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 import DocSearch from './DocSearch';
 
 import logoImage from './logo.png';
@@ -17,7 +17,14 @@ function Header() {
       </div>
       <DocSearch />
       {githubLink && (
-        <a href={githubLink} target="_blank" className={styles.githubLink} />
+        <a
+          href={githubLink}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.githubLink}
+        >
+          <span>GitHub</span>
+        </a>
       )}
     </div>
   );

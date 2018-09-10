@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Link from 'gatsby-link';
+import { Link } from 'gatsby';
 
 function NavigationItems({ items }) {
   return (
@@ -11,6 +11,7 @@ function NavigationItems({ items }) {
           {item.path ? (
             <Link to={item.path}>{item.title}</Link>
           ) : (
+            // eslint-disable-next-line
             <a>{item.title}</a>
           )}
           {item.items &&

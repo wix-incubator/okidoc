@@ -36,17 +36,15 @@ function getPageHeadingsAndHtmlAst(page) {
     includes.forEach(file => {
       if (!file) {
         console.error(
-          `'${
-            location.pathname
-          }': invalid file path in md front matter 'include' property`,
+          `Invalid file path in md front matter 'include' property`,
+          page,
         );
       }
 
       if (!file.childMarkdownRemark) {
         console.error(
-          `'${
-            location.pathname
-          }': invalid file in md front matter 'include' property`,
+          `Invalid file in md front matter 'include' property`,
+          page,
         );
         return;
       }
