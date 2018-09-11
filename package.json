@@ -12,7 +12,8 @@
     "test:coverage": "jest --coverage",
     "precommit": "lint-staged",
     "preparePublish": "lerna publish --skip-npm",
-    "customPublish": "node scripts/npm-customPublish.js"
+    "customPublish": "node scripts/npm-customPublish.js",
+    "prepare": "npm run bootstrap"
   },
   "engines": {
     "node": ">=8"
