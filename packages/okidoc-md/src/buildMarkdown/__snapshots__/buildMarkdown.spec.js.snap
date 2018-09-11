@@ -13,7 +13,7 @@ exports[`buildMarkdown for API class should render markdown for getters/setters 
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -37,7 +37,7 @@ exports[`buildMarkdown for API class should render markdown for getters/setters 
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -69,7 +69,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -103,7 +103,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -125,7 +125,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -201,7 +201,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -223,7 +223,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -254,7 +254,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -276,7 +276,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -308,7 +308,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -329,7 +329,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -360,7 +360,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -381,7 +381,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -412,7 +412,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -445,7 +445,7 @@ myMethod comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -487,7 +487,7 @@ myMethod1 comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -509,7 +509,7 @@ myMethod1 comment
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -538,7 +538,7 @@ myMethod2 comment
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -560,7 +560,7 @@ myMethod2 comment
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -597,7 +597,7 @@ creates new Component
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -633,7 +633,7 @@ myFunc1 description
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -655,7 +655,7 @@ myFunc1 description
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -686,7 +686,7 @@ myFunc2 description
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -717,7 +717,7 @@ myFunc2 description
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -757,7 +757,7 @@ exports[`buildMarkdown for functions should render valid markdown with UnionType
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -767,7 +767,7 @@ exports[`buildMarkdown for functions should render valid markdown with UnionType
           <code>fn</code>
         </td>
         <td>
-            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(<code>value</code>: (string | null)): void</code> </div> </div>
+            <code class=\\"function-type\\">function(<code>value</code>: (string | null)): void</code>
             <p>event handler</p>
         </td>
       </tr>
@@ -788,7 +788,7 @@ exports[`buildMarkdown for functions should render valid markdown with function 
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -807,7 +807,7 @@ exports[`buildMarkdown for functions should render valid markdown with function 
           <code>fn</code>
         </td>
         <td>
-            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(<code>name</code>: string, <code>data</code>: Object): any</code> </div> </div>
+            <code class=\\"function-type\\">function(<code>name</code>: string, <code>data</code>: Object): any</code>
             <p>event handler</p>
         </td>
       </tr>
@@ -828,7 +828,7 @@ exports[`buildMarkdown for functions should render valid markdown with function 
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -837,7 +837,7 @@ exports[`buildMarkdown for functions should render valid markdown with function 
         <td class=\\"param\\">
         </td>
         <td>
-            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(<code>flag</code>: boolean): void</code> </div> </div>
+            <code class=\\"function-type\\">function(<code>flag</code>: boolean): void</code>
             <p>myFunc result function</p>
         </td>
       </tr>
@@ -860,7 +860,7 @@ create new entity
   <table>
     <thead>
       <tr>
-        <th>ARGUMENTS</th>
+        <th class=\\"title\\">ARGUMENTS</th>
         <th></th>
       </tr>
     </thead>
@@ -882,7 +882,7 @@ create new entity
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -908,7 +908,7 @@ create new entity
           <code>updateTitle</code>
         </td>
         <td>
-            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(<code>id</code>: string, <code>title</code>: string): Promise&#x3C;any></code> </div> </div>
+            <code class=\\"function-type\\">function(<code>id</code>: string, <code>title</code>: string): Promise&#x3C;any></code>
         </td>
       </tr>
       <tr>
@@ -916,7 +916,7 @@ create new entity
           <code>destroy</code>
         </td>
         <td>
-            <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(): void</code> </div> </div>
+            <code class=\\"function-type\\">function(): void</code>
             <p>destroy entity</p>
         </td>
       </tr>
@@ -937,7 +937,7 @@ exports[`buildMarkdown with ApplicationType as return type should render markdow
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th><div class=\\"type\\">Array&#x3C;IResult></div></th>
       </tr>
     </thead>
@@ -975,7 +975,7 @@ exports[`buildMarkdown with ApplicationType as return type should render markdow
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>
@@ -1005,7 +1005,7 @@ exports[`buildMarkdown with ApplicationType as return type should render markdow
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th><div class=\\"type\\">Promise&#x3C;IResult></div></th>
       </tr>
     </thead>
@@ -1043,7 +1043,7 @@ exports[`buildMarkdown with ApplicationType as return type should render markdow
   <table>
     <thead>
       <tr>
-        <th>RETURN VALUE</th>
+        <th class=\\"title\\">RETURN VALUE</th>
         <th></th>
       </tr>
     </thead>

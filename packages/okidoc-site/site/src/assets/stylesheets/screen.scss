@@ -558,8 +558,12 @@ body {
 
     table {
       display: table;
-
+      table-layout: fixed;
       width: 100%;
+    }
+
+    .title {
+      width: 140px;
     }
 
     td {
@@ -584,18 +588,10 @@ body {
       @extend %code-font;
     }
 
-    .expandable-type {
-      position: relative;
-      display: inline-block;
-
-      .type-details {
-        position: absolute;
-        visibility: hidden;
-      }
-
-      &:hover .type-details {
-        visibility: visible;
-      }
+    .function-type {
+      margin-left: 20px;
+      text-indent: -20px;
+      white-space: normal;
     }
   }
 
