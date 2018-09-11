@@ -1,12 +1,11 @@
 import {
   renderInlineHTML,
   renderMultilineHTML,
-  cleanUpInlineHTML,
   cleanUpMultilineHTML,
 } from './renderHTML';
 import formatType, { Syntax, commaList } from './formatType';
 
-function renderParamsHTML(params, title) {
+function renderParamsHTML(params, { title, applicationType }) {
   function hasDefault(param) {
     return !!param.default;
   }
@@ -39,20 +38,11 @@ function renderParamsHTML(params, title) {
     );
   }
 
-  function renderParamType(param) {
-    return renderInlineHTML(formatType(param.type));
+  function renderType(type) {
+    return renderInlineHTML(formatType(type));
   }
 
-  function renderFunctionParamType(param) {
-    return cleanUpInlineHTML(`
-      <div class="expandable-type">
-        <div class="type">function</div>
-        <div class="type-details">
-            <code>${renderParamType(param)}</code>
-        </div>
-      </div>
-    `);
-  }
+  // TODO: render destruction/rest/.. correctly https://github.com/documentationjs/documentation/blob/v6.2.0/__tests__/fixture/es6.output-toc.md
 
   return cleanUpMultilineHTML(`
 <div class="method-list">
@@ -60,7 +50,11 @@ function renderParamsHTML(params, title) {
     <thead>
       <tr>
         <th>${title}</th>
-        <th></th>
+        <th>${
+          applicationType
+            ? `<div class="type">${renderType(applicationType)}</div>`
+            : ''
+        }</th>
       </tr>
     </thead>
     <tbody>
@@ -76,8 +70,8 @@ function renderParamsHTML(params, title) {
             ${
               !isUnionWithLiterals(param)
                 ? hasType(param, Syntax.FunctionType)
-                  ? renderFunctionParamType(param)
-                  : `<div class="type">${renderParamType(param)}</div>`
+                  ? `<code>${renderType(param.type)}</code>`
+                  : `<div class="type">${renderType(param.type)}</div>`
                 : ''
             }
             ${

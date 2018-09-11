@@ -3,5 +3,13 @@
   "packages": [
     "packages/*"
   ],
-  "version": "1.4.2"
+  "command": {
+    "publish": {
+      "allowBranch": "master",
+      "conventionalCommits": true,
+      "preid": "beta",
+      "message": "chore(release): publish %s"
+    }
+  },
+  "version": "2.0.0-beta.4"
 }

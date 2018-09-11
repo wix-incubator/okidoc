@@ -154,6 +154,25 @@ myMethod comment
 "
 `;
 
+exports[`buildMarkdown for API class should render markdown for methods with @deprecated 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## doShow()
+
+**DEPRECATED!**
+
+use method \`show()\`
+
+show component
+
+## show()
+
+show component
+"
+`;
+
 exports[`buildMarkdown for API class should render markdown for methods with @example end @note 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
@@ -559,6 +578,48 @@ myMethod2 comment
 "
 `;
 
+exports[`buildMarkdown for class should render markdown for class with constructor 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Component
+
+\`\`\`javascript
+new Component({visible: true})
+\`\`\`
+
+Component description
+
+\`new Component()\`
+
+creates new Component
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>config</code>
+        </td>
+        <td>
+            <div class=\\"type\\">any</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+## show()
+
+show
+"
+`;
+
 exports[`buildMarkdown for functions should render valid markdown 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
@@ -857,6 +918,142 @@ create new entity
         <td>
             <div class=\\"expandable-type\\"> <div class=\\"type\\">function</div> <div class=\\"type-details\\"> <code>function(): void</code> </div> </div>
             <p>destroy entity</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown with ApplicationType as return type should render markdown for methods with Array & interface as @returns type 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myFn()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th><div class=\\"type\\">Array&#x3C;IResult></div></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown with ApplicationType as return type should render markdown for methods with Array as @returns type 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myFn()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+        </td>
+        <td>
+            <div class=\\"type\\">Array&#x3C;string></div>
+            <p>returns comment</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown with ApplicationType as return type should render markdown for methods with Promise & interface as @returns type 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myFn()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th><div class=\\"type\\">Promise&#x3C;IResult></div></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown with ApplicationType as return type should render markdown for methods with Promise as @returns type 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## myFn()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th>RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+        </td>
+        <td>
+            <div class=\\"type\\">Promise&#x3C;string></div>
+            <p>returns comment</p>
         </td>
       </tr>
     </tbody>

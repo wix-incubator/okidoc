@@ -1,11 +1,8 @@
 import u from 'unist-builder';
-import remark from 'remark';
-import { API_CLASS_IDENTIFIER } from '../../api';
+import { API_CLASS_IDENTIFIER } from '../../constants';
+import parseMarkdown from './parseMarkdown';
+import parseReturnsComment from './parseReturnsComment';
 import renderParamsHTML from './renderParamsHTML';
-
-function parseMarkdown(markdown) {
-  return remark().parse(markdown);
-}
 
 function renderHeading(comment, depth) {
   return (
@@ -18,6 +15,10 @@ function renderHeading(comment, depth) {
       ]),
     ]
   );
+}
+
+function renderDescription(comment) {
+  return !!comment.description && comment.description.children;
 }
 
 function renderSeeLink(comment) {
@@ -35,10 +36,37 @@ function renderSeeLink(comment) {
   );
 }
 
+function renderConstructor(comment) {
+  if (!comment.constructorComment) {
+    return false;
+  }
+
+  const constructorComment = comment.constructorComment;
+  // TODO: decide which params to render.
+  const paramsToRender = constructorComment.params.length
+    ? constructorComment.params
+    : comment.params;
+
+  return (
+    !!constructorComment &&
+    [u('inlineCode', `new ${comment.name}()`)]
+      .concat(renderDescription(constructorComment))
+      .concat(
+        paramsToRender.length > 0 &&
+          u(
+            'html',
+            renderParamsHTML(paramsToRender, {
+              title: 'ARGUMENTS',
+            }),
+          ),
+      )
+  );
+}
+
 function renderParams(comment) {
   return (
     comment.params.length > 0 &&
-    u('html', renderParamsHTML(comment.params, 'ARGUMENTS'))
+    u('html', renderParamsHTML(comment.params, { title: 'ARGUMENTS' }))
   );
 }
 
@@ -53,7 +81,7 @@ function renderExamplesAndNotes(comment) {
         return memo.concat(
           exampleCaption
             ? [
-                u('blockquote', parseMarkdown(exampleCaption)),
+                u('blockquote', [parseMarkdown(exampleCaption)]),
                 u('code', { lang: 'javascript' }, exampleCode),
               ]
             : [u('code', { lang: 'javascript' }, exampleCode)],
@@ -61,11 +89,20 @@ function renderExamplesAndNotes(comment) {
       }
 
       if (tag.title === 'note') {
-        return memo.concat([u('blockquote', parseMarkdown(tag.description))]);
+        return memo.concat([u('blockquote', [parseMarkdown(tag.description)])]);
       }
 
       return memo;
     }, [])
+  );
+}
+
+function renderDeprecated(comment) {
+  return (
+    !!comment.deprecated &&
+    [u('strong', [u('text', 'DEPRECATED!')])].concat(
+      comment.deprecated.children,
+    )
   );
 }
 
@@ -76,25 +113,22 @@ function renderReturns(comment, interfaces) {
     return false;
   }
 
-  const localInterface = interfaces.find(
-    ({ name }) => name === returns.type.name,
+  const { applicationType, params } = parseReturnsComment(returns, interfaces);
+
+  return u(
+    'html',
+    renderParamsHTML(params, {
+      title: 'RETURN VALUE',
+      applicationType: applicationType,
+    }),
   );
+}
 
-  const params =
-    !localInterface || !localInterface.properties.length
-      ? [returns]
-      : localInterface.properties.map(property => {
-          const tag = localInterface.tags.find(
-            tag => tag.title === 'property' && tag.name === property.name,
-          );
-
-          return {
-            ...property,
-            description: tag && parseMarkdown(tag.description),
-          };
-        });
-
-  return u('html', renderParamsHTML(params, 'RETURN VALUE'));
+function renderClassMembers(comment, { depth, interfaces }) {
+  return comment.members.instance.reduce(
+    (memo, child) => memo.concat(renderComment(child, { depth, interfaces })),
+    [],
+  );
 }
 
 function renderComment(comment, { depth, interfaces }) {
@@ -103,28 +137,37 @@ function renderComment(comment, { depth, interfaces }) {
   if (['function', 'member'].includes(comment.kind)) {
     return renderHeading(comment, depth)
       .concat(renderExamplesAndNotes(comment))
-      .concat(comment.description ? comment.description.children : [])
+      .concat(renderDeprecated(comment))
+      .concat(renderDescription(comment))
       .concat(renderSeeLink(comment))
       .concat(renderParams(comment))
       .concat(renderReturns(comment, interfaces))
       .filter(Boolean);
   }
 
-  if (
-    comment.name === API_CLASS_IDENTIFIER &&
-    comment.kind === 'class' &&
-    !!comment.members.instance.length
-  ) {
-    return comment.members.instance.reduce(
-      (memo, child) =>
-        memo.concat(
-          renderComment(child, {
-            depth: depth,
-            interfaces: interfaces,
-          }),
-        ),
-      [],
-    );
+  if (comment.kind === 'class') {
+    if (
+      comment.name === API_CLASS_IDENTIFIER &&
+      !!comment.members.instance.length
+    ) {
+      return renderClassMembers(comment, {
+        depth: depth,
+        interfaces: interfaces,
+      });
+    }
+
+    return renderHeading(comment, depth)
+      .concat(renderExamplesAndNotes(comment))
+      .concat(renderDescription(comment))
+      .concat(renderSeeLink(comment))
+      .concat(renderConstructor(comment))
+      .concat(
+        renderClassMembers(comment, {
+          depth: depth + 1,
+          interfaces: interfaces,
+        }),
+      )
+      .filter(Boolean);
   }
 
   return [];

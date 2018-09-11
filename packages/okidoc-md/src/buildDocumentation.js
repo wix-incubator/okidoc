@@ -14,7 +14,7 @@ function buildDocumentation({ title, entry, source, pattern, tag, visitor }) {
   });
 
   return documentation
-    .build([{ source: documentationSource }], { shallow: true })
+    .build([{ source: documentationSource || ' ' }], { shallow: true })
     .then(
       comments =>
         buildMarkdown(comments, {
@@ -28,7 +28,9 @@ function buildDocumentation({ title, entry, source, pattern, tag, visitor }) {
           error.message += `\n${error.codeFrame}`;
         }
 
-        error.message = `documentation source: ${error.message}`;
+        error.message = `"${title}" documentation source${
+          source ? '' : ` (${entry || pattern})`
+        } - ${error.message}`;
 
         throw error;
       },

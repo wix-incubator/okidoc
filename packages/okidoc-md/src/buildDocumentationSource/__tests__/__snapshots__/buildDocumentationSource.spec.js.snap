@@ -1,8 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`buildDocumentationSource by source entry should extract documentation source from entry dependencies 1`] = `
-"/** */
-class API {
+"/**
+* View
+*/
+class View {
   /**
   * getter for \`isHidden\` value
   *
@@ -29,6 +31,15 @@ class API {
   */
   hide() {}
 
+}
+
+/**
+* Component
+*/
+class Component {
+  /** */
+  constructor() {}
+
   /**
   * Get component node
   */
@@ -43,8 +54,10 @@ class API {
 `;
 
 exports[`buildDocumentationSource by source entry should extract documentation source from entry dependencies 2`] = `
-"/** */
-class API {
+"/**
+* Events
+*/
+class Events {
   /**
   * add event listener
   */
@@ -67,8 +80,13 @@ exports[`buildDocumentationSource by source entry should show readable error if 
 `;
 
 exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 1`] = `
-"/** */
-class API {
+"/**
+* Component
+*/
+class Component {
+  /** */
+  constructor() {}
+
   /**
   * Get component node
   */
@@ -79,6 +97,12 @@ class API {
   */
   render() {}
 
+}
+
+/**
+* View
+*/
+class View {
   /**
   * getter for \`isHidden\` value
   *
@@ -109,24 +133,18 @@ class API {
 `;
 
 exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 2`] = `
-"/** */
-class API {}
-
-/**
+"/**
 * mountComponent
-*
 */
 function mountComponent(component: Function, node: Node) {}
 
 /**
 * renderComponent
-*
 */
 function renderComponent(component: Function) {}
 
 /**
 * unmountComponent
-*
 */
 function unmountComponent(component: Function) {}"
 `;
@@ -139,9 +157,18 @@ exports[`buildDocumentationSource by source glob pattern should show readable er
   3 | export { Component };"
 `;
 
+exports[`buildDocumentationSource for API class should cleanup typescript vs flow difference class constructor parameter property 1`] = `
+"/** */
+class View {
+  /** */
+  constructor(config) {}
+
+}"
+`;
+
 exports[`buildDocumentationSource for API class should cleanup typescript vs flow difference class public method 1`] = `
 "/** */
-class API {
+class View {
   /** */
   show() {}
 
@@ -152,15 +179,20 @@ exports[`buildDocumentationSource for API class should cleanup typescript vs flo
 "/** */
 interface IView {
   show(): void;
-}
-
-/** */
-class API {}"
+}"
 `;
 
-exports[`buildDocumentationSource for API class with @doc tag on class declaration should extract class members 1`] = `
+exports[`buildDocumentationSource for API class with @doc tag on class declaration should extract class 1`] = `
 "/** */
-class API {
+class MyComponent {
+  /** */
+  view: View;
+
+  /**
+  * Creates a component
+  */
+  constructor(config: any) {}
+
   /**
   * \`isHidden\` getter
   */
@@ -182,9 +214,9 @@ class API {
 }"
 `;
 
-exports[`buildDocumentationSource for API class with @doc tag on class declaration should ignore class constructor and private members 1`] = `
+exports[`buildDocumentationSource for API class with @doc tag on class declaration should ignore class private members 1`] = `
 "/** */
-class API {
+class MyComponent {
   /** */
   render() {}
 
@@ -196,13 +228,11 @@ exports[`buildDocumentationSource for API class with @doc tag on class members s
 class API {
   /**
   * \`width\` getter
-  *
   */
   get width() {}
 
   /**
   * \`width\` setter
-  *
   */
   set width(value) {}
 
@@ -228,17 +258,13 @@ exports[`buildDocumentationSource for API class with @doc tag on class members s
 class API {
   /**
   * show
-  *
   */
   show() {}
 
 }"
 `;
 
-exports[`buildDocumentationSource for API class with @doc tag on class members should ignore private methods with tag 1`] = `
-"/** */
-class API {}"
-`;
+exports[`buildDocumentationSource for API class with @doc tag on class members should ignore private methods with tag 1`] = `""`;
 
 exports[`buildDocumentationSource for API class with custom visitor should extract class members 1`] = `
 "/** */
@@ -260,10 +286,7 @@ class API {
 `;
 
 exports[`buildDocumentationSource for functions with @doc tag on export declaration should extract functions with tag 1`] = `
-"/** */
-class API {}
-
-/**
+"/**
 * f1 description
 */
 function exportFunctionDeclaration(x) {}
@@ -280,27 +303,19 @@ function exportDefaultConstArrowFunctionExpression(x) {}"
 `;
 
 exports[`buildDocumentationSource for functions with @doc tag on function declaration should extract functions with tag 1`] = `
-"/** */
-class API {}
-
-/**
+"/**
 * showComponent
-*
 */
 function showComponent() {}
 
 /**
 * hideComponent
-*
 */
 function hideComponent() {}"
 `;
 
 exports[`buildDocumentationSource for functions with @doc tag on var/let/const declaration should extract functions with tag 1`] = `
-"/** */
-class API {}
-
-/**
+"/**
 * varFunc
 */
 function varFunctionExpression() {}

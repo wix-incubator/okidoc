@@ -1,6 +1,6 @@
 {
   "name": "okidoc-md",
-  "version": "1.4.2",
+  "version": "2.0.0-beta.4",
   "homepage": "https://wix.github.io/okidoc",
   "license": "MIT",
   "files": [
@@ -13,7 +13,7 @@
     "okidoc": "./bin/okidoc-md.js",
     "okidoc-md": "./bin/okidoc-md.js"
   },
-  "repository": "https://github.com/wix/okidoc/tree/master/packages/okidoc-md",
+  "repository": "https://github.com/wix/okidoc",
   "scripts": {
     "build": "rm -rf lib && babel src -d lib --ignore *.spec.js",
     "build:watch": "npm run build -- --watch",
@@ -23,28 +23,31 @@
     "node": ">=8"
   },
   "dependencies": {
-    "@babel/code-frame": "7.0.0-beta.40",
-    "@babel/generator": "7.0.0-beta.40",
-    "@babel/traverse": "7.0.0-beta.40",
-    "@babel/types": "7.0.0-beta.40",
+    "@babel/code-frame": "7.0.0",
+    "@babel/generator": "7.0.0",
+    "@babel/traverse": "7.0.0",
+    "@babel/types": "7.0.0",
     "babylon": "7.0.0-beta.40",
-    "doctrine-temporary-fork": "^2.0.0-alpha-allowarrayindex",
-    "documentation": "^5.3.5",
-    "ejs": "^2.5.7",
-    "filing-cabinet": "^1.13.1",
-    "glob": "^7.1.2",
-    "lodash": "^4.17.5",
+    "caporal": "^0.10.0",
+    "doctrine-temporary-fork": "2.0.1",
+    "documentation": "8.1.2",
+    "filing-cabinet": "^2.0.1",
+    "glob": "^7.1.3",
+    "lodash": "^4.17.10",
     "minimatch": "^3.0.4",
-    "precinct": "^4.0.0",
+    "precinct": "^5.0.1",
     "remark": "^9.0.0",
-    "remark-html": "^7.0.0",
-    "unist-builder": "^1.0.2",
+    "remark-html": "^8.0.0",
+    "unist-builder": "^1.0.3",
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
-    "@babel/cli": "7.0.0-beta.40",
-    "@babel/core": "7.0.0-beta.40",
-    "@babel/plugin-proposal-object-rest-spread": "7.0.0-beta.40",
-    "@babel/preset-env": "7.0.0-beta.40"
+    "@babel/cli": "7.0.0",
+    "@babel/core": "7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "7.0.0",
+    "@babel/preset-env": "7.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }

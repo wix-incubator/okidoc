@@ -21,7 +21,10 @@ function NavigationHeadings({ headings }) {
                   <li key={childLink.to}>
                     <a
                       href={childLink.to}
-                      className={classNames('toc-link', 'toc-h2')}
+                      className={classNames(
+                        'toc-link',
+                        childLink.depth < 3 ? 'toc-h2' : 'toc-h3',
+                      )}
                     >
                       {childLink.value}
                     </a>

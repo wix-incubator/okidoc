@@ -13,6 +13,12 @@ function getJSDocComment(node) {
   return comments && comments.find(isJSDocComment);
 }
 
+function getJSDocCommentValue(node) {
+  const JSDocComment = getJSDocComment(node);
+
+  return JSDocComment && JSDocComment.value;
+}
+
 function createCommentBlock(description) {
   return {
     type: COMMENT_BLOCK_TYPE,
@@ -23,7 +29,9 @@ function createCommentBlock(description) {
 function createJSDocCommentValue(description = '') {
   description = description
     // remove spaces before asterisk
-    .replace(/\n\s*/g, '\n');
+    .replace(/\n\s*/g, '\n')
+    // remove asterisk with line break at end of comment
+    .replace(/\*\n$/g, '');
 
   return description.startsWith('*') ? description : `* ${description}`;
 }
@@ -41,6 +49,7 @@ function isJSDocIncludes(node, searchString) {
 export {
   isJSDocComment,
   getJSDocComment,
+  getJSDocCommentValue,
   createJSDocCommentValue,
   createJSDocCommentBlock,
   isJSDocIncludes,

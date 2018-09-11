@@ -122,12 +122,19 @@ describe('buildDocumentationSource', () => {
     });
 
     describe('with @doc tag on class declaration', () => {
-      it('should extract class members', () => {
+      it('should extract class', () => {
         const sourceCode = `
       /**
       * @doc UI
       */
-      class MyComponent {
+      class MyComponent extends View {
+        view: View;
+
+        /**
+        * Creates a component
+        */
+        constructor(config: any) {}
+
         /**
         * \`isHidden\` getter
         */
@@ -160,14 +167,12 @@ describe('buildDocumentationSource', () => {
         ).toMatchSnapshot();
       });
 
-      it('should ignore class constructor and private members', () => {
+      it('should ignore class private members', () => {
         const sourceCode = `
       /**
       * @doc UI
       */
-      class MyComponent {
-        constructor()
-      
+      class MyComponent {      
         /**
         * init
         */
@@ -249,6 +254,24 @@ describe('buildDocumentationSource', () => {
         */
         class View {
           public show() {}
+        }
+      `;
+
+        expect(
+          buildDocumentationSource({
+            source: sourceCode,
+            tag: 'UI',
+          }),
+        ).toMatchSnapshot();
+      });
+
+      it('class constructor parameter property', () => {
+        const sourceCode = `
+        /**
+        * @doc UI
+        */
+        class View {
+          constructor(private config) {}
         }
       `;
 

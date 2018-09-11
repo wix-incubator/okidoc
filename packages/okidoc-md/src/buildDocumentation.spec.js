@@ -1,5 +1,4 @@
 import buildDocumentation from './buildDocumentation';
-import buildDocumentationSource from './buildDocumentationSource';
 
 describe('buildDocumentation', () => {
   it('should build documentation for class ', async () => {

@@ -1,3 +1,3 @@
-# video-player.js documentation site
+# okidoc-site
 
-For an overview of the project structure please refer to the [Gatsby documentation](https://www.gatsbyjs.org/docs/)
+> Tool to build site from markdown files. See https://wix.github.io/okidoc for details

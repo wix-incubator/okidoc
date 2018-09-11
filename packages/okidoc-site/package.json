@@ -1,22 +1,27 @@
 {
   "name": "okidoc-site",
-  "version": "1.4.2",
+  "version": "2.0.0-beta.4",
   "homepage": "https://wix.github.io/okidoc",
   "license": "MIT",
   "files": [
+    "cli.js",
     "bin",
     "site"
   ],
   "bin": {
     "okidoc-site": "./bin/okidoc-site.js"
   },
-  "repository": "https://github.com/wix/okidoc/tree/master/packages/okidoc-site",
+  "repository": "https://github.com/wix/okidoc",
   "scripts": {
     "postinstall": "cd site && npm install"
   },
   "dependencies": {
+    "caporal": "^0.10.0",
     "cross-spawn": "^6.0.4",
     "ncp": "^2.0.0",
     "yamljs": "^0.3.0"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   }
 }
