@@ -35,3 +35,12 @@ You can use these commands in your [npm scripts](https://docs.npmjs.com/misc/scr
   "precommit": "npm run documentation:gitadd"
 }
 ```
+
+> NOTE: if you don't need to generate markdown files or don't need a site,
+> install only module you need
+
+```sh
+$ npm install okidoc-md --save-dev
+$ # OR
+$ npm install okidoc-site --save-dev
+```
