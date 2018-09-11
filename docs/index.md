@@ -1,11 +1,10 @@
 ---
-title: "okidoc"
+title: 'okidoc'
 layout: simple
 include:
   - ./partial/okidoc-md.md
   - ./partial/okidoc-site-files.md
   - ./partial/okidoc-site.md
-  - ./partial/okidoc-site-deploy.md
 ---
 
 # okidoc
@@ -22,8 +21,8 @@ $ npm install okidoc --save-dev
 
 This installs package and put two commands in your `./node_modules/.bin` path:
 
-* `okidoc-md` - generate human-readable documentation `md` files using source code with [JSDoc](http://usejsdoc.org) and public method markers
-* `okidoc-site` - run and build documentation site based on `md` files and site config
+- `okidoc-md` - generate human-readable documentation `md` files using source code with [JSDoc](http://usejsdoc.org) and public method markers
+- `okidoc-site` - run and build documentation site based on `md` files and site config
 
 You can use these commands in your [npm scripts](https://docs.npmjs.com/misc/scripts#examples):
 

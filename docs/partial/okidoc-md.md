@@ -1,5 +1,7 @@
 ## Generate documentation
 
+### Define what to document
+
 Add `@doc TAG_NAME` tag to [JSDoc](http://usejsdoc.org) of class or function
 
 ```typescript
@@ -25,6 +27,8 @@ class MySuperUI {
 function subscribe(eventName: string, fn: Function) {}
 ```
 
+### Configure
+
 Add yaml config (default config path is `./docs.yml`):
 
 ```yaml
@@ -46,6 +50,8 @@ Add yaml config (default config path is `./docs.yml`):
 ```
 
 > NOTE: With `entry` option, all dependency file source will be parsed for doc. Not only imported/exported part.
+
+### Execute
 
 Run `okidoc-md` script
 
