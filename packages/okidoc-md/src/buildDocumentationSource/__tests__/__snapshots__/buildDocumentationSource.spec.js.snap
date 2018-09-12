@@ -2,6 +2,11 @@
 
 exports[`buildDocumentationSource by source entry should extract documentation source from entry dependencies 1`] = `
 "/**
+* SampleInterface
+*/
+interface SampleInterface {}
+
+/**
 * View
 */
 class View {
@@ -55,6 +60,11 @@ class Component {
 
 exports[`buildDocumentationSource by source entry should extract documentation source from entry dependencies 2`] = `
 "/**
+* SampleInterface
+*/
+interface SampleInterface {}
+
+/**
 * Events
 */
 class Events {
@@ -81,6 +91,11 @@ exports[`buildDocumentationSource by source entry should show readable error if 
 
 exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 1`] = `
 "/**
+* SampleInterface
+*/
+interface SampleInterface {}
+
+/**
 * Component
 */
 class Component {
@@ -134,6 +149,11 @@ class View {
 
 exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 2`] = `
 "/**
+* SampleInterface
+*/
+interface SampleInterface {}
+
+/**
 * mountComponent
 */
 function mountComponent(component: Function, node: Node) {}

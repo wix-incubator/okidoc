@@ -1,3 +1,5 @@
+import SampleInterface from './SampleInterface';
+
 /**
  * View
  * @doc UI

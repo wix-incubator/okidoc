@@ -3,7 +3,7 @@ import renderComment from './renderComment';
 
 const GENERATOR_COMMENT = `<!-- Generated automatically. Update this documentation by updating the source code. -->`;
 
-function buildMarkdownAST(comments, { title } = {}) {
+function buildMarkdownAST(comments, { title, excludeKind = [] } = {}) {
   const docInterfaces = comments.filter(({ kind }) => kind === 'interface');
 
   // NOTE: to better understand `comments` format see:
@@ -24,6 +24,7 @@ function buildMarkdownAST(comments, { title } = {}) {
           renderComment(comment, {
             depth: depth + 1,
             interfaces: docInterfaces,
+            excludeKind,
           }),
         ),
       [],
