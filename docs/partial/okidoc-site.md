@@ -21,6 +21,8 @@ Instead of default gatsby directory `src/pages`, **use your docs path** ([exampl
 
 > Only `md` files are served by `okidoc-site`.
 
+### Configure
+
 To configure your site, use yaml config (default config path is `./site.yml`):
 
 ```yaml
@@ -32,18 +34,18 @@ docsPath: ./docs
 distPath: ./sitedist
 
 config:
- # [optional] site metadata (https://www.gatsbyjs.org/docs/gatsby-config/#sitemetadata)
- siteMetadata:
-   title: YOUR_DOCUMENTATION_SITE_TITLE
-   description: YOUR_DOCUMENTATION_SITE_DESCRIPTION
-   keywords: YOUR_DOCUMENTATION_SITE_KEYWORDS
- # [optional] path prefix
- pathPrefix: /my-awesome-lib
- # [optional] algolia apiKey and indexName for docsearch (https://www.algolia.com/ref/docsearch). If empty, search will be hidden
- algoliaApiKey: YOUR_ALGOLIA_API_KEY
- algoliaIndexName: YOUR_ALGOLIA_INDEX_NAME
- # [optional] Link to your github repository
- githubLink: YOUR_GITHUB_REPOSITORY
+  # [optional] site metadata (https://www.gatsbyjs.org/docs/gatsby-config/#sitemetadata)
+  siteMetadata:
+    title: YOUR_DOCUMENTATION_SITE_TITLE
+    description: YOUR_DOCUMENTATION_SITE_DESCRIPTION
+    keywords: YOUR_DOCUMENTATION_SITE_KEYWORDS
+  # [optional] path prefix
+  pathPrefix: /my-awesome-lib
+  # [optional] algolia apiKey and indexName for docsearch (https://www.algolia.com/ref/docsearch). If empty, search will be hidden
+  algoliaApiKey: YOUR_ALGOLIA_API_KEY
+  algoliaIndexName: YOUR_ALGOLIA_INDEX_NAME
+  # [optional] Link to your github repository
+  githubLink: YOUR_GITHUB_REPOSITORY
 
 # [optional] react components inside markdown
 mdComponents:
@@ -51,16 +53,21 @@ mdComponents:
 
 # [optional] navigation config. Use if you need more than one page in navigation block
 navigation:
- - path: /config
-   title: Configuration
- - path: /methods
-   title: Methods
+  - path: /config
+    title: Configuration
+  - path: /methods
+    title: Methods
 ```
 
-Read more:
+### Add navigation
 
-* [react components inside markdown](/okidoc-site-md-components)
-* [navigation config](/okidoc-site-navigation)
+[navigation config](/okidoc-site-navigation)
+
+### Add react components
+
+[react components inside markdown](/okidoc-site-md-components)
+
+### Develop/Build
 
 Run `okidoc-site` script
 
@@ -77,3 +84,16 @@ $ okidoc-site build ./site.yml
 Will perform an optimized production build for your site generating static HTML and per-route JavaScript code bundles.
 
 Read gatsby [docs](https://www.gatsbyjs.org/docs/) for more information
+
+### Deploy
+
+If you use github for your repository, the easiest way to deploy site is to use [gh-pages](https://github.com/tschaub/gh-pages) library:
+
+```json
+"scripts": {
+  "documentation:site:build": "npm run documentation && okidoc-site build ./site.yml",
+  "documentation:site:deploy": "npm run documentation:site:build && gh-pages -d site",
+}
+```
+
+For more deploy options read gatsby [docs](https://www.gatsbyjs.org/docs/deploy-gatsby/)

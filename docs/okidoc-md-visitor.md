@@ -1,5 +1,5 @@
 ---
-title: "Custom api visitor"
+title: 'Custom api visitor'
 layout: simple
 ---
 
@@ -27,21 +27,21 @@ function createApiVisitor(enter) {
   };
 }
 
-function createApiMethod(nodeFromVisitor) {
+function createApiClassMethod(nodeFromVisitor) {
   // return ast of cleaned up method with JSDoc and empty body
 }
 
 module.exports = {
   createApiVisitor,
-  createApiMethod,
+  createApiClassMethod,
 };
 ```
 
 Custom visitor example:
 
-* [playerApiVisitor](https://github.com/wix/playable/blob/master/scripts/documentation/playerApiVisitor.js)
+- [playerApiVisitor](https://github.com/wix/playable/blob/master/scripts/documentation/playerApiVisitor.js)
 
 Read about visitors:
 
-* https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors
-* https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
+- https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors
+- https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
