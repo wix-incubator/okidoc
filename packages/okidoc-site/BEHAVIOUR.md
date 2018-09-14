@@ -1,0 +1,13 @@
+- Site should open
+  - There should be navigation
+    - Navigation should point to pages
+      - Navigation should point to headings in page
+  - It should render page
+    - It should have valid title
+    - It should have all headings
+      - Headings should have anchors
+    - It should show examples (render then by PrismJS)
+    - It should render Markdown components
+    - It should open external examples in IFrame (JSFiddle, etc)
+  - There should be Search bar
+  - There should be GitHub link
