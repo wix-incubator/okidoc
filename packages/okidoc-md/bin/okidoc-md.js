@@ -17,6 +17,9 @@ program
     runCLI({
       configPath: options.config || args.configPath,
       outputDir: options.output || args.outputDir,
+    }).catch(error => {
+      console.error('An error occurred while building documentation.', error);
+      process.exit(1);
     });
   });
 

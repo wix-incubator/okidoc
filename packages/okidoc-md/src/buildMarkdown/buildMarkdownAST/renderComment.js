@@ -2,6 +2,9 @@ import u from 'unist-builder';
 import { API_CLASS_IDENTIFIER } from '../../constants';
 import parseMarkdown from './parseMarkdown';
 import parseReturnsComment from './parseReturnsComment';
+
+import getParamsFromInterface from './getParamsFromInterface';
+
 import renderParamsHTML from './renderParamsHTML';
 
 function renderHeading(comment, depth) {
@@ -124,15 +127,32 @@ function renderReturns(comment, interfaces) {
   );
 }
 
-function renderClassMembers(comment, { depth, interfaces }) {
+function renderClassMembers(comment, { depth, interfaces, excludeKind }) {
   return comment.members.instance.reduce(
-    (memo, child) => memo.concat(renderComment(child, { depth, interfaces })),
+    (memo, child) =>
+      memo.concat(renderComment(child, { depth, interfaces, excludeKind })),
     [],
   );
 }
 
-function renderComment(comment, { depth, interfaces }) {
+function renderInterfaceProperties(comment) {
+  const properties = getParamsFromInterface(comment);
+  if (properties.length) {
+    return u(
+      'html',
+      renderParamsHTML(properties, {
+        title: 'MEMBERS',
+      }),
+    );
+  }
+  return false;
+}
+
+function renderComment(comment, { depth, interfaces, excludeKind }) {
   // TODO: add render logic for 'var', 'let', 'constant', 'interface', etc
+  if (excludeKind.includes(comment.kind)) {
+    return [];
+  }
 
   if (['function', 'member'].includes(comment.kind)) {
     return renderHeading(comment, depth)
@@ -153,6 +173,7 @@ function renderComment(comment, { depth, interfaces }) {
       return renderClassMembers(comment, {
         depth: depth,
         interfaces: interfaces,
+        excludeKind,
       });
     }
 
@@ -165,8 +186,18 @@ function renderComment(comment, { depth, interfaces }) {
         renderClassMembers(comment, {
           depth: depth + 1,
           interfaces: interfaces,
+          excludeKind,
         }),
       )
+      .filter(Boolean);
+  }
+
+  if (comment.kind === 'interface') {
+    return renderHeading(comment, depth)
+      .concat(renderExamplesAndNotes(comment))
+      .concat(renderDescription(comment))
+      .concat(renderSeeLink(comment))
+      .concat(renderInterfaceProperties(comment))
       .filter(Boolean);
   }
 

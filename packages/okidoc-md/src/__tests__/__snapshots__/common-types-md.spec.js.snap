@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`with common types should render doc markdown for common types 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Types
+
+## IRunResult
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">MEMBERS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`with common types should use common types config if any 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# My Types
+
+## IRunResult
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">MEMBERS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;

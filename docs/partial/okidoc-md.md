@@ -32,21 +32,27 @@ function subscribe(eventName: string, fn: Function) {}
 Add yaml config (default config path is `./docs.yml`):
 
 ```yaml
+# [optional] Define page settings for common types page (used if there are more than one docs page)
+commonTypes:
+  title: My Types
+  path: my-types.md
+
 # Get files using `entry` or/and `glob` (could be `.js` or `.ts` files),
 # find api methods by `@doc UI` tag in JSDoc and generate markdown to `partial/ui.md` file.
-- path: partial/ui.md
-  title: UI API Methods
-  # [optional] if provided, only `entry` file dependencies will be parsed
-  entry: src/index.ts
-  # [optional] required if `entry` not provided
-  glob: src/**/*.ts
-  # tag name have to match `@doc UI` in JSDoc
-  tag: UI
+docs:
+  - path: partial/ui.md
+    title: UI API Methods
+    # [optional] if provided, only `entry` file dependencies will be parsed
+    entry: src/index.ts
+    # [optional] required if `entry` not provided
+    glob: src/**/*.ts
+    # tag name have to match `@doc UI` in JSDoc
+    tag: UI
 
-- path: partial/events.md
-  title: Events API
-  glob: src/**/*.ts
-  tag: Events
+  - path: partial/events.md
+    title: Events API
+    glob: src/**/*.ts
+    tag: Events
 ```
 
 > NOTE: With `entry` option, all dependency file source will be parsed for doc. Not only imported/exported part.

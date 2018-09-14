@@ -433,6 +433,19 @@ describe('buildDocumentationSource', () => {
         });
       }).toThrowErrorMatchingSnapshot();
     });
+
+    it('should extract interfaces from entry dependencies', () => {
+      const interfaces = {};
+
+      // TODO: review this test before merge PR
+      buildDocumentationSource({
+        entry: require.resolve('./fixtures/src/index.ts'),
+        tag: 'UI',
+        interfaces,
+      });
+
+      expect(Object.keys(interfaces).length).toBe(1);
+    });
   });
 
   describe('by source glob pattern', () => {
