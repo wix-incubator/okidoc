@@ -7,6 +7,25 @@ exports[`buildDocumentationSource by source entry should extract documentation s
 interface SampleInterface {}
 
 /**
+* Component
+*/
+class Component {
+  /** */
+  constructor() {}
+
+  /**
+  * Get component node
+  */
+  getNode(): Node {}
+
+  /**
+  * Render component
+  */
+  render() {}
+
+}
+
+/**
 * View
 */
 class View {
@@ -35,25 +54,6 @@ class View {
   * component.hide()
   */
   hide() {}
-
-}
-
-/**
-* Component
-*/
-class Component {
-  /** */
-  constructor() {}
-
-  /**
-  * Get component node
-  */
-  getNode(): Node {}
-
-  /**
-  * Render component
-  */
-  render() {}
 
 }"
 `;

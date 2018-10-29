@@ -1,35 +1,16 @@
-import traverseSource from '../../utils/traverseSource';
-import traverseFiles from '../../utils/traverseFiles';
-import traverseEntries from '../../utils/traverseEntries';
+import babelTraverse from '@babel/traverse';
 
-function ensureSourceOptionsValid({ entry, pattern, source }) {
-  if (!entry && !pattern && !source) {
-    throw new Error(
-      `'entry' or/and 'pattern' or 'source' options should be defined`,
-    );
-  }
-
-  if (source && (entry || pattern)) {
-    throw new Error(
-      `if 'source' options provided, 'entry' and 'pattern' should be undefined`,
-    );
-  }
-}
-
-function traverse({ entry, pattern, source }, visitors) {
-  ensureSourceOptionsValid({ entry, pattern, source });
-
-  if (source) {
-    traverseSource(source, visitors);
-    return;
-  }
-
-  if (entry) {
-    traverseEntries(entry, visitors, { pattern });
-    return;
-  }
-
-  traverseFiles(pattern, visitors);
+function traverse({ dependenciesTree, visitors, options }) {
+  // traverse files in insertion order
+  // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
+  dependenciesTree.forEach((node, filePath) => {
+    babelTraverse(node.fileAST, visitors, null , {
+      filePath,
+      dependenciesTree,
+      ...options,
+    });
+  });
+  return options;
 }
 
 export default traverse;

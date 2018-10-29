@@ -10,7 +10,6 @@ import { colorFgGreen, colorFgCyan } from './utils/consoleUtils';
 
 function loadConfig(configPath) {
   // TODO: it could be sync (without promise wrapper)
-
   return new Promise((resolve, reject) => {
     try {
       const file = fs.readFileSync(configPath, { encoding: 'utf8' });
@@ -37,7 +36,7 @@ function runBuildDocumentation(config, { outputDir }) {
   }
 
   const interfaces = {};
-  const shouldRenderTypesInternally = config.docs.length === 1;
+  const shouldRenderTypesInternally = config.docs.length === 1 || !config.commonTypes;
 
   return Promise.all(
     config.docs.map(doc => {
