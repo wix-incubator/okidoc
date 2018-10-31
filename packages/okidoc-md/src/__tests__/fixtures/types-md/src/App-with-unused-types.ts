@@ -4,21 +4,17 @@ interface IStartResult {
   y: number
 }
 
-interface IStopResult {
-  y: number
-}
-
 /**
  * @doc app
  */
 class App {
-  run(): IRunResult {
+  run() {
     return {
       x: 1
     };
   }
 
-  start(): IStartResult {
+  start() {
     return {
       y: 1
     }
