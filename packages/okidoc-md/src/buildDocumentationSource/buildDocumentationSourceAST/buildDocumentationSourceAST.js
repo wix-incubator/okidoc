@@ -110,7 +110,7 @@ function buildDocumentationSourceAST({
 
       if (path.isClassProperty(path)) {
         classBodyItems.push(createApiClassProperty(path.node, path, options));
-        path.traverse(interfaceVisitor, { filePath }, {});
+        path.traverse(interfaceVisitor, { filePath });
         return;
       }
 

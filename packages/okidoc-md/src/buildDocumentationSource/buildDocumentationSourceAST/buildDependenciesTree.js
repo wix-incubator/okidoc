@@ -7,6 +7,7 @@ import parseSource from '../../utils/parseSource';
 import glob, { isMatchGlob } from '../../utils/glob';
 
 const EXCLUDE_PATTERN = /\.(css|sass|scss|svg|png|jpg|dot|graphql)$/;
+const SOURCE_CODE_FILE_KEY = '__source';
 
 function resolveDependencyPath({ dependency, entryPath, entryAST }) {
   const config = {
@@ -109,35 +110,39 @@ function buildDependenciesFromEntry({ entry, pattern, storage = new Map() }) {
   entries.forEach(entry => {
     const filePath = path.resolve(entry);
 
-    if (!storage.has(filePath)) {
-      const fileAST = parseFile(filePath);
-      // extract interfaces & imports
-      const { dependencies, interfaces } = extractDependenciesFromAST({
-        fileAST,
-        filePath,
-      });
-
-      // save
-      storage.set(filePath, { dependencies, fileAST, interfaces });
-
-      // traverse recursively
-      buildDependenciesFromEntry({
-        entry: resolveDependencies({
-          entryAST: fileAST,
-          entryPath: filePath,
-          pattern,
-        }),
-        storage,
-      });
+    if (storage.has(filePath)) {
+      return;
     }
+
+    // extract interfaces & imports from file
+    const fileAST = parseFile(filePath);
+    const { dependencies, interfaces } = extractDependenciesFromAST({
+      fileAST,
+      filePath,
+    });
+
+    // save
+    storage.set(filePath, { dependencies, fileAST, interfaces });
+
+    // traverse recursively
+    buildDependenciesFromEntry({
+      entry: resolveDependencies({
+        entryAST: fileAST,
+        entryPath: filePath,
+        pattern,
+      }),
+      storage,
+    });
   });
   return storage;
 }
 
-function buildDependenciesFromSource({ source, storage = new Map() }) {
+function buildDependenciesFromSourceCode({ source, storage = new Map() }) {
   const fileAST = parseSource(source);
   const { dependencies, interfaces } = extractDependenciesFromAST({ fileAST });
-  storage.set('__source', { dependencies, fileAST, interfaces });
+  // file path doesn't exist when parsing dependencies from source codes
+  // use fake key instead
+  storage.set(SOURCE_CODE_FILE_KEY, { dependencies, fileAST, interfaces });
   return storage;
 }
 
@@ -174,7 +179,7 @@ function buildDependenciesTree({ entry, pattern, source }) {
   }
 
   if (source) {
-    return buildDependenciesFromSource({ source });
+    return buildDependenciesFromSourceCode({ source });
   }
 
   return buildDependenciesFromPattern({ pattern });
