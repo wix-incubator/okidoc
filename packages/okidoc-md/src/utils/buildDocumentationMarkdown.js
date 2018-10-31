@@ -6,7 +6,7 @@ import buildMarkdown from '../buildMarkdown';
 // @todo: redesign contract, remove all cases, just pass smth like context
 function buildDocumentationMarkdown(
   documentationSource,
-  { title, sourceInfo, excludeKind },
+  { title, sourceInfo },
 ) {
   return documentation
     .build([{ source: documentationSource || ' ' }], { shallow: true })
@@ -14,7 +14,6 @@ function buildDocumentationMarkdown(
       comments =>
         buildMarkdown(comments, {
           title: title,
-          excludeKind,
         }),
       error => {
         if (error.loc) {

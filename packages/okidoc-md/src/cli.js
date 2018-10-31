@@ -3,7 +3,6 @@ import fs from 'fs';
 import yaml from 'yamljs';
 
 import buildDocumentation from './buildDocumentation';
-import buildDocumentationForCommonTypes from './buildDocumentationForCommonTypes';
 
 import writeFile from './utils/writeFile';
 import { colorFgGreen, colorFgCyan } from './utils/consoleUtils';
@@ -35,9 +34,6 @@ function runBuildDocumentation(config, { outputDir }) {
     return Promise.reject(new Error(`Config is empty or has invalid format.`));
   }
 
-  const interfaces = {};
-  const shouldRenderTypesInternally = config.docs.length === 1 || !config.commonTypes;
-
   return Promise.all(
     config.docs.map(doc => {
       const start = Date.now();
@@ -54,8 +50,6 @@ function runBuildDocumentation(config, { outputDir }) {
         pattern: doc.glob,
         tag: doc.tag,
         visitor: doc.visitor,
-        interfaces,
-        excludeKind: shouldRenderTypesInternally ? [] : ['interface'],
       })
         .then(markdown => writeFile(markdownPath, markdown))
         .then(() => {
@@ -65,29 +59,7 @@ function runBuildDocumentation(config, { outputDir }) {
           );
         });
     }),
-  ).then(() => {
-    if (shouldRenderTypesInternally) {
-      return;
-    }
-
-    const typesConfig = {
-      title: 'Types',
-      path: 'types.md',
-      ...config.commonTypes,
-    };
-
-    const typesMarkdownPath = path.join(outputDir, typesConfig.path);
-
-    console.log(`${colorFgGreen('starting')} ${typesMarkdownPath}`);
-
-    return buildDocumentationForCommonTypes(interfaces, {
-      title: typesConfig.title,
-    })
-      .then(markdown => writeFile(typesMarkdownPath, markdown))
-      .then(() => {
-        console.log(`${colorFgCyan('finished')} ${typesMarkdownPath}`);
-      });
-  });
+  );
 }
 
 function runCLI({ configPath, outputDir }) {

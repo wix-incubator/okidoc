@@ -127,10 +127,9 @@ function renderReturns(comment, interfaces) {
   );
 }
 
-function renderClassMembers(comment, { depth, interfaces, excludeKind }) {
+function renderClassMembers(comment, { depth, interfaces }) {
   return comment.members.instance.reduce(
-    (memo, child) =>
-      memo.concat(renderComment(child, { depth, interfaces, excludeKind })),
+    (memo, child) => memo.concat(renderComment(child, { depth, interfaces })),
     [],
   );
 }
@@ -148,12 +147,7 @@ function renderInterfaceProperties(comment) {
   return false;
 }
 
-function renderComment(comment, { depth, interfaces, excludeKind }) {
-  // TODO: add render logic for 'var', 'let', 'constant', 'interface', etc
-  if (excludeKind.includes(comment.kind)) {
-    return [];
-  }
-
+function renderComment(comment, { depth, interfaces }) {
   if (['function', 'member'].includes(comment.kind)) {
     return renderHeading(comment, depth)
       .concat(renderExamplesAndNotes(comment))
@@ -173,7 +167,6 @@ function renderComment(comment, { depth, interfaces, excludeKind }) {
       return renderClassMembers(comment, {
         depth: depth,
         interfaces: interfaces,
-        excludeKind,
       });
     }
 
@@ -186,7 +179,6 @@ function renderComment(comment, { depth, interfaces, excludeKind }) {
         renderClassMembers(comment, {
           depth: depth + 1,
           interfaces: interfaces,
-          excludeKind,
         }),
       )
       .filter(Boolean);

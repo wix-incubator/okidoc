@@ -14,7 +14,6 @@ function buildDocumentationSourceAST({
   source,
   tag,
   visitor: visitorPath,
-  interfaces: globalInterfaces,
 }) {
   const {
     createApiVisitor,
@@ -33,11 +32,9 @@ function buildDocumentationSourceAST({
   // before traversing the files build a tree with all defined interfaces and dependencies
   const dependenciesTree = buildDependenciesTree({ entry, pattern, source });
 
-  function pushInterface({ node, filePath, interfaces, globalInterfaces }) {
+  function pushInterface({ node, interfaces }) {
     const apiInterface = createApiInterface(node);
-    const key = `${filePath}.${node.id.name}`;
     interfaces.push(apiInterface);
-    globalInterfaces[key] = globalInterfaces[key] || apiInterface;
   }
 
   // NOTE: read about visitors
@@ -71,12 +68,7 @@ function buildDocumentationSourceAST({
               );
 
               if (interfaceNode) {
-                pushInterface({
-                  node: interfaceNode,
-                  filePath: state.filePath,
-                  interfaces,
-                  globalInterfaces,
-                });
+                pushInterface({ node: interfaceNode, interfaces });
               }
             }
           }
@@ -87,12 +79,7 @@ function buildDocumentationSourceAST({
           node => node.id.name === typeName,
         );
         if (localInterface) {
-          pushInterface({
-            node: localInterface,
-            filePath: state.filePath,
-            interfaces,
-            globalInterfaces,
-          });
+          pushInterface({ node: localInterface, interfaces });
         }
       }
     },
