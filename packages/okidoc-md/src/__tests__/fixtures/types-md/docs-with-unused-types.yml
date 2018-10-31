@@ -1,0 +1,9 @@
+- path: app.md
+  title: App
+  entry: src/App.ts
+  tag: app
+
+- path: app-two.md
+  title: AppTwo
+  entry: src/AppTwo.ts
+  tag: app-two
