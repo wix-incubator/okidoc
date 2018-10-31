@@ -10,7 +10,7 @@ describe('with common types', function() {
     process.chdir(cwd);
   });
 
-  it('should render doc markdown for common types', async () => {
+  it('should not render doc markdown for common types if config is missing', async () => {
     const testFS = setupFS(
       fromFixtures(path.join(__dirname, '/fixtures/common-types-md'), [
         'src/types.ts',
@@ -28,10 +28,8 @@ describe('with common types', function() {
     });
 
     const app = testFS.files['/docs/app.md'].content;
-    const types = testFS.files['/docs/types.md'].content;
-
-    expect(app.includes('## IRunResult')).toBeFalsy(); // should not have type definition in doc
-    expect(types).toMatchSnapshot();
+    expect(app.includes('## IRunResult')).toBeTruthy();
+    expect(testFS.files['/docs/types.md'].exists).toBeFalsy();
   });
 
   it('should use common types config if any', async () => {
@@ -102,5 +100,25 @@ describe('with common types', function() {
     expect(app.includes('## IRunResult')).toBeTruthy();
     expect(appTwo.includes('## IRunResult')).toBeTruthy();
     expect(testFS.files['/docs/types.md'].exists).toBeFalsy();
+  });
+
+  it('should render types if interface was defined in the same file with class', async () => {
+    const testFS = setupFS(
+      fromFixtures(path.join(__dirname, '/fixtures/common-types-md'), [
+        'src/AppThree.ts',
+        'docs-with-inline-interface.yml',
+      ]),
+    );
+
+    process.chdir(testFS.cwd);
+
+    await runCLI({
+      configPath: testFS.files['/docs-with-inline-interface.yml'].path,
+      outputDir: testFS.files['/docs'].path,
+    });
+
+    const appThree = testFS.files['/docs/app-three.md'].content;
+    expect(appThree.includes('## IRunResult')).toBeTruthy();
+    expect(appThree.includes('## IStartResult')).toBeFalsy();
   });
 });

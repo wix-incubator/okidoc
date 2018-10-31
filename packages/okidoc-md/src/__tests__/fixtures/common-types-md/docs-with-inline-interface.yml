@@ -1,0 +1,4 @@
+- path: app-three.md
+  title: AppThree
+  entry: src/AppThree.ts
+  tag: app-three

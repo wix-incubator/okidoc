@@ -434,17 +434,17 @@ describe('buildDocumentationSource', () => {
       }).toThrowErrorMatchingSnapshot();
     });
 
-    it('should extract interfaces from entry dependencies', () => {
+    it('should extract interfaces only if have real usages', () => {
       const interfaces = {};
 
       // TODO: review this test before merge PR
       buildDocumentationSource({
-        entry: require.resolve('./fixtures/src/index.ts'),
+        entry: require.resolve('./fixtures/with-interfaces/index.ts'),
         tag: 'UI',
         interfaces,
       });
 
-      expect(Object.keys(interfaces).length).toBe(1);
+      expect(Object.keys(interfaces).length).toBe(2);
     });
   });
 

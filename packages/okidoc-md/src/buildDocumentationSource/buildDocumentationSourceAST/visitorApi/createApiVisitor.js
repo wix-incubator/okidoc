@@ -15,7 +15,7 @@ function createApiVisitor(docTag, enter) {
     return !!JSDocCommentValue && DOC_TAG_PARAM_PATTERN.test(JSDocCommentValue);
   }
 
-  function enterApi(path, options = {}, state) {
+  function enterApi(path, options = {}) {
     if (visited.includes(path.node)) {
       return;
     }
@@ -29,7 +29,7 @@ function createApiVisitor(docTag, enter) {
         JSDocCommentValue,
         docTag,
       ),
-    }, state);
+    });
 
     visited.push(path.node);
   }
@@ -37,7 +37,6 @@ function createApiVisitor(docTag, enter) {
   function enterAssignmentExpression(
     assignmentExpressionPath,
     { JSDocCommentValue },
-    state,
   ) {
     const leftPath = assignmentExpressionPath.get('left');
     const rightPath = assignmentExpressionPath.get('right');
@@ -50,7 +49,7 @@ function createApiVisitor(docTag, enter) {
       enterApi(rightPath, {
         identifierName: leftPath.node.name,
         JSDocCommentValue: JSDocCommentValue,
-      }, state);
+      });
 
       return;
     }
@@ -65,7 +64,6 @@ function createApiVisitor(docTag, enter) {
   function enterVariableDeclaration(
     variableDeclarationPath,
     { JSDocCommentValue },
-    state
   ) {
     const variableDeclaratorId = variableDeclarationPath.get(
       'declarations.0.id',
@@ -81,7 +79,7 @@ function createApiVisitor(docTag, enter) {
       enterApi(variableDeclaratorInit, {
         identifierName: variableDeclaratorId.node.name,
         JSDocCommentValue: JSDocCommentValue,
-      }, state);
+      });
 
       return;
     }
@@ -96,7 +94,7 @@ function createApiVisitor(docTag, enter) {
   }
 
   return {
-    'ExportNamedDeclaration|ExportDefaultDeclaration'(path, state) {
+    'ExportNamedDeclaration|ExportDefaultDeclaration'(path) {
       if (!hasDocTagInJSDoc(path.node)) {
         return;
       }
@@ -107,7 +105,7 @@ function createApiVisitor(docTag, enter) {
       if (declarationPath.isClassDeclaration()) {
         enterApi(declarationPath, {
           JSDocCommentValue: JSDocCommentValue,
-        }, state);
+        });
 
         // skip nested visitors like ClassMethod
         path.skip();
@@ -117,14 +115,14 @@ function createApiVisitor(docTag, enter) {
       if (declarationPath.isFunctionDeclaration()) {
         enterApi(declarationPath, {
           JSDocCommentValue: JSDocCommentValue,
-        }, state);
+        });
         return;
       }
 
       if (declarationPath.isAssignmentExpression()) {
         enterAssignmentExpression(declarationPath, {
           JSDocCommentValue: JSDocCommentValue,
-        }, state);
+        });
 
         return;
       }
@@ -132,7 +130,7 @@ function createApiVisitor(docTag, enter) {
       if (declarationPath.isVariableDeclaration()) {
         enterVariableDeclaration(declarationPath, {
           JSDocCommentValue: JSDocCommentValue,
-        }, state);
+        });
         return;
       }
 
@@ -144,32 +142,32 @@ function createApiVisitor(docTag, enter) {
         } is currently not supported by okidoc-md @doc tag visitor`,
       );
     },
-    VariableDeclaration(path, state) {
+    VariableDeclaration(path) {
       if (hasDocTagInJSDoc(path.node)) {
         enterVariableDeclaration(path, {
           JSDocCommentValue: getJSDocCommentValue(path.node),
-        }, state);
+        });
       }
     },
-    ClassDeclaration(path, state) {
+    ClassDeclaration(path) {
       if (hasDocTagInJSDoc(path.node)) {
-        enterApi(path, undefined, state);
+        enterApi(path);
 
         // skip nested visitors like ClassMethod
         path.skip();
       }
     },
-    'ClassMethod|ClassProperty'(path, state) {
+    'ClassMethod|ClassProperty'(path) {
       if (
         hasDocTagInJSDoc(path.node) &&
         path.node.accessibility !== 'private'
       ) {
-        enterApi(path, undefined, state);
+        enterApi(path);
       }
     },
-    FunctionDeclaration(path, state) {
+    FunctionDeclaration(path) {
       if (hasDocTagInJSDoc(path.node)) {
-        enterApi(path, undefined, state);
+        enterApi(path);
       }
     },
   };

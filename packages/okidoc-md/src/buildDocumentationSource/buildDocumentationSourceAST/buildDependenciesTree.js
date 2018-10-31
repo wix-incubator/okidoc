@@ -22,36 +22,81 @@ function resolveDependencyPath({ dependency, entryPath, entryAST }) {
 }
 
 function resolveDependencies({ entryAST, entryPath, pattern }) {
-  const relativeDependencies = precinct(entryAST, { type: 'es6', es6: { mixedImports: true } });
+  const relativeDependencies = precinct(entryAST, {
+    type: 'es6',
+    es6: { mixedImports: true },
+  });
 
-  return relativeDependencies.map(dependency => {
-    // NOTE: only internal dependencies
-    // TODO: allow path alias aka webpack alias https://webpack.js.org/configuration/resolve/#resolve-alias
-    // https://github.com/dependents/node-filing-cabinet#usage
-    if (!dependency.startsWith('.')) {
-      return;
-    }
-
-    // convert relative path to absolute
-    const dependencyPath = resolveDependencyPath({ dependency, entryAST, entryPath });
-
-    if (!dependencyPath) {
-      // NOTE: don't warn if dependency is not `js` or `ts`
-      if (!EXCLUDE_PATTERN.test(dependency)) {
-        console.warn(
-          `could not find '${dependency}' or '${dependency +
-          '/index'}' dependency for '${entryPath}'`,
-        );
+  return relativeDependencies
+    .map(dependency => {
+      // NOTE: only internal dependencies
+      // TODO: allow path alias aka webpack alias https://webpack.js.org/configuration/resolve/#resolve-alias
+      // https://github.com/dependents/node-filing-cabinet#usage
+      if (!dependency.startsWith('.')) {
+        return;
       }
-      return;
-    }
 
-    if (pattern && !isMatchGlob(dependencyPath, pattern)) {
-      return;
-    }
+      // convert relative path to absolute
+      const dependencyPath = resolveDependencyPath({
+        dependency,
+        entryAST,
+        entryPath,
+      });
 
-    return dependencyPath;
-  }).filter(path => !!path)
+      if (!dependencyPath) {
+        // NOTE: don't warn if dependency is not `js` or `ts`
+        if (!EXCLUDE_PATTERN.test(dependency)) {
+          console.warn(
+            `could not find '${dependency}' or '${dependency +
+              '/index'}' dependency for '${entryPath}'`,
+          );
+        }
+        return;
+      }
+
+      if (pattern && !isMatchGlob(dependencyPath, pattern)) {
+        return;
+      }
+
+      return dependencyPath;
+    })
+    .filter(path => !!path);
+}
+
+function extractDependenciesFromAST({ fileAST, filePath }) {
+  const dependencies = new Map();
+  const interfaces = [];
+
+  babelTraverse(fileAST, {
+    TSInterfaceDeclaration: path => {
+      interfaces.push(path.node);
+    },
+    // In order to implement CommonJS support can use https://github.com/dependents/node-detective-cjs
+    ImportDeclaration: path => {
+      // TODO: prevent traverse for files without filePath in more efficient and elegant way
+      if (!filePath) {
+        return;
+      }
+      const relativePath = path.node.source.value;
+      // convert relative path to absolute
+      const absolutePath = resolveDependencyPath({
+        dependency: relativePath,
+        entryAST: fileAST,
+        entryPath: filePath,
+      });
+      const specifiers = [
+        ...(dependencies.get(absolutePath) || []),
+        ...path.node.specifiers,
+      ];
+
+      dependencies.set(absolutePath, specifiers);
+    },
+  });
+
+  return {
+    dependencies,
+    interfaces,
+  };
 }
 
 function buildDependenciesFromEntry({ entry, pattern, storage = new Map() }) {
@@ -66,33 +111,23 @@ function buildDependenciesFromEntry({ entry, pattern, storage = new Map() }) {
 
     if (!storage.has(filePath)) {
       const fileAST = parseFile(filePath);
-      const dependencies = new Map();
-      const interfaces = [];
-
-      babelTraverse(fileAST, {
-        'TSInterfaceDeclaration': (path) => {
-          interfaces.push(path.node);
-        },
-        // In order to implement CommonJS support can use https://github.com/dependents/node-detective-cjs
-        'ImportDeclaration': (path) => {
-          const relativePath = path.node.source.value;
-          // convert relative path to absolute
-          const absolutePath = resolveDependencyPath({ dependency: relativePath, entryAST: fileAST, entryPath: filePath });
-          const specifiers = [
-            ...(dependencies.get(absolutePath) || []),
-            ...path.node.specifiers,
-          ];
-
-          dependencies.set(absolutePath, specifiers)
-        }
+      // extract interfaces & imports
+      const { dependencies, interfaces } = extractDependenciesFromAST({
+        fileAST,
+        filePath,
       });
 
+      // save
       storage.set(filePath, { dependencies, fileAST, interfaces });
 
       // traverse recursively
       buildDependenciesFromEntry({
-        entry: resolveDependencies({ entryAST: fileAST, entryPath: filePath, pattern }),
-        storage
+        entry: resolveDependencies({
+          entryAST: fileAST,
+          entryPath: filePath,
+          pattern,
+        }),
+        storage,
       });
     }
   });
@@ -101,13 +136,9 @@ function buildDependenciesFromEntry({ entry, pattern, storage = new Map() }) {
 
 function buildDependenciesFromSource({ source, storage = new Map() }) {
   const fileAST = parseSource(source);
-  const dependencies = resolveDependencies({ entryAST: fileAST });
-
-  // TBD: which identifier should we use in case path is missing?
-  storage.set('__source', { dependencies, fileAST });
-
-  // TODO: think about depedencies here?
-  return buildDependenciesFromEntry({ entry: dependencies, storage });
+  const { dependencies, interfaces } = extractDependenciesFromAST({ fileAST });
+  storage.set('__source', { dependencies, fileAST, interfaces });
+  return storage;
 }
 
 function buildDependenciesFromPattern({ pattern }) {

@@ -9,13 +9,13 @@ import buildProgram from '../../utils/buildProgram';
 import buildDependenciesTree from './buildDependenciesTree';
 
 function buildDocumentationSourceAST({
-                                       entry,
-                                       pattern,
-                                       source,
-                                       tag,
-                                       visitor: visitorPath,
-                                       // interfaces: globalInterfaces,
-                                     }) {
+  entry,
+  pattern,
+  source,
+  tag,
+  visitor: visitorPath,
+  interfaces: globalInterfaces,
+}) {
   const {
     createApiVisitor,
     createApiInterface,
@@ -25,12 +25,27 @@ function buildDocumentationSourceAST({
     createApiFunction,
   } = getVisitorApi({ tag, visitorPath });
 
+  const interfaces = [];
+  const functions = [];
+  const classDeclarations = [];
+  const classBodyItems = [];
+
+  // before traversing the files build a tree with all defined interfaces and dependencies
+  const dependenciesTree = buildDependenciesTree({ entry, pattern, source });
+
+  function pushInterface({ node, filePath, interfaces, globalInterfaces }) {
+    const apiInterface = createApiInterface(node);
+    const key = `${filePath}.${node.id.name}`;
+    interfaces.push(apiInterface);
+    globalInterfaces[key] = globalInterfaces[key] || apiInterface;
+  }
+
   // NOTE: read about visitors
   // https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors
   // https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
   const interfaceVisitor = {
-    'TSTypeReference': (path, state) => {
-      const file = state.dependenciesTree.get(state.filePath);
+    TSTypeReference: (path, state) => {
+      const file = dependenciesTree.get(state.filePath);
 
       if (file) {
         const typeName = path.node.typeName.name;
@@ -40,50 +55,75 @@ function buildDocumentationSourceAST({
         // import { MyType } from './another-type';
         // in this case both of them would be added to the doc
         file.dependencies.forEach((importSpecifiers, absoluteFilePath) => {
-          const importSpecifier = importSpecifiers.find(specifier => specifier.local.name === typeName);
+          const importSpecifier = importSpecifiers.find(
+            specifier => specifier.local.name === typeName,
+          );
 
           if (importSpecifier) {
-            const interfaceFile = state.dependenciesTree.get(absoluteFilePath);
+            const interfaceFile = dependenciesTree.get(absoluteFilePath);
 
             if (interfaceFile) {
-              const importName = t.isImportDefaultSpecifier(importSpecifier) ?
-                importSpecifier.local.name :
-                importSpecifier.imported.name;
-              const interfaceNode = interfaceFile.interfaces.find(node => node.id.name === importName);
+              const importName = t.isImportDefaultSpecifier(importSpecifier)
+                ? importSpecifier.local.name
+                : importSpecifier.imported.name;
+              const interfaceNode = interfaceFile.interfaces.find(
+                node => node.id.name === importName,
+              );
 
               if (interfaceNode) {
-                state.interfaces.push(
-                  createApiInterface(interfaceNode)
-                );
+                pushInterface({
+                  node: interfaceNode,
+                  filePath: state.filePath,
+                  interfaces,
+                  globalInterfaces,
+                });
               }
             }
           }
         });
+
+        // find interfaces defined in current file (without imports)
+        const localInterface = file.interfaces.find(
+          node => node.id.name === typeName,
+        );
+        if (localInterface) {
+          pushInterface({
+            node: localInterface,
+            filePath: state.filePath,
+            interfaces,
+            globalInterfaces,
+          });
+        }
       }
     },
   };
 
-  const traverseInterfaces = (path, state) => path.traverse(interfaceVisitor, state);
+  // TODO: fixme
+  let filePath;
 
   const visitors = {
-    ...createApiVisitor((path, options, state) => {
+    enter: (path, state) => {
+      //store filePath locally in order to be able
+      filePath = state.filePath;
+    },
+    ...createApiVisitor((path, options) => {
       if (path.isClassDeclaration()) {
-        state.classDeclarations.push(
+        classDeclarations.push(
           createApiClassDeclaration(path.node, path, options),
         );
-        traverseInterfaces(path, state);
+        path.traverse(interfaceVisitor, { filePath });
         return;
       }
 
       if (path.isClassMethod()) {
-        state.classBodyItems.push(createApiClassMethod(path.node, path, options));
-        traverseInterfaces(path, state);
+        classBodyItems.push(createApiClassMethod(path.node, path, options));
+        path.traverse(interfaceVisitor, { filePath });
         return;
       }
 
       if (path.isClassProperty(path)) {
-        state.classBodyItems.push(createApiClassProperty(path.node, path, options));
-        traverseInterfaces(path, state);
+        classBodyItems.push(createApiClassProperty(path.node, path, options));
+        path.traverse(interfaceVisitor, { filePath }, {});
         return;
       }
 
@@ -92,22 +132,15 @@ function buildDocumentationSourceAST({
         path.isFunctionExpression() ||
         path.isArrowFunctionExpression()
       ) {
-        state.functions.push(createApiFunction(path.node, path, options));
-        traverseInterfaces(path, state);
+        functions.push(createApiFunction(path.node, path, options));
+        path.traverse(interfaceVisitor, { filePath });
       }
     }),
   };
 
-  const dependenciesTree = buildDependenciesTree({ entry, pattern, source });
-  const { interfaces, classDeclarations, classBodyItems, functions } = traverse({
+  traverse({
     dependenciesTree,
     visitors,
-    options: {
-      interfaces: [],
-      functions: [],
-      classDeclarations: [],
-      classBodyItems: [],
-    }
   });
 
   if (classBodyItems.length) {

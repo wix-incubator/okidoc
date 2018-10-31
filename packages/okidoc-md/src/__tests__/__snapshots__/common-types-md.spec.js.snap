@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`with common types should render doc markdown for common types 1`] = `
+exports[`with common types should use common types config if any 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
-# Types
+# My Types
 
 ## IRunResult
 
@@ -27,13 +27,6 @@ exports[`with common types should render doc markdown for common types 1`] = `
     </tbody>
   </table>
 </div>
-"
-`;
-
-exports[`with common types should use common types config if any 1`] = `
-"<!-- Generated automatically. Update this documentation by updating the source code. -->
-
-# My Types
 
 ## IRunResult
 
