@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
-    "docsearch.js": "^2.5.2",
+    "docsearch.js": "2.5.2",
     "gatsby": "1.9.255",
     "gatsby-link": "1.6.41",
     "gatsby-plugin-catch-links": "1.0.19",
