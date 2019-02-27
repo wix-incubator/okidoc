@@ -95,6 +95,41 @@ exports[`buildMarkdown for API class should render markdown for methods interfac
 
 # API Methods
 
+## MyResult
+
+MyResult interface
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">MEMBERS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>a</code>
+        </td>
+        <td>
+            <div class=\\"type\\">string</div>
+            <p><code>a</code> description</p>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>b</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number?</div>
+            <p><code>b</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## myMethod()
 
 myMethod comment
@@ -625,6 +660,41 @@ exports[`buildMarkdown for functions should render valid markdown 1`] = `
 
 # Functions
 
+## MyFuncResult
+
+MyFuncResult interface
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">MEMBERS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>a</code>
+        </td>
+        <td>
+            <div class=\\"type\\">string</div>
+            <p><code>a</code> description</p>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>b</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+            <p><code>b</code> description</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## myFunc1()
 
 myFunc1 description
@@ -852,6 +922,54 @@ exports[`buildMarkdown for functions should render valid markdown with function 
 
 # Functions
 
+## MyEntity
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">MEMBERS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>id</code>
+        </td>
+        <td>
+            <div class=\\"type\\">string</div>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>title</code>
+        </td>
+        <td>
+            <div class=\\"type\\">string</div>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>updateTitle</code>
+        </td>
+        <td>
+            <code class=\\"function-type\\">function(<code>id</code>: string, <code>title</code>: string): Promise&#x3C;any></code>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>destroy</code>
+        </td>
+        <td>
+            <code class=\\"function-type\\">function(): void</code>
+            <p>destroy entity</p>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## create()
 
 create new entity
@@ -991,6 +1109,37 @@ exports[`buildMarkdown with ApplicationType as return type should render markdow
 
 # API Methods
 
+## IResult
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">MEMBERS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 ## myFn()
 
 <div class=\\"method-list\\">
@@ -1058,6 +1207,37 @@ exports[`buildMarkdown with ApplicationType as return type should render markdow
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
 # API Methods
+
+## IResult
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">MEMBERS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>x</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+      <tr>
+        <td class=\\"param\\">
+          <code>y</code>
+        </td>
+        <td>
+            <div class=\\"type\\">number</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ## myFn()
 

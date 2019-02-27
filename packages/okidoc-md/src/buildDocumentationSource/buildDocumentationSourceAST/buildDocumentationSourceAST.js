@@ -6,6 +6,7 @@ import * as t from '@babel/types';
 import { API_CLASS_IDENTIFIER } from '../../constants';
 
 import buildProgram from '../../utils/buildProgram';
+import buildDependenciesTree from './buildDependenciesTree';
 
 function buildDocumentationSourceAST({
   entry,
@@ -13,7 +14,6 @@ function buildDocumentationSourceAST({
   source,
   tag,
   visitor: visitorPath,
-  interfaces: globalInterfaces,
 }) {
   const {
     createApiVisitor,
@@ -25,37 +25,92 @@ function buildDocumentationSourceAST({
   } = getVisitorApi({ tag, visitorPath });
 
   const interfaces = [];
+  const functions = [];
   const classDeclarations = [];
   const classBodyItems = [];
-  const functions = [];
+
+  // before traversing the files build a tree with all defined interfaces and dependencies
+  const dependenciesTree = buildDependenciesTree({ entry, pattern, source });
+
+  function pushInterface({ node, interfaces }) {
+    const apiInterface = createApiInterface(node);
+    interfaces.push(apiInterface);
+  }
 
   // NOTE: read about visitors
   // https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors
   // https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
-  const visitors = {
-    'InterfaceDeclaration|TSInterfaceDeclaration': (path, state) => {
-      const interfaceDeclaration = createApiInterface(path.node, path);
+  const interfaceVisitor = {
+    TSTypeReference: (path, state) => {
+      const file = dependenciesTree.get(state.filePath);
 
-      interfaces.push(interfaceDeclaration);
-      globalInterfaces[
-        `${state.filePath}.${path.node.id.name}`
-      ] = interfaceDeclaration;
+      if (file) {
+        const typeName = path.node.typeName.name;
+        // NOTE: it might be the case when more than 1 import exists.
+        // Example:
+        // import { MyType } from './types';
+        // import { MyType } from './another-type';
+        // in this case both of them would be added to the doc
+        file.dependencies.forEach((importSpecifiers, absoluteFilePath) => {
+          const importSpecifier = importSpecifiers.find(
+            specifier => specifier.local.name === typeName,
+          );
+
+          if (importSpecifier) {
+            const interfaceFile = dependenciesTree.get(absoluteFilePath);
+
+            if (interfaceFile) {
+              const importName = t.isImportDefaultSpecifier(importSpecifier)
+                ? importSpecifier.local.name
+                : importSpecifier.imported.name;
+              const interfaceNode = interfaceFile.interfaces.find(
+                node => node.id.name === importName,
+              );
+
+              if (interfaceNode) {
+                pushInterface({ node: interfaceNode, interfaces });
+              }
+            }
+          }
+        });
+
+        // find interfaces defined in current file (without imports)
+        const localInterface = file.interfaces.find(
+          node => node.id.name === typeName,
+        );
+        if (localInterface) {
+          pushInterface({ node: localInterface, interfaces });
+        }
+      }
+    },
+  };
+
+  // TODO: fixme
+  let filePath;
+
+  const visitors = {
+    enter: (path, state) => {
+      //store filePath locally in order to be able
+      filePath = state.filePath;
     },
     ...createApiVisitor((path, options) => {
       if (path.isClassDeclaration()) {
         classDeclarations.push(
           createApiClassDeclaration(path.node, path, options),
         );
+        path.traverse(interfaceVisitor, { filePath });
         return;
       }
 
       if (path.isClassMethod()) {
         classBodyItems.push(createApiClassMethod(path.node, path, options));
+        path.traverse(interfaceVisitor, { filePath });
         return;
       }
 
       if (path.isClassProperty(path)) {
         classBodyItems.push(createApiClassProperty(path.node, path, options));
+        path.traverse(interfaceVisitor, { filePath });
         return;
       }
 
@@ -65,11 +120,15 @@ function buildDocumentationSourceAST({
         path.isArrowFunctionExpression()
       ) {
         functions.push(createApiFunction(path.node, path, options));
+        path.traverse(interfaceVisitor, { filePath });
       }
     }),
   };
 
-  traverse({ entry, pattern, source }, visitors);
+  traverse({
+    dependenciesTree,
+    visitors,
+  });
 
   if (classBodyItems.length) {
     // NOTE: add extracted class body items as new class declaration with API_CLASS_IDENTIFIER as name

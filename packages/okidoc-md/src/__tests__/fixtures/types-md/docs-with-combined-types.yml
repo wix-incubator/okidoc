@@ -1,0 +1,4 @@
+- path: app.md
+  title: App
+  entry: src/App-with-combined-types.ts
+  tag: app

@@ -2,9 +2,23 @@
 
 exports[`buildDocumentationSource by source entry should extract documentation source from entry dependencies 1`] = `
 "/**
-* SampleInterface
+* Component
 */
-interface SampleInterface {}
+class Component {
+  /** */
+  constructor() {}
+
+  /**
+  * Get component node
+  */
+  getNode(): Node {}
+
+  /**
+  * Render component
+  */
+  render() {}
+
+}
 
 /**
 * View
@@ -36,35 +50,11 @@ class View {
   */
   hide() {}
 
-}
-
-/**
-* Component
-*/
-class Component {
-  /** */
-  constructor() {}
-
-  /**
-  * Get component node
-  */
-  getNode(): Node {}
-
-  /**
-  * Render component
-  */
-  render() {}
-
 }"
 `;
 
 exports[`buildDocumentationSource by source entry should extract documentation source from entry dependencies 2`] = `
 "/**
-* SampleInterface
-*/
-interface SampleInterface {}
-
-/**
 * Events
 */
 class Events {
@@ -91,11 +81,6 @@ exports[`buildDocumentationSource by source entry should show readable error if 
 
 exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 1`] = `
 "/**
-* SampleInterface
-*/
-interface SampleInterface {}
-
-/**
 * Component
 */
 class Component {
@@ -149,11 +134,6 @@ class View {
 
 exports[`buildDocumentationSource by source glob pattern should extract documentation source from files matched glob 2`] = `
 "/**
-* SampleInterface
-*/
-interface SampleInterface {}
-
-/**
 * mountComponent
 */
 function mountComponent(component: Function, node: Node) {}
@@ -195,12 +175,7 @@ class View {
 }"
 `;
 
-exports[`buildDocumentationSource for API class should cleanup typescript vs flow difference interface void method 1`] = `
-"/** */
-interface IView {
-  show(): void;
-}"
-`;
+exports[`buildDocumentationSource for API class should cleanup typescript vs flow difference interface void method 1`] = `""`;
 
 exports[`buildDocumentationSource for API class with @doc tag on class declaration should extract class 1`] = `
 "/** */

@@ -1,4 +1,4 @@
 - path: app.md
   title: App
-  entry: src/App.ts
+  entry: src/App-with-unused-types.ts
   tag: app
