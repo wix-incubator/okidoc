@@ -33,8 +33,8 @@ function cleanUpClassMethod(node, { identifierName, JSDocCommentValue } = {}) {
   // https://github.com/niieani/typescript-vs-flowtype
   // https://github.com/babel/babel/blob/v7.0.0-beta.44/packages/babel-plugin-transform-typescript/src/index.js#L89
   node.accessibility = null;
-  node.params = node.params.map(
-    param => (param.type === 'TSParameterProperty' ? param.parameter : param),
+  node.params = node.params.map(param =>
+    param.type === 'TSParameterProperty' ? param.parameter : param,
   );
 
   node.decorators = [];
@@ -117,6 +117,10 @@ function cleanUpInterfaceDeclaration(
     }
 
     if (item.type === 'TSMethodSignature') {
+      // NOTE: fix issue with ts vs flow optional
+      // TODO: add some tests
+      item.optional = false;
+
       // convert code like `show();` to `show(): void;`
       if (!item.typeAnnotation) {
         item.typeAnnotation = t.tsTypeAnnotation(t.tsVoidKeyword());
