@@ -1,12 +1,12 @@
 {
   "name": "okidoc",
-  "version": "2.0.0-beta.4",
+  "version": "2.0.0-beta.5",
   "homepage": "https://wix.github.io/okidoc",
   "license": "MIT",
   "repository": "https://github.com/wix/okidoc",
   "dependencies": {
-    "okidoc-md": "^2.0.0-beta.4",
-    "okidoc-site": "^2.0.0-beta.4"
+    "okidoc-md": "^2.0.0-beta.5",
+    "okidoc-site": "^2.0.0-beta.5"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
