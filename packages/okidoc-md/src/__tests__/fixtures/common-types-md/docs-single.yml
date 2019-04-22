@@ -1,4 +1,0 @@
-- path: app.md
-  title: App
-  entry: src/App.ts
-  tag: app

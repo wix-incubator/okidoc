@@ -11,7 +11,7 @@ function traverseFiles(pattern, visitor) {
   }
 
   files.forEach(filePath => {
-    traverse(parseFile(filePath), visitor, null, { filePath });
+    traverse(parseFile(filePath), visitor);
   });
 }
 

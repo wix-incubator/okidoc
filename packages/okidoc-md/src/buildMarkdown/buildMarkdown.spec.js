@@ -8,42 +8,6 @@ function getMarkdown(documentationSource, args) {
 }
 
 describe('buildMarkdown', () => {
-  describe('for interface', () => {
-    it('should list properties', async () => {
-      const documentationSource = `
-      /**
-      * Component description
-      */
-      interface IComponent {
-        /**
-        * Some property
-        */
-        componentProperty: string;
-      }
-    `;
-      const markdown = await getMarkdown(documentationSource);
-
-      expect(markdown).toMatchSnapshot();
-    });
-
-    it('should list methods', async () => {
-      const documentationSource = `
-      /**
-      * Component description
-      */
-      interface IComponent {
-        /**
-        * Some method
-        */
-        componentMethod(): string;
-      }
-    `;
-      const markdown = await getMarkdown(documentationSource);
-
-      expect(markdown).toMatchSnapshot();
-    });
-  });
-
   describe('for class', () => {
     it('should render markdown for class with constructor', async () => {
       const documentationSource = `
@@ -281,10 +245,7 @@ describe('buildMarkdown', () => {
         }
       }
     `;
-      const markdown = await getMarkdown(documentationSource, {
-        title,
-        excludeKind: ['interface'],
-      });
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -360,10 +321,7 @@ describe('buildMarkdown', () => {
       */
       function myFunc2(x: number, y:number): MyFuncResult {}
     `;
-      const markdown = await getMarkdown(documentationSource, {
-        title,
-        excludeKind: ['interface'],
-      });
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -425,10 +383,7 @@ describe('buildMarkdown', () => {
         */
         function create(title: string): MyEntity {}
       `;
-      const markdown = await getMarkdown(documentationSource, {
-        title,
-        excludeKind: ['interface'],
-      });
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -466,10 +421,7 @@ describe('buildMarkdown', () => {
         return {x: 1, y: 1};
       }
       `;
-      const markdown = await getMarkdown(documentationSource, {
-        title,
-        excludeKind: ['interface'],
-      });
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });
@@ -503,10 +455,7 @@ describe('buildMarkdown', () => {
         return [{x: 1, y: 1}];
       }
       `;
-      const markdown = await getMarkdown(documentationSource, {
-        title,
-        excludeKind: ['interface'],
-      });
+      const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
     });

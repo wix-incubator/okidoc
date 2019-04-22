@@ -1,6 +1,5 @@
 import { Syntax } from './formatType';
-
-import getParamsFromInterface from './getParamsFromInterface';
+import parseMarkdown from './parseMarkdown';
 
 function isPromiseType(type) {
   return type.type === Syntax.NameExpression && type.name === 'Promise';
@@ -17,6 +16,19 @@ function getInterfaceByType(type, interfaces) {
         _interface.name === type.name && _interface.properties.length > 0,
     );
   }
+}
+
+function getParamsFromInterface(_interface) {
+  return _interface.properties.map(property => {
+    const tag = _interface.tags.find(
+      tag => tag.title === 'property' && tag.name === property.name,
+    );
+
+    return {
+      ...property,
+      description: tag && parseMarkdown(tag.description),
+    };
+  });
 }
 
 function parseReturnsComment(returns, interfaces) {

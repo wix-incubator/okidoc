@@ -1,46 +1,28 @@
 import path from 'path';
-import fs from 'fs';
-import yaml from 'yamljs';
-
 import buildDocumentation from './buildDocumentation';
-import buildDocumentationForCommonTypes from './buildDocumentationForCommonTypes';
 
 import writeFile from './utils/writeFile';
 import { colorFgGreen, colorFgCyan } from './utils/consoleUtils';
+import yaml from 'yamljs';
 
 function loadConfig(configPath) {
-  // TODO: it could be sync (without promise wrapper)
-
   return new Promise((resolve, reject) => {
     try {
-      const file = fs.readFileSync(configPath, { encoding: 'utf8' });
-      const config = yaml.parse(file);
-
-      resolve(config);
+      const docs = yaml.load(configPath);
+      resolve(docs);
     } catch (error) {
       reject(error);
     }
   });
 }
 
-function runBuildDocumentation(config, { outputDir }) {
-  if (Array.isArray(config)) {
-    config = {
-      docs: config,
-    };
-
-    console.warn('Config format is changed. Read documentation for details');
-  }
-
-  if (!config || !Array.isArray(config.docs) || config.docs.length === 0) {
+function runBuildDocumentation(docs, { outputDir }) {
+  if (!Array.isArray(docs) || docs.length === 0) {
     return Promise.reject(new Error(`Config is empty or has invalid format.`));
   }
 
-  const interfaces = {};
-  const shouldRenderTypesInternally = config.docs.length === 1;
-
   return Promise.all(
-    config.docs.map(doc => {
+    docs.map(doc => {
       const start = Date.now();
       const markdownPath = path.join(
         outputDir,
@@ -55,8 +37,6 @@ function runBuildDocumentation(config, { outputDir }) {
         pattern: doc.glob,
         tag: doc.tag,
         visitor: doc.visitor,
-        interfaces,
-        excludeKind: shouldRenderTypesInternally ? [] : ['interface'],
       })
         .then(markdown => writeFile(markdownPath, markdown))
         .then(() => {
@@ -66,39 +46,24 @@ function runBuildDocumentation(config, { outputDir }) {
           );
         });
     }),
-  ).then(() => {
-    if (shouldRenderTypesInternally) {
-      return;
-    }
-
-    const typesConfig = {
-      title: 'Types',
-      path: 'types.md',
-      ...config.commonTypes,
-    };
-
-    const typesMarkdownPath = path.join(outputDir, typesConfig.path);
-
-    console.log(`${colorFgGreen('starting')} ${typesMarkdownPath}`);
-
-    return buildDocumentationForCommonTypes(interfaces, {
-      title: typesConfig.title,
-    })
-      .then(markdown => writeFile(typesMarkdownPath, markdown))
-      .then(() => {
-        console.log(`${colorFgCyan('finished')} ${typesMarkdownPath}`);
-      });
-  });
+  );
 }
 
 function runCLI({ configPath, outputDir }) {
-  return loadConfig(configPath).then(
-    config => runBuildDocumentation(config, { outputDir }),
-    error => {
-      console.error(`Could not load config '${configPath}': ${error.message}`);
-      throw error;
-    },
-  );
+  loadConfig(configPath)
+    .then(
+      docs => runBuildDocumentation(docs, { outputDir }),
+      error => {
+        console.error(
+          `Could not load config '${configPath}': ${error.message}`,
+        );
+        process.exit(1);
+      },
+    )
+    .catch(error => {
+      console.error('An error occurred while building documentation.', error);
+      process.exit(1);
+    });
 }
 
 export default runCLI;

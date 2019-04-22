@@ -1,7 +1,5 @@
 import buildDocumentation from './buildDocumentation';
 
-// TODO: move to __tests__ dir, run with cli via setupFS test utils
-
 describe('buildDocumentation', () => {
   it('should build documentation for class ', async () => {
     const sourceCode = `

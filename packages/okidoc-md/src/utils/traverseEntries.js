@@ -78,7 +78,7 @@ function traverseEntry(entryPath, visitors, { pattern, visited = [] } = {}) {
   );
 
   // TODO: ensure declarations are exported before add to doc
-  traverse(entryAST, visitors, null, { filePath: entryPath });
+  traverse(entryAST, visitors);
 }
 
 function traverseEntries(entry, visitors, { pattern }) {

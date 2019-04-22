@@ -5,15 +5,12 @@ import * as t from '@babel/types';
 
 import { API_CLASS_IDENTIFIER } from '../../constants';
 
-import buildProgram from '../../utils/buildProgram';
-
 function buildDocumentationSourceAST({
   entry,
   pattern,
   source,
   tag,
   visitor: visitorPath,
-  interfaces: globalInterfaces,
 }) {
   const {
     createApiVisitor,
@@ -33,13 +30,8 @@ function buildDocumentationSourceAST({
   // https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors
   // https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
   const visitors = {
-    'InterfaceDeclaration|TSInterfaceDeclaration': (path, state) => {
-      const interfaceDeclaration = createApiInterface(path.node, path);
-
-      interfaces.push(interfaceDeclaration);
-      globalInterfaces[
-        `${state.filePath}.${path.node.id.name}`
-      ] = interfaceDeclaration;
+    'InterfaceDeclaration|TSInterfaceDeclaration': path => {
+      interfaces.push(createApiInterface(path.node, path));
     },
     ...createApiVisitor((path, options) => {
       if (path.isClassDeclaration()) {
@@ -86,7 +78,10 @@ function buildDocumentationSourceAST({
     );
   }
 
-  return buildProgram(interfaces, classDeclarations, functions);
+  return {
+    type: 'Program',
+    body: interfaces.concat(classDeclarations, functions),
+  };
 }
 
 export { API_CLASS_IDENTIFIER };
