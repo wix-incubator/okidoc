@@ -247,6 +247,21 @@ describe('buildDocumentationSource', () => {
         ).toMatchSnapshot();
       });
 
+      it('interface with optional method, issue #66', () => {
+        const sourceCode = `
+        interface IView {
+          show?();
+        }
+      `;
+
+        expect(
+          buildDocumentationSource({
+            source: sourceCode,
+            tag: 'UI',
+          }),
+        ).toMatchSnapshot();
+      });
+
       it('class public method', () => {
         const sourceCode = `
         /**

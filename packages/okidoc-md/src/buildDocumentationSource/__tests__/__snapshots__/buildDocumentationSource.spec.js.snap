@@ -182,6 +182,13 @@ interface IView {
 }"
 `;
 
+exports[`buildDocumentationSource for API class should cleanup typescript vs flow difference interface with optional method, issue #66 1`] = `
+"/** */
+interface IView {
+  show(): void;
+}"
+`;
+
 exports[`buildDocumentationSource for API class with @doc tag on class declaration should extract class 1`] = `
 "/** */
 class MyComponent {

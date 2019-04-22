@@ -81,6 +81,22 @@ describe('buildDocumentation', () => {
     ).toMatchSnapshot();
   });
 
+  it('should handle optional method in interface, issue #66', async () => {
+    const sourceCode = `
+      interface IRootContainerAPI {
+        getWidth?(): number;
+      }
+    `;
+
+    expect(
+      await buildDocumentation({
+        source: sourceCode,
+        tag: 'UI',
+        title: 'Documentation',
+      }),
+    ).toMatchSnapshot();
+  });
+
   it('should show readable error from `documentation.js`', async () => {
     // NOTE: https://github.com/niieani/typescript-vs-flowtype#bounded-polymorphism
     const sourceCode = `

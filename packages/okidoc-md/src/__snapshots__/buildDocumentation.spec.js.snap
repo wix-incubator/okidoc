@@ -40,6 +40,13 @@ exports[`buildDocumentation should build documentation for functions  1`] = `
 "
 `;
 
+exports[`buildDocumentation should handle optional method in interface, issue #66 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Documentation
+"
+`;
+
 exports[`buildDocumentation should show readable error from \`documentation.js\` 1`] = `
 [SyntaxError: "Documentation" documentation source - Unexpected token, expected , (2:19)
   1 | /** */
