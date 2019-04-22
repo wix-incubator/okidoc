@@ -1,5 +1,9 @@
 # Contributing to okidoc
 
+## Tests
+
+To run tests for projects, use `npm run test` from root project.
+
 ## Commit Message Guidelines
 
 We use [conventionalcommits](https://conventionalcommits.org) to format our commit messages. This leads to **more
