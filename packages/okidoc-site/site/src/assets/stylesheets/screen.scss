@@ -767,6 +767,23 @@ body {
   .method-list {
     overflow: auto;
   }
+
+  $mobile-navigation-width: 230px;
+
+  .toc-wrapper {
+    width: $mobile-navigation-width;
+  }
+
+  #nav-button.open {
+    left: $mobile-navigation-width;
+  }
+
+  .toc-wrapper .toc-footer {
+    width: 100%;
+    float: none;
+    border: none;
+    border-bottom: 1px dashed $nav-footer-border-color;
+  }
 }
 
 .highlight .c,
