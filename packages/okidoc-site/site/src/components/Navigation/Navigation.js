@@ -16,7 +16,7 @@ class Navigation extends Component {
   }
 
   render() {
-    const { headings, navigation } = this.props;
+    const { headings, navigation, isSinglenavigationItem } = this.props;
     const { isOpen } = this.state;
 
     return (
@@ -29,14 +29,18 @@ class Navigation extends Component {
             }));
           }}
         />
-        <div className={classNames('toc-wrapper', { open: isOpen })}>
-          <NavigationHeadings headings={headings} />
-          {navigation &&
-            navigation.length > 0 && (
-              <div className="toc-footer">
-                <NavigationItems items={navigation} />
-              </div>
-            )}
+        <div
+          className={classNames('toc-wrapper', {
+            open: isOpen,
+            single: isSinglenavigationItem,
+          })}
+        >
+          {navigation && navigation.length > 0 && (
+            <div className="toc-footer">
+              <NavigationItems items={navigation} />
+            </div>
+          )}
+          {headings.length > 1 && <NavigationHeadings headings={headings} />}
         </div>
       </Fragment>
     );

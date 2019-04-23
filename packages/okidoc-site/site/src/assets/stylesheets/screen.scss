@@ -89,6 +89,15 @@ body {
 // TABLE OF CONTENTS
 ////////////////////////////////////////////////////////////////////////////////
 
+#toc {
+  overflow: hidden;
+  font-size: 12px;
+
+  & li {
+    line-height: 26px;
+  }
+}
+
 #toc > ul > li > a > span {
   float: right;
 
@@ -117,6 +126,10 @@ body {
 
   border-right: 1px solid #f0f4f7;
   background-color: $nav-bg;
+
+  &.single {
+    width: $single-nav-width;
+  }
 
   // language selector for mobile devices
   .lang-selector {
@@ -167,6 +180,8 @@ body {
   }
 
   .toc-h1 {
+    font-size: 14px;
+    line-height: 32px;
     font-weight: 600;
   }
 
@@ -183,10 +198,10 @@ body {
   }
 
   .toc-footer {
-    margin-top: 1em;
-    padding: 1em 0;
-
-    border-top: 1px dashed $nav-footer-border-color;
+    float: left;
+    width: $single-nav-width;
+    border-right: 1px solid #dadada;
+    padding-bottom: 10px;
 
     li,
     a {
@@ -207,7 +222,6 @@ body {
   transition-timing-function: linear;
   transition-duration: 130ms;
   transition-property: background;
-  white-space: nowrap;
   text-decoration: none;
   text-overflow: ellipsis;
 
@@ -275,6 +289,10 @@ body {
   padding-bottom: 1px; // prevent margin overflow
 
   background-color: $main-bg;
+
+  &.single-navigation {
+    margin-left: $single-nav-width;
+  }
 
   // The dark box is what gives the code samples their dark background.
   // It sits essentially under the actual content block, which has a

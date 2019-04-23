@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import renderHtmlAst from '../utils/renderHtmlAst';
 
 import Navigation from '../components/Navigation';
@@ -31,6 +32,8 @@ function Template({ match, location, data: { site, page } }) {
 
   const layout = (page.frontmatter && page.frontmatter.layout) || 'two-column';
   const isSimpleLayout = layout === SIMPLE_LAYOUT;
+  const isSinglenavigationItem =
+    (headings && headings.length <= 1) || NAVIGATION.length === 0;
 
   return (
     <Fragment>
@@ -38,8 +41,13 @@ function Template({ match, location, data: { site, page } }) {
         location={location}
         headings={headings}
         navigation={NAVIGATION}
+        isSinglenavigationItem={isSinglenavigationItem}
       />
-      <div className={`page-wrapper ${layout}-layout`}>
+      <div
+        className={classNames(`page-wrapper ${layout}-layout`, {
+          'single-navigation': isSinglenavigationItem,
+        })}
+      >
         {!isSimpleLayout && <div className="dark-box" />}
         <CatchDemoLinks>
           <div className="content">
