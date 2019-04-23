@@ -6,7 +6,3 @@ config:
    title: okidoc
  pathPrefix: /okidoc
  githubLink: https://github.com/wix/okidoc
-
-navigation:
-  - path: /
-    title: okidoc
