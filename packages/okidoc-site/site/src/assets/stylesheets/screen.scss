@@ -572,7 +572,10 @@ body {
   }
 
   .method-list {
+    $font-size: 13px;
+
     clear: none;
+    font-size: $font-size;
 
     table {
       display: table;
@@ -594,13 +597,21 @@ body {
       width: 140px;
 
       text-align: right;
+
+      & code {
+        @extend %default-font;
+        padding: 0;
+        background-color: transparent;
+        vertical-align: top;
+        line-height: 1.5;
+        font-weight: bold;
+        font-size: $font-size;
+      }
     }
 
     .type,
     .function-type {
       display: block;
-
-      padding: 3px;
 
       color: #939da3;
 
@@ -611,6 +622,12 @@ body {
       margin-left: 20px;
       text-indent: -20px;
       white-space: normal;
+    }
+
+    code {
+      padding: 3px;
+      border-radius: 3px;
+      background-color: rgba(254, 240, 186, 0.5);
     }
   }
 
@@ -731,8 +748,6 @@ body {
 
     .type {
       display: inline;
-
-      padding-left: 10px;
     }
   }
 }

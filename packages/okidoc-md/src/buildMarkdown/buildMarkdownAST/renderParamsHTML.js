@@ -70,9 +70,7 @@ function renderParamsHTML(params, { title, applicationType }) {
             ${
               !isUnionWithLiterals(param)
                 ? hasType(param, Syntax.FunctionType)
-                  ? `<code class="function-type">${renderType(
-                      param.type,
-                    )}</code>`
+                  ? `<div class="function-type">${renderType(param.type)}</div>`
                   : `<div class="type">${renderType(param.type)}</div>`
                 : ''
             }
