@@ -767,7 +767,7 @@ exports[`buildMarkdown for functions should render valid markdown with UnionType
           <code>fn</code>
         </td>
         <td>
-            <code class=\\"function-type\\">function(<code>value</code>: (string | null)): void</code>
+            <div class=\\"function-type\\">function(<code>value</code>: (string | null)): void</div>
             <p>event handler</p>
         </td>
       </tr>
@@ -807,7 +807,7 @@ exports[`buildMarkdown for functions should render valid markdown with function 
           <code>fn</code>
         </td>
         <td>
-            <code class=\\"function-type\\">function(<code>name</code>: string, <code>data</code>: Object): any</code>
+            <div class=\\"function-type\\">function(<code>name</code>: string, <code>data</code>: Object): any</div>
             <p>event handler</p>
         </td>
       </tr>
@@ -837,7 +837,7 @@ exports[`buildMarkdown for functions should render valid markdown with function 
         <td class=\\"param\\">
         </td>
         <td>
-            <code class=\\"function-type\\">function(<code>flag</code>: boolean): void</code>
+            <div class=\\"function-type\\">function(<code>flag</code>: boolean): void</div>
             <p>myFunc result function</p>
         </td>
       </tr>
@@ -908,7 +908,7 @@ create new entity
           <code>updateTitle</code>
         </td>
         <td>
-            <code class=\\"function-type\\">function(<code>id</code>: string, <code>title</code>: string): Promise&#x3C;any></code>
+            <div class=\\"function-type\\">function(<code>id</code>: string, <code>title</code>: string): Promise&#x3C;any></div>
         </td>
       </tr>
       <tr>
@@ -916,7 +916,7 @@ create new entity
           <code>destroy</code>
         </td>
         <td>
-            <code class=\\"function-type\\">function(): void</code>
+            <div class=\\"function-type\\">function(): void</div>
             <p>destroy entity</p>
         </td>
       </tr>
