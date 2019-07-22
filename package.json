@@ -1,6 +1,7 @@
 {
   "license": "MIT",
   "scripts": {
+    "setup": "npm i && botstrap",
     "bootstrap": "lerna bootstrap --hoist",
     "build": "npm run bootstrap",
     "okidoc-site": "node ./packages/okidoc-site/bin/okidoc-site.js",
