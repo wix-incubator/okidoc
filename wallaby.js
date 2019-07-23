@@ -1,6 +1,9 @@
-module.exports = function(wallaby) {
+module.exports = function() {
   return {
     files: [
+      { pattern: './jest.config.js', instrument: false },
+      { pattern: './config/jest/babelTransform.js', instrument: false },
+      { pattern: 'packages/**/.babelrc', instrument: false },
       'packages/**/src/**/*.js',
       'packages/**/src/**/*.ts',
       '!packages/**/node_modules/**',
@@ -13,13 +16,5 @@ module.exports = function(wallaby) {
       runner: 'node',
     },
     testFramework: 'jest',
-    compilers: {
-      '**/*.js': wallaby.compilers.babel(),
-    },
-    setup: function(wallaby) {
-      const jestConfig = require('./package.json').jest;
-
-      wallaby.testFramework.configure(jestConfig);
-    },
   };
 };
