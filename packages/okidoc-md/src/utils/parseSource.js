@@ -1,4 +1,4 @@
-import { parse } from 'babylon';
+import { parse } from '@babel/parser';
 import { codeFrameColumns } from '@babel/code-frame';
 
 function parseSource(source) {
@@ -9,7 +9,12 @@ function parseSource(source) {
         'typescript',
         'classProperties',
         'objectRestSpread',
-        'decorators',
+        [
+          'decorators',
+          {
+            decoratorsBeforeExport: true,
+          },
+        ],
       ],
     });
   } catch (error) {
