@@ -55,3 +55,18 @@ exports[`buildDocumentation should show readable error from \`documentation.js\`
   3 |   x: number;
   4 | }>(obj: T): T {}]
 `;
+
+exports[`buildDocumentation should support jsx syntax 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Documentation
+
+## MyComponent
+
+### sayHello()
+
+Say Hello
+
+### render()
+"
+`;

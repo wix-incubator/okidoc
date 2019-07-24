@@ -111,6 +111,34 @@ describe('buildDocumentation', () => {
     ).toMatchSnapshot();
   });
 
+  it('should support jsx syntax', async function() {
+    const sourceCode = `
+      /**
+       * @doc UI
+       */
+      class MyComponent extends React.Component {
+        /**
+         * Say Hello
+         */
+        sayHello() {
+          
+        }
+        
+        render() {
+          return <div>hello</div>
+        }
+      }
+    `;
+
+    expect(
+      await buildDocumentation({
+        source: sourceCode,
+        tag: 'UI',
+        title: 'Documentation',
+      }),
+    ).toMatchSnapshot();
+  });
+
   it('should handle optional method in interface, issue #66', async () => {
     const sourceCode = `
       interface IRootContainerAPI {
