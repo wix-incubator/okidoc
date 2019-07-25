@@ -30,7 +30,7 @@
     "@babel/types": "7.0.0",
     "caporal": "^0.10.0",
     "doctrine-temporary-fork": "2.0.1",
-    "documentation": "8.1.2",
+    "documentation": "^12.0.3",
     "filing-cabinet": "^2.0.1",
     "glob": "^7.1.3",
     "lodash": "^4.17.10",

@@ -13,20 +13,22 @@ function getInterfaceByType(type, interfaces) {
   if (type.type === Syntax.NameExpression) {
     return interfaces.find(
       _interface =>
-        _interface.name === type.name && _interface.properties.length > 0,
+        _interface.name === type.name && _interface.members.instance.length > 0,
     );
   }
 }
 
 function getParamsFromInterface(_interface) {
-  return _interface.properties.map(property => {
-    const tag = _interface.tags.find(
-      tag => tag.title === 'property' && tag.name === property.name,
+  return _interface.members.instance.map(member => {
+    const tag = member.tags.find(
+      tag => tag.title === 'property' && tag.name === member.name,
     );
 
     return {
-      ...property,
-      description: tag && parseMarkdown(tag.description),
+      title: 'property',
+      name: member.name,
+      type: member.type,
+      ...(tag && { description: parseMarkdown(tag.description) }),
     };
   });
 }

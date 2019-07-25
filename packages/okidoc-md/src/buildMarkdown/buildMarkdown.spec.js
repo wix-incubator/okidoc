@@ -222,16 +222,28 @@ describe('buildMarkdown', () => {
       expect(markdown).toMatchSnapshot();
     });
 
+    // pending resolution: https://github.com/documentationjs/documentation/issues/1267
+    it.skip('should render markdown for interface with optional property', async () => {
+      const documentationSource = `
+     /** MyResult interface */
+      interface MyResult {
+        /** */
+        a?: string;
+      }
+    `;
+      const markdown = await getMarkdown(documentationSource, { title });
+
+      expect(markdown).toMatchSnapshot();
+    });
+
     it('should render markdown for methods interface as return type', async () => {
       const documentationSource = `
      /**
       * MyResult interface
-      * @property a - \`a\` description
-      * @property b - \`b\` description
       */
       interface MyResult {
+        /** @property a - \`a\` description */
         a: string;
-        b?: number;
       }
 
       /** Example class jsdoc */
@@ -295,11 +307,11 @@ describe('buildMarkdown', () => {
       const documentationSource = `
       /**
       * MyFuncResult interface
-      * @property a - \`a\` description
-      * @property b - \`b\` description
       */
       interface MyFuncResult {
+        /** @property a - \`a\` description */
         a: string;
+        /** @property b - \`b\` description */
         b: number;
       }
 
@@ -365,15 +377,16 @@ describe('buildMarkdown', () => {
 
     it('should render valid markdown with function in return type interface', async () => {
       const documentationSource = `
-        /**
-        * @property update - update entity
-        * @property destroy - destroy entity
-        */
+        /** */
         interface MyEntity {
+          /** */
           id: string;
+          /** */
           title: string;
-          updateTitle(id: string, title: string): Promise<any>;
-          destroy(): void;
+          /** */
+          updateTitle: (id: string, title: string) => Promise<any>;
+          /** @property destroy - destroy entity */
+          destroy: () => void;
         }
       
         /**
@@ -410,7 +423,9 @@ describe('buildMarkdown', () => {
       const documentationSource = `
       /** */
       interface IResult {
+        /** */
         x: number;
+        /** */
         y: number;
       }
 
@@ -444,7 +459,9 @@ describe('buildMarkdown', () => {
       const documentationSource = `
       /** */
       interface IResult {
+        /** */
         x: number;
+        /** */
         y: number;
       }
 

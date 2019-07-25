@@ -48,7 +48,7 @@ exports[`buildDocumentation should handle optional method in interface, issue #6
 `;
 
 exports[`buildDocumentation should show readable error from \`documentation.js\` 1`] = `
-[SyntaxError: "Documentation" documentation source - Unexpected token, expected , (2:19)
+[SyntaxError: "Documentation" documentation source - Unexpected token, expected "," (2:19)
   1 | /** */
 > 2 | function fooGood<T extends {
     |                   ^
