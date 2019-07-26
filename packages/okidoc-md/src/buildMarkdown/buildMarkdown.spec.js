@@ -236,7 +236,9 @@ describe('buildMarkdown', () => {
       expect(markdown).toMatchSnapshot();
     });
 
-    // todo
+    // documentationjs started to generate different Comment structure (without "type" prop)
+    // for methods declared in "foo(): string" notation (parenthesis before ":")
+    // need to either fix this in documentationjs project or adapt within our code
     it.skip('should render markdown for interface with method', async () => {
       const documentationSource = `
         /** */
