@@ -56,6 +56,66 @@ exports[`buildMarkdown for API class should render markdown for getters/setters 
 "
 `;
 
+exports[`buildMarkdown for API class should render markdown for interface with method 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## bar()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>foo</code>
+        </td>
+        <td>
+            <div class=\\"function-type\\">function(): string</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
+exports[`buildMarkdown for API class should render markdown for interface with method as arrow function 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# API Methods
+
+## bar()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>foo</code>
+        </td>
+        <td>
+            <div class=\\"function-type\\">function(): string</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
 exports[`buildMarkdown for API class should render markdown for methods default value 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 

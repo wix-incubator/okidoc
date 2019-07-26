@@ -225,12 +225,47 @@ describe('buildMarkdown', () => {
     // pending resolution: https://github.com/documentationjs/documentation/issues/1267
     it.skip('should render markdown for interface with optional property', async () => {
       const documentationSource = `
-     /** MyResult interface */
+      /** MyResult interface */
       interface MyResult {
         /** */
         a?: string;
       }
-    `;
+      `;
+      const markdown = await getMarkdown(documentationSource, { title });
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    // todo
+    it.skip('should render markdown for interface with method', async () => {
+      const documentationSource = `
+        /** */
+        interface MyResult {
+          /** */
+          foo(): string;
+        }
+        
+        /** */
+        function bar(): MyResult {}
+      `;
+
+      const markdown = await getMarkdown(documentationSource, { title });
+
+      expect(markdown).toMatchSnapshot();
+    });
+
+    it('should render markdown for interface with method as arrow function', async () => {
+      const documentationSource = `
+        /** */
+        interface MyResult {
+          /** */
+          foo: () => string;
+        }
+        
+        /** */
+        function bar(): MyResult {}
+      `;
+
       const markdown = await getMarkdown(documentationSource, { title });
 
       expect(markdown).toMatchSnapshot();
