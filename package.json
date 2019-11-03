@@ -1,5 +1,6 @@
 {
   "license": "MIT",
+  "experimentalMonorepoPublish": true,
   "scripts": {
     "bootstrap": "lerna bootstrap --hoist",
     "build": "npm run bootstrap",
@@ -12,7 +13,6 @@
     "test:coverage": "jest --coverage",
     "precommit": "lint-staged",
     "preparePublish": "lerna publish --skip-npm",
-    "customPublish": "node scripts/npm-customPublish.js",
     "prepare": "npm run bootstrap"
   },
   "engines": {
