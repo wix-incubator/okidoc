@@ -34,24 +34,33 @@ describe('buildDocumentation', () => {
     ).toMatchSnapshot();
   });
 
-  // waiting for @babel/generator fix deployed and published: https://github.com/babel/babel/pull/10258
-  it.skip('should support class static interface', async function() {
+  // FIXME: update markdown renderer for class as return type #75
+  it('should not fail when faced with `new` in type declaration, issue #59', async function() {
     const sourceCode = `
       interface ClockConstructor {
         new (hour: number, minute: number): any;
-        test(): string;
+        tick(): string;
       }
       
       interface ClockInterface {
         tick(): any;
       }
       
-      const Clock: ClockConstructor = class Clock implements ClockInterface {
-        static test() { return 'string'; }
-        constructor(h: number, m: number) {}
-        tick() {
-            console.log("beep beep");
+      /**
+      * get clock class
+      * @note TODO: update markdown renderer #59
+      * @returns clock class
+      * @doc UI
+      */
+      function getClockClass(): ClockConstructor {
+        class Clock implements ClockInterface {
+          constructor(h: number, m: number) {}
+          tick() {
+              console.log("beep beep");
+          }
         }
+        
+        return Clock;
       }
     `;
 
