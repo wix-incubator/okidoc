@@ -7,8 +7,12 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ### Bug Fixes
 
-- **okidoc-md:** disable `jsx` support until next major version ([4da4d04](https://github.com/wix/okidoc/commit/4da4d0491f027ba82734c5b4a9be65282c8ebabb)), closes [#69](https://github.com/wix/okidoc/issues/69)
-- **okidoc-md:** unskip test for handling source with `new` in interface ([85a2ef1](https://github.com/wix/okidoc/commit/85a2ef1825a1977a2b61ab8e9782fc2ec46f49fa)), closes [#59](https://github.com/wix/okidoc/issues/59)
+- **okidoc-md:** fixed parsing code issue with `new` in interface ([ac0c144](https://github.com/wix/okidoc/commit/ac0c144e4ea00ea0032d866f2ba86598cf460b6b)), closes [#59](https://github.com/wix/okidoc/issues/59)
+
+### Chore
+
+- **okidoc-md:** migrated from babylon to @babel/parser ([0ebcd27](https://github.com/wix/okidoc/commit/0ebcd271236bd595ed0ff06a7b9dca0235c442f0)), closes [#70](https://github.com/wix/okidoc/issues/70)
+- **okidoc-md:** bump babel ([968d220](https://github.com/wix/okidoc/commit/968d2205e86609085238d0bbdc1a996374afdc57))
 
 # [2.0.0-beta.7](https://github.com/wix/okidoc/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2019-06-06)
 
