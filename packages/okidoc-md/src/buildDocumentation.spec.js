@@ -120,7 +120,8 @@ describe('buildDocumentation', () => {
     ).toMatchSnapshot();
   });
 
-  it('should support jsx syntax', async function() {
+  // TODO: allow jsx in next major version #69
+  it.skip('should support jsx syntax', async function() {
     const sourceCode = `
       /**
        * @doc UI

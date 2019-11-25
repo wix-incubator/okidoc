@@ -6,7 +6,8 @@ function parseSource(source) {
     return parse(source, {
       sourceType: 'module',
       plugins: [
-        'jsx',
+        // TODO: allow jsx in next major version #69
+        // 'jsx',
         'typescript',
         'classProperties',
         'objectRestSpread',
