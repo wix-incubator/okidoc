@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.8](https://github.com/wix/okidoc/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2019-11-25)
+
+**Note:** Version bump only for package okidoc
+
 # [2.0.0-beta.7](https://github.com/wix/okidoc/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2019-06-06)
 
 **Note:** Version bump only for package okidoc

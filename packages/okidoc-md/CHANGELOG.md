@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.8](https://github.com/wix/okidoc/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2019-11-25)
+
+### Bug Fixes
+
+- **okidoc-md:** disable `jsx` support until next major version ([4da4d04](https://github.com/wix/okidoc/commit/4da4d0491f027ba82734c5b4a9be65282c8ebabb)), closes [#69](https://github.com/wix/okidoc/issues/69)
+- **okidoc-md:** unskip test for handling source with `new` in interface ([85a2ef1](https://github.com/wix/okidoc/commit/85a2ef1825a1977a2b61ab8e9782fc2ec46f49fa)), closes [#59](https://github.com/wix/okidoc/issues/59)
+
 # [2.0.0-beta.7](https://github.com/wix/okidoc/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2019-06-06)
 
 ### Features
