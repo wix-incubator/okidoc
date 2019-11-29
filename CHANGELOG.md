@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.10](https://github.com/wix/okidoc/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2019-11-29)
+
+### Bug Fixes
+
+- **okidoc-site:** fix module resolution logic after migration to gatsby v2 ([5a8d723](https://github.com/wix/okidoc/commit/5a8d72350bf59ce7cf455010ede150c1ac436414))
+
 # [2.0.0-beta.9](https://github.com/wix/okidoc/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2019-11-29)
 
 ### Features
