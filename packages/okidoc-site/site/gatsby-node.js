@@ -1,6 +1,8 @@
 const path = require(`path`);
 const { createFilePath } = require(`gatsby-source-filesystem`);
 
+const JS_PATTERN = /\.jsx?$/;
+
 exports.onCreateNode = ({ node, getNode, actions }) => {
   const { createNodeField } = actions;
   const parentNode = getNode(node.parent);
@@ -66,34 +68,51 @@ exports.createPages = ({ graphql, actions }) => {
   });
 };
 
-const JS_PATTERN = /\.jsx?$/;
-exports.onCreateWebpackConfig = ({ actions, loaders }) => {
+function getSiteInnerJSModules() {
+  return [
+    path.join(__dirname, '/.cache'),
+    path.join(__dirname, '/src'),
+    path.join(__dirname, '/plugins'),
+  ];
+}
+
+function getSiteOuterJSModules() {
+  const modules = [];
   const { GATSBY_NAVIGATION_PATH, GATSBY_MD_COMPONENTS_PATH } = process.env;
-  const includeJS = [];
 
   if (GATSBY_NAVIGATION_PATH && JS_PATTERN.test(GATSBY_NAVIGATION_PATH)) {
-    includeJS.push(GATSBY_NAVIGATION_PATH);
+    modules.push(GATSBY_NAVIGATION_PATH);
   }
 
   if (GATSBY_MD_COMPONENTS_PATH && JS_PATTERN.test(GATSBY_MD_COMPONENTS_PATH)) {
-    includeJS.push(GATSBY_MD_COMPONENTS_PATH);
+    modules.push(GATSBY_MD_COMPONENTS_PATH);
   }
 
-  if (includeJS.length) {
-    // NOTE: ensure js outside src is processed by js loaders
-    actions.setWebpackConfig({
-      resolve: {
-        modules: ['node_modules', path.join(__dirname, './node_modules')],
-      },
-      module: {
-        rules: [
-          {
-            test: JS_PATTERN,
-            include: includeJS,
-            use: [loaders.js()],
-          },
-        ],
-      },
-    });
-  }
+  return modules;
+}
+
+exports.onCreateWebpackConfig = ({ actions, loaders }) => {
+  const includeJS = [
+    // gatsby js rule ignores everething inside `/node_modules/` ([1], [2]), but okidoc-site is inside `/node_modules/`
+    // [1](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/src/utils/webpack-utils.js#L314-L316)
+    // [2](https://github.com/gatsbyjs/gatsby/issues/2792#issuecomment-361944910)
+    ...getSiteInnerJSModules(),
+    // ensure js outside src is processed by js loaders
+    ...getSiteOuterJSModules(),
+  ];
+
+  actions.setWebpackConfig({
+    resolve: {
+      modules: ['node_modules', path.join(__dirname, '/node_modules')],
+    },
+    module: {
+      rules: [
+        {
+          test: JS_PATTERN,
+          include: includeJS,
+          use: [loaders.js()],
+        },
+      ],
+    },
+  });
 };
