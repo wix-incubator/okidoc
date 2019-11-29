@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.11](https://github.com/wix/okidoc/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2019-11-29)
+
+### Bug Fixes
+
+- **okidoc-md:** fix issue with error while rendering return type md ([fca1fb5](https://github.com/wix/okidoc/commit/fca1fb50407882e2c8549cb88c8517a6a8c56cdf))
+
 # [2.0.0-beta.10](https://github.com/wix/okidoc/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2019-11-29)
 
 ### Bug Fixes
