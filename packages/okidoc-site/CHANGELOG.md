@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-beta.9](https://github.com/wix/okidoc/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2019-11-29)
+
+### Features
+
+- **okidoc-site:** migrates to gatsby v2 ([fdf1916](https://github.com/wix/okidoc/commit/fdf191625a45512d378aae7270b12e162f2e1d2c))
+
 # [2.0.0-beta.7](https://github.com/wix/okidoc/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2019-06-06)
 
 ### Features
