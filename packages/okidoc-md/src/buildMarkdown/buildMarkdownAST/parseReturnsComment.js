@@ -34,6 +34,12 @@ function getParamsFromInterface(_interface) {
 function parseReturnsComment(returns, interfaces) {
   const returnsType = returns.type;
 
+  if (!returnsType) {
+    return {
+      params: [returns],
+    };
+  }
+
   if (
     returnsType.type === Syntax.TypeApplication &&
     (isPromiseType(returnsType.expression) ||
