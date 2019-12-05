@@ -16,13 +16,18 @@ Tool to document your code easy and flexible
 Install using the [npm](https://www.npmjs.com/) package manager:
 
 ```sh
-$ npm install okidoc --save-dev
+$ npm install okidoc-md --save-dev
+$ # AND/OR
+$ npm install okidoc-site --save-dev
 ```
 
 This installs package and put two commands in your `./node_modules/.bin` path:
 
 - `okidoc-md` - generate human-readable documentation `md` files using source code with [JSDoc](http://usejsdoc.org) and public method markers
 - `okidoc-site` - run and build documentation site based on `md` files and site config
+
+> NOTE: if you don't need to generate markdown files or don't need a site,
+> install only package you need
 
 You can use these commands in your [npm scripts](https://docs.npmjs.com/misc/scripts#examples):
 
@@ -34,13 +39,4 @@ You can use these commands in your [npm scripts](https://docs.npmjs.com/misc/scr
   "documentation:site:build": "npm run documentation && okidoc-site build ./site.yml",
   "precommit": "npm run documentation:gitadd"
 }
-```
-
-> NOTE: if you don't need to generate markdown files or don't need a site,
-> install only module you need
-
-```sh
-$ npm install okidoc-md --save-dev
-$ # OR
-$ npm install okidoc-site --save-dev
 ```
