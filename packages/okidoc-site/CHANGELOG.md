@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/wix/okidoc/compare/v2.0.0-beta.11...v2.0.0) (2019-12-05)
+
+### Features
+
+- **okidoc-site:** improve site config yaml validation ([9caeee1](https://github.com/wix/okidoc/commit/9caeee1cbb447afdf125fd0a4d2006831ecb58a9))
+
 # [2.0.0-beta.10](https://github.com/wix/okidoc/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2019-11-29)
 
 ### Bug Fixes

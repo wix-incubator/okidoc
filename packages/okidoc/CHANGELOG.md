@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/wix/okidoc/compare/v2.0.0-beta.11...v2.0.0) (2019-12-05)
+
+### BREAKING CHANGES
+
+- **okidoc:** `okidoc` package deprecated. Use `okidoc-md` and/or `okidoc-site` ([8304548](https://github.com/wix/okidoc/commit/8304548ed030e696d432608144ea4def98ca0ba7))
+
 # [2.0.0-beta.11](https://github.com/wix/okidoc/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2019-11-29)
 
 **Note:** Version bump only for package okidoc
