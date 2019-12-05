@@ -18,7 +18,7 @@ const configSchema = {
     algoliaApiKey: Joi.string(),
     algoliaIndexName: Joi.string(),
     githubLink: Joi.string(),
-  }),
+  }).default({}),
   mdComponents: Joi.object({
     path: Joi.string().required(),
     externalStyles: Joi.array().items(Joi.string()),

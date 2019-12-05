@@ -34,19 +34,20 @@ function getEnvVariables(env) {
 }
 
 function getConfig(configPath) {
+  let configRaw;
   try {
-    const config = yaml.load(configPath);
-
-    Joi.assert(
-      config,
-      configSchema,
-      `Invalid site config yaml file (${configPath}).`,
-    );
-
-    return config;
+    configRaw = yaml.load(configPath);
   } catch (e) {
-    throw new Error(`Invalid site config yaml file (${configPath})`);
+    throw new Error(
+      `Could not parse site config yaml file (${configPath}): ${e.message}`,
+    );
   }
+
+  return Joi.attempt(
+    configRaw,
+    configSchema,
+    `Invalid site config yaml file (${configPath})`,
+  );
 }
 
 const { SITE_YAML_PATH, SITE_CWD } = getEnvVariables(process.env);
