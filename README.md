@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://wix.github.io/okidoc/" target="_blank" rel="noopener noreferrer">
-    <img width="100" height="108" src="https://github.com/wix/okidoc/raw/master/docs/okidoc.svg?sanitize=true" alt="Okidoc logo">
+    <img height="130" src="https://github.com/wix/okidoc/raw/master/docs/okidoc.svg?sanitize=true" alt="Okidoc logo">
   </a>
 </p>
 
