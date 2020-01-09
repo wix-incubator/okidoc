@@ -1,12 +1,12 @@
 {
   "assetsByChunkName": {
     "path---partial-okidoc-site": [
-      "path---partial-okidoc-site-5bdf31a1ea0eb7d1fdbe.js",
-      "path---partial-okidoc-site-5bdf31a1ea0eb7d1fdbe.js.map"
+      "path---partial-okidoc-site-7dda7fe6eaea7ee72de7.js",
+      "path---partial-okidoc-site-7dda7fe6eaea7ee72de7.js.map"
     ],
     "component---src-pages-index-js": [
-      "component---src-pages-index-js-ce1e0b53cd922fed6330.js",
-      "component---src-pages-index-js-ce1e0b53cd922fed6330.js.map"
+      "component---src-pages-index-js-2e99a6f608a167c36d6c.js",
+      "component---src-pages-index-js-2e99a6f608a167c36d6c.js.map"
     ],
     "path---okidoc-site-navigation": [
       "path---okidoc-site-navigation-8d190e865a3ff33a3663.js",
@@ -17,20 +17,20 @@
       "path----4e7c8c3c551e409229f6.js.map"
     ],
     "path---readme": [
-      "path---readme-d0788abe4e54f93b95d0.js",
-      "path---readme-d0788abe4e54f93b95d0.js.map"
+      "path---readme-c9807cb64617840bd5bd.js",
+      "path---readme-c9807cb64617840bd5bd.js.map"
     ],
     "component---src-layouts-index-js": [
-      "component---src-layouts-index-js-806d8c9def8d9ea40e88.js",
-      "component---src-layouts-index-js-806d8c9def8d9ea40e88.js.map"
+      "component---src-layouts-index-js-b1b85c08ed1a4370c9c4.js",
+      "component---src-layouts-index-js-b1b85c08ed1a4370c9c4.js.map"
     ],
     "path---partial-okidoc-md": [
-      "path---partial-okidoc-md-ec92079f622f5516e7b5.js",
-      "path---partial-okidoc-md-ec92079f622f5516e7b5.js.map"
+      "path---partial-okidoc-md-04972ccc7517df68837f.js",
+      "path---partial-okidoc-md-04972ccc7517df68837f.js.map"
     ],
     "path---index": [
-      "path---index-7d9ddfe24d891ba49c88.js",
-      "path---index-7d9ddfe24d891ba49c88.js.map"
+      "path---index-fbbcc74d3939d1b244dd.js",
+      "path---index-fbbcc74d3939d1b244dd.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -41,9 +41,9 @@
       "path---okidoc-site-md-components-408f5700f7a1518bf7e7.js.map"
     ],
     "commons": [
-      "commons-4504574fcb8487774422.js",
+      "commons-f1dae2ed9d3cdb2c6b9c.js",
       "build-js-styles.css",
-      "commons-4504574fcb8487774422.js.map",
+      "commons-f1dae2ed9d3cdb2c6b9c.js.map",
       "build-js-styles.css.map"
     ],
     "path---404-html": [
@@ -51,30 +51,34 @@
       "path---404-html-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---okidoc-md-visitor": [
-      "path---okidoc-md-visitor-8a60d50c547c7c9df28c.js",
-      "path---okidoc-md-visitor-8a60d50c547c7c9df28c.js.map"
+      "path---okidoc-md-visitor-54fbd0d3131d4b6e24f8.js",
+      "path---okidoc-md-visitor-54fbd0d3131d4b6e24f8.js.map"
     ],
     "path---pages-page-fix": [
       "path---pages-page-fix-fc273a1c7aa6a955aa56.js",
       "path---pages-page-fix-fc273a1c7aa6a955aa56.js.map"
     ],
     "component---src-templates-md-js": [
-      "component---src-templates-md-js-d35e4285dffec25e25b5.js",
-      "component---src-templates-md-js-d35e4285dffec25e25b5.js.map"
+      "component---src-templates-md-js-f6bcb68849c31b5f9d24.js",
+      "component---src-templates-md-js-f6bcb68849c31b5f9d24.js.map"
     ],
     "app": [
-      "app-922797d83c9b62afff53.js",
+      "app-7ed597c8a044954409dd.js",
       "build-js-styles.css",
-      "app-922797d83c9b62afff53.js.map",
+      "app-7ed597c8a044954409dd.js.map",
       "build-js-styles.css.map"
+    ],
+    "path---partial-okidoc-site-deploy": [
+      "path---partial-okidoc-site-deploy-7ad895807c70fad7ba33.js",
+      "path---partial-okidoc-site-deploy-7ad895807c70fad7ba33.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
       "path---404-a0e39f21c11f6a62c5ab.js.map"
     ],
     "path---partial-okidoc-site-files": [
-      "path---partial-okidoc-site-files-91636bcb29fdffafc6ea.js",
-      "path---partial-okidoc-site-files-91636bcb29fdffafc6ea.js.map"
+      "path---partial-okidoc-site-files-008231faac6c97d0694f.js",
+      "path---partial-okidoc-site-files-008231faac6c97d0694f.js.map"
     ]
   }
 }
