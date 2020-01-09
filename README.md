@@ -1,5 +1,17 @@
-# okidoc
+<p align="center">
+  <a href="https://wix.github.io/okidoc/" target="_blank" rel="noopener noreferrer">
+    <img width="100" height="108" src="https://github.com/wix/okidoc/raw/master/docs/okidoc.svg?sanitize=true" alt="Okidoc logo">
+  </a>
+</p>
 
-Tool to document your code easy and flexible
+<h1 align="center">
+  <a href="https://wix.github.io/okidoc/" target="_blank" rel="noopener noreferrer">
+    okidoc
+  </a>
+</h1>
 
-You can find documentation here: https://wix.github.io/okidoc/
+<p align="center">
+  Tool to document your code easy and flexible
+  <br />
+  https://wix.github.io/okidoc/
+</p>
