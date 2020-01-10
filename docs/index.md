@@ -7,6 +7,9 @@ include:
   - ./partial/okidoc-site.md
 ---
 
+<br />
+<img height="130" src="https://github.com/wix/okidoc/raw/master/docs/okidoc.svg?sanitize=true" alt="Okidoc logo">
+
 # okidoc
 
 Tool to document your code easy and flexible
