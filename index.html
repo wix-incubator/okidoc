@@ -42,23 +42,23 @@
         }
       }
     })
-  </script><link as="script" rel="preload" href="/okidoc/webpack-runtime-5b02addf010a164a97f2.js"/><link as="script" rel="preload" href="/okidoc/app-8687c850f043cf425ccb.js"/><link as="script" rel="preload" href="/okidoc/styles-8df53d365946d03ced06.js"/><link as="script" rel="preload" href="/okidoc/commons-8d6e844f5964a7223017.js"/><link as="script" rel="preload" href="/okidoc/component---src-pages-index-js-25d682d841620deeb766.js"/><link as="fetch" rel="preload" href="/okidoc/page-data/index/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="header"><div class="logo-wrapper"><a aria-current="page" class="" href="/okidoc/"><img src="/okidoc/static/logo-d62a1c6cc6ffb4600077b583c56b33f0.png" alt="logo" class="logo"/></a></div><a href="https://github.com/wix/okidoc" target="_blank" rel="noopener noreferrer" class="header-module--githubLink--31ZQG"><span>GitHub</span></a></div><div id="nav-button" class=""><span>NAV<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAAAnRSTlMAAHaTzTgAAAAZSURBVHgBYxgswBIIsLFGrIJRBaMKBh4AAE3cQCEvEU3+AAAAAElFTkSuQmCC" alt="Navbar"/></span></div><div class="toc-wrapper single"><div id="toc" class="toc-list-h1"><li><a href="#okidoc" class="toc-link toc-h1">okidoc</a><ul class="toc-list-h2"><li><a href="#installation" class="toc-link toc-h2">Installation</a></li><li><a href="#generate-documentation" class="toc-link toc-h2">Generate documentation</a></li><li><a href="#define-what-to-document" class="toc-link toc-h3">Define what to document</a></li><li><a href="#configure" class="toc-link toc-h3">Configure</a></li><li><a href="#execute" class="toc-link toc-h3">Execute</a></li><li><a href="#define-markdown-files" class="toc-link toc-h2">Define markdown files</a></li><li><a href="#build-documentation-site" class="toc-link toc-h2">Build documentation site</a></li><li><a href="#configure-1" class="toc-link toc-h3">Configure</a></li><li><a href="#add-navigation" class="toc-link toc-h3">Add navigation</a></li><li><a href="#add-react-components" class="toc-link toc-h3">Add react components</a></li><li><a href="#developbuild" class="toc-link toc-h3">Develop/Build</a></li><li><a href="#deploy" class="toc-link toc-h3">Deploy</a></li></ul></li></div></div><div class="page-wrapper simple-layout single-navigation"><div class="content"><br/>
+  </script><link as="script" rel="preload" href="/okidoc/webpack-runtime-5b02addf010a164a97f2.js"/><link as="script" rel="preload" href="/okidoc/app-8687c850f043cf425ccb.js"/><link as="script" rel="preload" href="/okidoc/styles-8df53d365946d03ced06.js"/><link as="script" rel="preload" href="/okidoc/commons-8d6e844f5964a7223017.js"/><link as="script" rel="preload" href="/okidoc/component---src-pages-index-js-25d682d841620deeb766.js"/><link as="fetch" rel="preload" href="/okidoc/page-data/index/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="header"><div class="logo-wrapper"><a aria-current="page" class="" href="/okidoc/"><img src="/okidoc/static/logo-d62a1c6cc6ffb4600077b583c56b33f0.png" alt="logo" class="logo"/></a></div><a href="https://github.com/wix/okidoc" target="_blank" rel="noopener noreferrer" class="header-module--githubLink--31ZQG"><span>GitHub</span></a></div><div id="nav-button" class=""><span>NAV<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAAAnRSTlMAAHaTzTgAAAAZSURBVHgBYxgswBIIsLFGrIJRBaMKBh4AAE3cQCEvEU3+AAAAAElFTkSuQmCC" alt="Navbar"/></span></div><div class="toc-wrapper single"><div id="toc" class="toc-list-h1"><li><a href="#okidoc" class="toc-link toc-h1">okidoc</a><ul class="toc-list-h2"><li><a href="#installation" class="toc-link toc-h2">Installation</a></li><li><a href="#generate-documentation" class="toc-link toc-h2">Generate documentation</a></li><li><a href="#define-what-to-document" class="toc-link toc-h3">Define what to document</a></li><li><a href="#configure" class="toc-link toc-h3">Configure</a></li><li><a href="#execute" class="toc-link toc-h3">Execute</a></li><li><a href="#define-markdown-files" class="toc-link toc-h2">Define markdown files</a></li><li><a href="#build-the-documentation-site" class="toc-link toc-h2">Build the documentation site</a></li><li><a href="#configure-1" class="toc-link toc-h3">Configure</a></li><li><a href="#add-navigation" class="toc-link toc-h3">Add navigation</a></li><li><a href="#add-react-components" class="toc-link toc-h3">Add react components</a></li><li><a href="#developbuild" class="toc-link toc-h3">Develop/Build</a></li><li><a href="#deploy" class="toc-link toc-h3">Deploy</a></li></ul></li></div></div><div class="page-wrapper simple-layout single-navigation"><div class="content"><br/>
 <img height="130" src="https://github.com/wix/okidoc/raw/master/docs/okidoc.svg?sanitize=true" alt="Okidoc logo"/>
 <h1 id="okidoc"><a href="#okidoc" aria-label="okidoc permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>okidoc</h1>
-<p>Tool to document your code easy and flexible</p>
+<p>A flexible tool to document your code easily</p>
 <h2 id="installation"><a href="#installation" aria-label="installation permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Installation</h2>
 <p>Install using the <a href="https://www.npmjs.com/" target="_blank" rel="nofollow noopener noreferrer">npm</a> package manager:</p>
 <div class="gatsby-highlight" data-language="sh"><pre class="language-sh"><code class="language-sh">$ npm install okidoc-md --save-dev
 $ # AND/OR
 $ npm install okidoc-site --save-dev</code></pre></div>
-<p>This installs package and put two commands in your <code class="language-text">./node_modules/.bin</code> path:</p>
+<p>This installs the package and puts two commands in your <code class="language-text">./node_modules/.bin</code> path:</p>
 <ul>
 <li><code class="language-text">okidoc-md</code> - generate human-readable documentation <code class="language-text">md</code> files using source code with <a href="http://usejsdoc.org" target="_blank" rel="nofollow noopener noreferrer">JSDoc</a> and public method markers</li>
-<li><code class="language-text">okidoc-site</code> - run and build documentation site based on <code class="language-text">md</code> files and site config</li>
+<li><code class="language-text">okidoc-site</code> - run and build documentation site based on <code class="language-text">md</code> files and the site config</li>
 </ul>
 <blockquote>
 <p>NOTE: if you don&#x27;t need to generate markdown files or don&#x27;t need a site,
-install only package you need</p>
+you can only install the package you need</p>
 </blockquote>
 <p>You can use these commands in your <a href="https://docs.npmjs.com/misc/scripts#examples" target="_blank" rel="nofollow noopener noreferrer">npm scripts</a>:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
@@ -69,7 +69,7 @@ install only package you need</p>
   <span class="token property">&quot;precommit&quot;</span><span class="token operator">:</span> <span class="token string">&quot;npm run documentation:gitadd&quot;</span>
 <span class="token punctuation">}</span></code></pre></div><h2 id="generate-documentation"><a href="#generate-documentation" aria-label="generate documentation permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Generate documentation</h2>
 <h3 id="define-what-to-document"><a href="#define-what-to-document" aria-label="define what to document permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Define what to document</h3>
-<p>Add <code class="language-text">@doc TAG_NAME</code> tag to <a href="http://usejsdoc.org" target="_blank" rel="nofollow noopener noreferrer">JSDoc</a> of class or function</p>
+<p>Add <code class="language-text">@doc TAG_NAME</code> <a href="http://usejsdoc.org" target="_blank" rel="nofollow noopener noreferrer">JSDoc</a> tags to your classes or functions</p>
 <div class="gatsby-highlight" data-language="typescript"><pre class="language-typescript"><code class="language-typescript"><span class="token comment">/**
  * My Super UI
  * @doc UI
@@ -91,16 +91,16 @@ install only package you need</p>
  */</span>
 <span class="token keyword">function</span> <span class="token function">subscribe</span><span class="token punctuation">(</span><span class="token parameter">eventName<span class="token punctuation">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> fn<span class="token punctuation">:</span> <span class="token builtin">Function</span></span><span class="token punctuation">)</span> <span class="token punctuation">{</span><span class="token punctuation">}</span></code></pre></div>
 <h3 id="configure"><a href="#configure" aria-label="configure permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configure</h3>
-<p>Add yaml config (default config path is <code class="language-text">./docs.yml</code>):</p>
+<p>Add a yaml config (default config path is <code class="language-text">./docs.yml</code>):</p>
 <div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># Get files using `entry` or/and `glob` (could be `.js` or `.ts` files),</span>
-<span class="token comment"># find api methods by `@doc UI` tag in JSDoc and generate markdown to `partial/ui.md` file.</span>
+<span class="token comment"># find api methods by searching for `@doc UI` JSDoc tags and generate markdown into a `partial/ui.md` file.</span>
 <span class="token punctuation">-</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> partial/ui.md
   <span class="token key atrule">title</span><span class="token punctuation">:</span> UI API Methods
   <span class="token comment"># [optional] if provided, only `entry` file dependencies will be parsed</span>
   <span class="token key atrule">entry</span><span class="token punctuation">:</span> src/index.ts
-  <span class="token comment"># [optional] required if `entry` not provided</span>
+  <span class="token comment"># [optional] required if `entry` is not provided</span>
   <span class="token key atrule">glob</span><span class="token punctuation">:</span> src/**/*.ts
-  <span class="token comment"># tag name have to match `@doc UI` in JSDoc</span>
+  <span class="token comment"># tag name has to match `@doc UI` in JSDoc</span>
   <span class="token key atrule">tag</span><span class="token punctuation">:</span> UI
 
 <span class="token punctuation">-</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> partial/events.md
@@ -108,19 +108,19 @@ install only package you need</p>
   <span class="token key atrule">glob</span><span class="token punctuation">:</span> src/**/*.ts
   <span class="token key atrule">tag</span><span class="token punctuation">:</span> Events</code></pre></div>
 <blockquote>
-<p>NOTE: With <code class="language-text">entry</code> option, all dependency file source will be parsed for doc. Not only imported/exported part.</p>
+<p>NOTE: With the <code class="language-text">entry</code> option specified, all source code of the dependency file will be parsed, not just the imported/exported part.</p>
 </blockquote>
 <h3 id="execute"><a href="#execute" aria-label="execute permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Execute</h3>
-<p>Run <code class="language-text">okidoc-md</code> script</p>
+<p>Run the <code class="language-text">okidoc-md</code> script.</p>
 <div class="gatsby-highlight" data-language="sh"><pre class="language-sh"><code class="language-sh">$ okidoc-md ./docs.yml ./docs</code></pre></div>
-<p>It will generates docs markdown using configuration from <code class="language-text">./docs.yml</code> and put them to <code class="language-text">./docs</code> directory</p>
+<p>This will generate the docs markdown using configuration from <code class="language-text">./docs.yml</code> and put them into <code class="language-text">./docs</code> directory.</p>
 <blockquote>
-<p>NOTE: <code class="language-text">./docs.yml</code> and <code class="language-text">./docs</code> are default values for <code class="language-text">configPath</code> and <code class="language-text">outputDir</code> arguments and can be omitted.
+<p>NOTE: <code class="language-text">./docs.yml</code> and <code class="language-text">./docs</code> are default values for <code class="language-text">configPath</code> and <code class="language-text">outputDir</code> arguments, respectively, and can be omitted.
 Run <code class="language-text">okidoc-md --help</code> for help.</p>
 </blockquote>
-<p>To extract api methods with custom rule use <a href="./okidoc-md-visitor">visitor prop</a> in <code class="language-text">docs.yml</code></p><h2 id="define-markdown-files"><a href="#define-markdown-files" aria-label="define markdown files permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Define markdown files</h2>
-<p>You can combine auto generated markdown files with manually created. Markdown should be written in <a href="https://github.github.com/gfm/" target="_blank" rel="nofollow noopener noreferrer">gfm</a> format.</p>
-<p>Each markdown file can be annotated with YAML front matter. Here is a basic example:</p>
+<p>To extract api methods with a custom rule, use <a href="./okidoc-md-visitor">visitor prop</a> in <code class="language-text">docs.yml</code></p><h2 id="define-markdown-files"><a href="#define-markdown-files" aria-label="define markdown files permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Define markdown files</h2>
+<p>You can combine auto-generated markdown files with those you created manually. Markdown should be written in <a href="https://github.github.com/gfm/" target="_blank" rel="nofollow noopener noreferrer">gfm</a> format.</p>
+<p>Each markdown file can be annotated with a YAML front matter. Here is a basic example:</p>
 <div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token punctuation">---</span>
 <span class="token key atrule">title</span><span class="token punctuation">:</span> <span class="token string">&#x27;okidoc&#x27;</span>
 <span class="token key atrule">layout</span><span class="token punctuation">:</span> simple
@@ -129,7 +129,7 @@ Run <code class="language-text">okidoc-md --help</code> for help.</p>
 <span class="token punctuation">---</span>
 <span class="token comment"># My super API</span>
 
-After this line content from `api.md` will be included.</code></pre></div>
+After this line the contents of `api.md` will be included.</code></pre></div>
 <p>Supported properties:</p>
 
 
@@ -152,9 +152,9 @@ After this line content from `api.md` will be included.</code></pre></div>
 
 
 
-<table><thead><tr><th align="right">OPTION</th><th>VALUE</th></tr></thead><tbody><tr><td align="right"><code class="language-text">title</code></td><td>The title for the page in <code class="language-text">&lt;title&gt;</code> tag.</td></tr><tr><td align="right"><code class="language-text">layout</code></td><td>Optionally define or override the layout to use. Available layouts: <code class="language-text">two-column</code> - default layout, code examples are shown on right side.. <code class="language-text">simple</code> - one column layout.</td></tr><tr><td align="right"><code class="language-text">include</code></td><td>List of markdown files that will be included after content in the current markdown file.</td></tr></tbody></table><h2 id="build-documentation-site"><a href="#build-documentation-site" aria-label="build documentation site permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build documentation site</h2>
+<table><thead><tr><th align="right">OPTION</th><th>VALUE</th></tr></thead><tbody><tr><td align="right"><code class="language-text">title</code></td><td>Title for a page in the <code class="language-text">&lt;title&gt;</code> tag.</td></tr><tr><td align="right"><code class="language-text">layout</code></td><td>Optionally define or override layout to use. Available layouts: <code class="language-text">two-column</code> - default layout, code examples are shown on the right side. <code class="language-text">simple</code> - one column layout.</td></tr><tr><td align="right"><code class="language-text">include</code></td><td>A list of markdown files to be included after content in current markdown file.</td></tr></tbody></table><h2 id="build-the-documentation-site"><a href="#build-the-documentation-site" aria-label="build the documentation site permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Build the documentation site</h2>
 <p>Site logic is based on <a href="https://www.gatsbyjs.org/docs/" target="_blank" rel="nofollow noopener noreferrer">gatsby</a>.</p>
-<p>Instead of default gatsby directory <code class="language-text">src/pages</code>, <strong>use your docs path</strong> (<a href="https://github.com/wix/playable/tree/master/docs" target="_blank" rel="nofollow noopener noreferrer">example</a>):</p>
+<p>Instead of the default gatsby directory <code class="language-text">src/pages</code>, make sure to <strong>use your docs path</strong> (<a href="https://github.com/wix/playable/tree/master/docs" target="_blank" rel="nofollow noopener noreferrer">example</a>):</p>
 <div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">.
 ├── site.yml
 ├── /docs/                      # Site markdown files
@@ -163,21 +163,21 @@ After this line content from `api.md` will be included.</code></pre></div>
 │   └── ...                     # Other markdown files
 └── ...</code></pre></div>
 <blockquote>
-<p>IMPORTANT: For site index page use <code class="language-text">index.md</code> file
+<p>IMPORTANT: Use <code class="language-text">index.md</code> file for the site index page
 (<a href="https://github.com/wix/playable/tree/master/docs/index.md" target="_blank" rel="nofollow noopener noreferrer">example</a>).
-It is <strong>required</strong> file in your documentation directory.
-Other pages are available by file name without <code class="language-text">.md</code> extension.</p>
+It&#x27;s a <strong>required</strong> file in your documentation directory.
+Other pages are available by file name without the <code class="language-text">.md</code> extension.</p>
 </blockquote>
 <blockquote>
 <p>Only <code class="language-text">md</code> files are served by <code class="language-text">okidoc-site</code>.</p>
 </blockquote>
 <h3 id="configure-1"><a href="#configure-1" aria-label="configure permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Configure</h3>
-<p>To configure your site, use yaml config (default config path is <code class="language-text">./site.yml</code>):</p>
-<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># Markdown files path</span>
-<span class="token comment"># put index.md with content for site index page</span>
+<p>To configure your site, use the yaml config (default config path is <code class="language-text">./site.yml</code>):</p>
+<div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># Path for markdown files</span>
+<span class="token comment"># add index.md with content for the site index page</span>
 <span class="token key atrule">docsPath</span><span class="token punctuation">:</span> ./docs
 
-<span class="token comment"># [optional] path for site build. Default path is `./site`</span>
+<span class="token comment"># [optional] path for the site build. Default is `./site`</span>
 <span class="token key atrule">distPath</span><span class="token punctuation">:</span> ./sitedist
 
 <span class="token key atrule">config</span><span class="token punctuation">:</span>
@@ -198,7 +198,7 @@ Other pages are available by file name without <code class="language-text">.md</
 <span class="token key atrule">mdComponents</span><span class="token punctuation">:</span>
   <span class="token key atrule">path</span><span class="token punctuation">:</span> ./docs/playground<span class="token punctuation">-</span>components.js
 
-<span class="token comment"># [optional] navigation config. Use if you need more than one page in navigation block</span>
+<span class="token comment"># [optional] navigation config. Use this if you need more than one page in the navigation block</span>
 <span class="token key atrule">navigation</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> <span class="token key atrule">path</span><span class="token punctuation">:</span> /config
     <span class="token key atrule">title</span><span class="token punctuation">:</span> Configuration
@@ -209,16 +209,16 @@ Other pages are available by file name without <code class="language-text">.md</
 <h3 id="add-react-components"><a href="#add-react-components" aria-label="add react components permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Add react components</h3>
 <p><a href="/okidoc/okidoc-site-md-components">react components inside markdown</a></p>
 <h3 id="developbuild"><a href="#developbuild" aria-label="developbuild permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Develop/Build</h3>
-<p>Run <code class="language-text">okidoc-site</code> script</p>
+<p>Run the <code class="language-text">okidoc-site</code> script</p>
 <div class="gatsby-highlight" data-language="sh"><pre class="language-sh"><code class="language-sh">$ okidoc-site develop ./site.yml</code></pre></div>
-<p>Site will start a hot-reloading development environment accessible at localhost:8000</p>
+<p>This will launch a hot-reloading development environment accessible at <a href="http://localhost:8000" target="_blank" rel="nofollow noopener noreferrer">localhost:8000</a></p>
 <div class="gatsby-highlight" data-language="sh"><pre class="language-sh"><code class="language-sh">$ okidoc-site build ./site.yml</code></pre></div>
-<p>Will perform an optimized production build for your site generating static HTML and per-route JavaScript code bundles.</p>
-<p>Read gatsby <a href="https://www.gatsbyjs.org/docs/" target="_blank" rel="nofollow noopener noreferrer">docs</a> for more information</p>
+<p>This will perform an optimized production build for your site generating static HTML and per-route JavaScript code bundles.</p>
+<p>Read on gatsby <a href="https://www.gatsbyjs.org/docs/" target="_blank" rel="nofollow noopener noreferrer">docs</a> for more information</p>
 <h3 id="deploy"><a href="#deploy" aria-label="deploy permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>Deploy</h3>
-<p>If you use github for your repository, the easiest way to deploy site is to use <a href="https://github.com/tschaub/gh-pages" target="_blank" rel="nofollow noopener noreferrer">gh-pages</a> library:</p>
+<p>If you use GitHub to host your repository, the easiest way to deploy your site is to use the <a href="https://github.com/tschaub/gh-pages" target="_blank" rel="nofollow noopener noreferrer">gh-pages</a> library:</p>
 <div class="gatsby-highlight" data-language="json"><pre class="language-json"><code class="language-json"><span class="token property">&quot;scripts&quot;</span><span class="token operator">:</span> <span class="token punctuation">{</span>
   <span class="token property">&quot;documentation:site:build&quot;</span><span class="token operator">:</span> <span class="token string">&quot;npm run documentation &amp;&amp; okidoc-site build ./site.yml&quot;</span><span class="token punctuation">,</span>
   <span class="token property">&quot;documentation:site:deploy&quot;</span><span class="token operator">:</span> <span class="token string">&quot;npm run documentation:site:build &amp;&amp; gh-pages -d site&quot;</span><span class="token punctuation">,</span>
 <span class="token punctuation">}</span></code></pre></div>
-<p>For more deploy options read gatsby <a href="https://www.gatsbyjs.org/docs/deploy-gatsby/" target="_blank" rel="nofollow noopener noreferrer">docs</a></p></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-8687c850f043cf425ccb.js"],"component---src-templates-md-js":[],"component---src-pages-index-js":["/component---src-pages-index-js-25d682d841620deeb766.js"],"component---src-pages-404-js":["/component---src-pages-404-js-e6e2e54bb7d91b69d641.js"]};/*]]>*/</script><script src="/okidoc/component---src-pages-index-js-25d682d841620deeb766.js" async=""></script><script src="/okidoc/commons-8d6e844f5964a7223017.js" async=""></script><script src="/okidoc/styles-8df53d365946d03ced06.js" async=""></script><script src="/okidoc/app-8687c850f043cf425ccb.js" async=""></script><script src="/okidoc/webpack-runtime-5b02addf010a164a97f2.js" async=""></script></body></html>
+<p>For more deploy options read the gatsby <a href="https://www.gatsbyjs.org/docs/deploy-gatsby/" target="_blank" rel="nofollow noopener noreferrer">docs</a></p></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-8687c850f043cf425ccb.js"],"component---src-templates-md-js":[],"component---src-pages-index-js":["/component---src-pages-index-js-25d682d841620deeb766.js"],"component---src-pages-404-js":["/component---src-pages-404-js-e6e2e54bb7d91b69d641.js"]};/*]]>*/</script><script src="/okidoc/component---src-pages-index-js-25d682d841620deeb766.js" async=""></script><script src="/okidoc/commons-8d6e844f5964a7223017.js" async=""></script><script src="/okidoc/styles-8df53d365946d03ced06.js" async=""></script><script src="/okidoc/app-8687c850f043cf425ccb.js" async=""></script><script src="/okidoc/webpack-runtime-5b02addf010a164a97f2.js" async=""></script></body></html>

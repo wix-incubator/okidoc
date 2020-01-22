@@ -43,23 +43,23 @@
       }
     })
   </script><link as="script" rel="preload" href="/okidoc/webpack-runtime-5b02addf010a164a97f2.js"/><link as="script" rel="preload" href="/okidoc/app-8687c850f043cf425ccb.js"/><link as="script" rel="preload" href="/okidoc/styles-8df53d365946d03ced06.js"/><link as="script" rel="preload" href="/okidoc/commons-8d6e844f5964a7223017.js"/><link as="fetch" rel="preload" href="/okidoc/page-data/okidoc-site-md-components/page-data.json" crossorigin="anonymous"/></head><body><noscript id="gatsby-noscript">This app works best with JavaScript enabled.</noscript><div id="___gatsby"><div style="outline:none" tabindex="-1" role="group" id="gatsby-focus-wrapper"><div class="header"><div class="logo-wrapper"><a href="/okidoc/"><img src="/okidoc/static/logo-d62a1c6cc6ffb4600077b583c56b33f0.png" alt="logo" class="logo"/></a></div><a href="https://github.com/wix/okidoc" target="_blank" rel="noopener noreferrer" class="header-module--githubLink--31ZQG"><span>GitHub</span></a></div><div id="nav-button" class=""><span>NAV<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAAAnRSTlMAAHaTzTgAAAAZSURBVHgBYxgswBIIsLFGrIJRBaMKBh4AAE3cQCEvEU3+AAAAAElFTkSuQmCC" alt="Navbar"/></span></div><div class="toc-wrapper single"></div><div class="page-wrapper simple-layout single-navigation"><div class="content"><h1 id="react-components-inside-markdown"><a href="#react-components-inside-markdown" aria-label="react components inside markdown permalink" class="anchor"><svg aria-hidden="true" focusable="false" height="16" version="1.1" viewBox="0 0 16 16" width="16"><path fill-rule="evenodd" d="M4 9h1v1H4c-1.5 0-3-1.69-3-3.5S2.55 3 4 3h4c1.45 0 3 1.69 3 3.5 0 1.41-.91 2.72-2 3.25V8.59c.58-.45 1-1.27 1-2.09C10 5.22 8.98 4 8 4H4c-.98 0-2 1.22-2 2.5S3 9 4 9zm9-3h-1v1h1c1 0 2 1.22 2 2.5S13.98 12 13 12H9c-.98 0-2-1.22-2-2.5 0-.83.42-1.64 1-2.09V6.25c-1.09.53-2 1.84-2 3.25C6 11.31 7.55 13 9 13h4c1.45 0 3-1.69 3-3.5S14.5 6 13 6z"></path></svg></a>React components inside markdown</h1>
-<p>To use react components inside markdown, create components map and <code class="language-text">mdComponents</code> prop inside <code class="language-text">./site.yml</code>:</p>
+<p>To use react components inside markdown, create a components map file and add <code class="language-text">mdComponents</code> prop inside <code class="language-text">./site.yml</code>:</p>
 <div class="gatsby-highlight" data-language="yaml"><pre class="language-yaml"><code class="language-yaml"><span class="token comment"># ./site.yml</span>
 <span class="token punctuation">...</span>
 <span class="token key atrule">mdComponents</span><span class="token punctuation">:</span>
-  <span class="token comment"># path to react components map</span>
+  <span class="token comment"># path to the react components map</span>
   <span class="token key atrule">path</span><span class="token punctuation">:</span> ./docs/playground<span class="token punctuation">-</span>components.js
 
-  <span class="token comment"># [optional] links to external styles. Will be added to html head.</span>
+  <span class="token comment"># [optional] links to external styles. Will be added to the html head tag.</span>
   <span class="token key atrule">externalStyles</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> https<span class="token punctuation">:</span>//example.com/component@1.10.2/dist/component.css
 
-  <span class="token comment"># [optionsl] links to external scripts. Will be added to end of html body.</span>
+  <span class="token comment"># [optionsl] links to external scripts. Will be added at the end of html body.</span>
   <span class="token key atrule">externalScripts</span><span class="token punctuation">:</span>
     <span class="token punctuation">-</span> https<span class="token punctuation">:</span>//example.com/component@1.10.2/dist/component.bundle.min.js
 <span class="token punctuation">...</span></code></pre></div>
 <blockquote>
-<p><code class="language-text">path</code> should be valid path to <code class="language-text">js</code> file which could be handled by default <a href="https://www.gatsbyjs.org/" target="_blank" rel="nofollow noopener noreferrer">gatsby</a> config.</p>
+<p><code class="language-text">path</code> should be a valid path to a <code class="language-text">js</code> file which could be handled by the default <a href="https://www.gatsbyjs.org/" target="_blank" rel="nofollow noopener noreferrer">gatsby</a> config.</p>
 </blockquote>
 <div class="gatsby-highlight" data-language="js"><pre class="language-js"><code class="language-js"><span class="token comment">// ./docs/playground-components.js</span>
 
@@ -78,9 +78,9 @@
   demo2<span class="token punctuation">:</span> Demo2<span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">;</span></code></pre></div>
 <blockquote>
-<p>NOTE: You could use <a href="https://www.gatsbyjs.org/tutorial/part-two/#css-modules" target="_blank" rel="nofollow noopener noreferrer">css modules</a> and <a href="https://www.gatsbyjs.org/packages/gatsby-plugin-sass/" target="_blank" rel="nofollow noopener noreferrer">sass</a> with your react components inside md.</p>
+<p>NOTE: You can use <a href="https://www.gatsbyjs.org/tutorial/part-two/#css-modules" target="_blank" rel="nofollow noopener noreferrer">css modules</a> and <a href="https://www.gatsbyjs.org/packages/gatsby-plugin-sass/" target="_blank" rel="nofollow noopener noreferrer">sass</a> with your react components inside md.</p>
 </blockquote>
-<p>Then use components in any <code class="language-text">md</code> file:</p>
+<p>Use components in any <code class="language-text">md</code> file:</p>
 <div class="gatsby-highlight" data-language="md"><pre class="language-md"><code class="language-md"><span class="token comment">&lt;!-- index.md --&gt;</span>
 
 <span class="token title important"><span class="token punctuation">#</span> Demo</span>
@@ -90,7 +90,7 @@
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>demo2</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>demo2</span><span class="token punctuation">&gt;</span></span></code></pre></div>
 <blockquote>
 <p>NOTE:
-md components logic is inspired by <a href="https://using-remark.gatsbyjs.org/custom-components/" target="_blank" rel="nofollow noopener noreferrer">rehype-react</a>,
+Logic for md components is inspired by <a href="https://using-remark.gatsbyjs.org/custom-components/" target="_blank" rel="nofollow noopener noreferrer">rehype-react</a>,
 and based on <a href="https://github.com/syntax-tree/hast-to-hyperscript" target="_blank" rel="nofollow noopener noreferrer">hast-to-hyperscript</a>,
-so has the same caveats.</p>
+so has the same <a href="https://github.com/syntax-tree/hast-to-hyperscript#caveats" target="_blank" rel="nofollow noopener noreferrer">caveats</a>.</p>
 </blockquote></div></div></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/okidoc-site-md-components/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"app":["/app-8687c850f043cf425ccb.js"],"component---src-templates-md-js":[],"component---src-pages-index-js":["/component---src-pages-index-js-25d682d841620deeb766.js"],"component---src-pages-404-js":["/component---src-pages-404-js-e6e2e54bb7d91b69d641.js"]};/*]]>*/</script><script src="/okidoc/commons-8d6e844f5964a7223017.js" async=""></script><script src="/okidoc/styles-8df53d365946d03ced06.js" async=""></script><script src="/okidoc/app-8687c850f043cf425ccb.js" async=""></script><script src="/okidoc/webpack-runtime-5b02addf010a164a97f2.js" async=""></script></body></html>
