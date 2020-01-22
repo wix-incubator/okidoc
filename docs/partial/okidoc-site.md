@@ -1,8 +1,8 @@
-## Build documentation site
+## Build the documentation site
 
 Site logic is based on [gatsby](https://www.gatsbyjs.org/docs/).
 
-Instead of default gatsby directory `src/pages`, **use your docs path** ([example](https://github.com/wix/playable/tree/master/docs)):
+Instead of the default gatsby directory `src/pages`, make sure to **use your docs path** ([example](https://github.com/wix/playable/tree/master/docs)):
 
 ```
 .
@@ -14,23 +14,23 @@ Instead of default gatsby directory `src/pages`, **use your docs path** ([exampl
 └── ...
 ```
 
-> IMPORTANT: For site index page use `index.md` file
+> IMPORTANT: Use `index.md` file for the site index page
 > ([example](https://github.com/wix/playable/tree/master/docs/index.md)).
-> It is **required** file in your documentation directory.
-> Other pages are available by file name without `.md` extension.
+> It's a **required** file in your documentation directory.
+> Other pages are available by file name without the `.md` extension.
 
 > Only `md` files are served by `okidoc-site`.
 
 ### Configure
 
-To configure your site, use yaml config (default config path is `./site.yml`):
+To configure your site, use the yaml config (default config path is `./site.yml`):
 
 ```yaml
-# Markdown files path
-# put index.md with content for site index page
+# Path for markdown files
+# add index.md with content for the site index page
 docsPath: ./docs
 
-# [optional] path for site build. Default path is `./site`
+# [optional] path for the site build. Default is `./site`
 distPath: ./sitedist
 
 config:
@@ -51,7 +51,7 @@ config:
 mdComponents:
   path: ./docs/playground-components.js
 
-# [optional] navigation config. Use if you need more than one page in navigation block
+# [optional] navigation config. Use this if you need more than one page in the navigation block
 navigation:
   - path: /config
     title: Configuration
@@ -69,25 +69,25 @@ navigation:
 
 ### Develop/Build
 
-Run `okidoc-site` script
+Run the `okidoc-site` script
 
 ```sh
 $ okidoc-site develop ./site.yml
 ```
 
-Site will start a hot-reloading development environment accessible at localhost:8000
+This will launch a hot-reloading development environment accessible at [localhost:8000](http://localhost:8000)
 
 ```sh
 $ okidoc-site build ./site.yml
 ```
 
-Will perform an optimized production build for your site generating static HTML and per-route JavaScript code bundles.
+This will perform an optimized production build for your site generating static HTML and per-route JavaScript code bundles.
 
-Read gatsby [docs](https://www.gatsbyjs.org/docs/) for more information
+Read on gatsby [docs](https://www.gatsbyjs.org/docs/) for more information
 
 ### Deploy
 
-If you use github for your repository, the easiest way to deploy site is to use [gh-pages](https://github.com/tschaub/gh-pages) library:
+If you use GitHub to host your repository, the easiest way to deploy your site is to use the [gh-pages](https://github.com/tschaub/gh-pages) library:
 
 ```json
 "scripts": {
@@ -96,4 +96,4 @@ If you use github for your repository, the easiest way to deploy site is to use 
 }
 ```
 
-For more deploy options read gatsby [docs](https://www.gatsbyjs.org/docs/deploy-gatsby/)
+For more deploy options read the gatsby [docs](https://www.gatsbyjs.org/docs/deploy-gatsby/)

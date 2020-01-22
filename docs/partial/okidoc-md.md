@@ -2,7 +2,7 @@
 
 ### Define what to document
 
-Add `@doc TAG_NAME` tag to [JSDoc](http://usejsdoc.org) of class or function
+Add `@doc TAG_NAME` [JSDoc](http://usejsdoc.org) tags to your classes or functions
 
 ```typescript
 /**
@@ -29,18 +29,18 @@ function subscribe(eventName: string, fn: Function) {}
 
 ### Configure
 
-Add yaml config (default config path is `./docs.yml`):
+Add a yaml config (default config path is `./docs.yml`):
 
 ```yaml
 # Get files using `entry` or/and `glob` (could be `.js` or `.ts` files),
-# find api methods by `@doc UI` tag in JSDoc and generate markdown to `partial/ui.md` file.
+# find api methods by searching for `@doc UI` JSDoc tags and generate markdown into a `partial/ui.md` file.
 - path: partial/ui.md
   title: UI API Methods
   # [optional] if provided, only `entry` file dependencies will be parsed
   entry: src/index.ts
-  # [optional] required if `entry` not provided
+  # [optional] required if `entry` is not provided
   glob: src/**/*.ts
-  # tag name have to match `@doc UI` in JSDoc
+  # tag name has to match `@doc UI` in JSDoc
   tag: UI
 
 - path: partial/events.md
@@ -49,19 +49,19 @@ Add yaml config (default config path is `./docs.yml`):
   tag: Events
 ```
 
-> NOTE: With `entry` option, all dependency file source will be parsed for doc. Not only imported/exported part.
+> NOTE: With the `entry` option specified, all source code of the dependency file will be parsed, not just the imported/exported part.
 
 ### Execute
 
-Run `okidoc-md` script
+Run the `okidoc-md` script.
 
 ```sh
 $ okidoc-md ./docs.yml ./docs
 ```
 
-It will generates docs markdown using configuration from `./docs.yml` and put them to `./docs` directory
+This will generate the docs markdown using configuration from `./docs.yml` and put them into `./docs` directory.
 
-> NOTE: `./docs.yml` and `./docs` are default values for `configPath` and `outputDir` arguments and can be omitted.
+> NOTE: `./docs.yml` and `./docs` are default values for `configPath` and `outputDir` arguments, respectively, and can be omitted.
 > Run `okidoc-md --help` for help.
 
-To extract api methods with custom rule use [visitor prop](./okidoc-md-visitor) in `docs.yml`
+To extract api methods with a custom rule, use [visitor prop](./okidoc-md-visitor) in `docs.yml`
