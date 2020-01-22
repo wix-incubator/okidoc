@@ -1,5 +1,5 @@
 ---
-title: 'React components inside markdown'
+title: "React components inside markdown"
 layout: simple
 ---
 
@@ -9,7 +9,7 @@ To use react components inside markdown, create a components map file and add `m
 
 ```yaml
 # ./site.yml
----
+...
 mdComponents:
   # path to the react components map
   path: ./docs/playground-components.js
@@ -21,6 +21,7 @@ mdComponents:
   # [optionsl] links to external scripts. Will be added at the end of html body.
   externalScripts:
     - https://example.com/component@1.10.2/dist/component.bundle.min.js
+...
 ```
 
 > `path` should be a valid path to a `js` file which could be handled by the default [gatsby](https://www.gatsbyjs.org/) config.
