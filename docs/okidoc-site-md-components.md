@@ -62,4 +62,4 @@ Use components in any `md` file:
 > NOTE:
 > Logic for md components is inspired by [rehype-react](https://using-remark.gatsbyjs.org/custom-components/),
 > and based on [hast-to-hyperscript](https://github.com/syntax-tree/hast-to-hyperscript),
-> so has the same caveats.
+> so has the same [caveats](https://github.com/syntax-tree/hast-to-hyperscript#caveats).
