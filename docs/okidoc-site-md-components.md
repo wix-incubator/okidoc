@@ -1,5 +1,5 @@
 ---
-title: "React components inside markdown"
+title: 'React components inside markdown'
 layout: simple
 ---
 
@@ -9,7 +9,7 @@ To use react components inside markdown, create a components map file and add `m
 
 ```yaml
 # ./site.yml
-...
+---
 mdComponents:
   # path to the react components map
   path: ./docs/playground-components.js
@@ -21,7 +21,6 @@ mdComponents:
   # [optionsl] links to external scripts. Will be added at the end of html body.
   externalScripts:
     - https://example.com/component@1.10.2/dist/component.bundle.min.js
-...
 ```
 
 > `path` should be a valid path to a `js` file which could be handled by the default [gatsby](https://www.gatsbyjs.org/) config.
@@ -62,4 +61,4 @@ Use components in any `md` file:
 > NOTE:
 > Logic for md components is inspired by [rehype-react](https://using-remark.gatsbyjs.org/custom-components/),
 > and based on [hast-to-hyperscript](https://github.com/syntax-tree/hast-to-hyperscript),
-> so has the same [caveats](https://github.com/syntax-tree/hast-to-hyperscript#caveats).
+> so has the same [caveats](https://using-remark.gatsbyjs.org/custom-components/#caveats).
