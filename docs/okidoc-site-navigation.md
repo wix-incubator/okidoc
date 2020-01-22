@@ -5,7 +5,7 @@ layout: simple
 
 # Documentation site navigation
 
-To configure your site navigation, use config `navigation` field:
+To configure your site navigation, use the config `navigation` field:
 
 ```yaml
 navigation:
@@ -15,9 +15,9 @@ navigation:
    title: Methods
 ```
 
-> `path` property is path to markdown file (without `.md` extension) inside `./docs` directory
+> the `path` property defines path to the markdown file (without `.md` extension) inside `./docs` directory
 
-To add nested items on navigation item, use `items` prop:
+To add nested items to a parent navigation item, use the `items` prop:
 
 ```yaml
 navigation:
@@ -35,4 +35,4 @@ navigation:
           ...
 ```
 
-> if nested `items` array not provided on navigation item, `path` property is required
+> if a nested `items` array is not provided, then a `path` property is required

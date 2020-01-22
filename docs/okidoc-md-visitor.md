@@ -5,7 +5,7 @@ layout: simple
 
 # Custom api visitor
 
-To extract api methods with custom rule use `visitor` prop in `docs.yml` and visitor code:
+To extract api methods using a custom rule, use the `visitor` prop in `docs.yml` and the visitor code:
 
 ```yaml
 - path: public-methods.md
@@ -28,7 +28,7 @@ function createApiVisitor(enter) {
 }
 
 function createApiClassMethod(nodeFromVisitor) {
-  // return ast of cleaned up method with JSDoc and empty body
+  // return ast of a cleaned up method with JSDoc and empty body
 }
 
 module.exports = {
@@ -41,7 +41,7 @@ Custom visitor example:
 
 - [playerApiVisitor](https://github.com/wix/playable/blob/master/scripts/documentation/playerApiVisitor.js)
 
-Read about visitors:
+Read more about visitors:
 
 - https://github.com/thejameskyle/babel-handbook/blob/master/translations/en/plugin-handbook.md#toc-visitors
 - https://github.com/babel/babel/blob/master/packages/babel-traverse/src/visitors.js
