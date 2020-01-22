@@ -11,7 +11,7 @@
 </h1>
 
 <p align="center">
-  Tool to document your code easy and flexible
+  A flexible tool to document your code easily
   <br />
   https://wix.github.io/okidoc/
 </p>
