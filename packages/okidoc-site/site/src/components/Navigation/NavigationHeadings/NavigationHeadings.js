@@ -14,24 +14,23 @@ function NavigationHeadings({ headings }) {
           <a href={link.to} className={classNames('toc-link', 'toc-h1')}>
             {link.value}
           </a>
-          {link.children &&
-            link.children.length > 0 && (
-              <ul className="toc-list-h2">
-                {link.children.map(childLink => (
-                  <li key={childLink.to}>
-                    <a
-                      href={childLink.to}
-                      className={classNames(
-                        'toc-link',
-                        childLink.depth < 3 ? 'toc-h2' : 'toc-h3',
-                      )}
-                    >
-                      {childLink.value}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
+          {link.children && link.children.length > 0 && (
+            <ul className="toc-list-h2">
+              {link.children.map(childLink => (
+                <li key={childLink.to}>
+                  <a
+                    href={childLink.to}
+                    className={classNames(
+                      'toc-link',
+                      childLink.depth < 3 ? 'toc-h2' : 'toc-h3',
+                    )}
+                  >
+                    {childLink.value}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          )}
         </li>
       ))}
     </div>
