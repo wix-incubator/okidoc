@@ -27,10 +27,8 @@ function cleanUpFunction(node, { identifierName, JSDocCommentValue } = {}) {
       Removes generic constraint, because they can't be parsed by documentation.js
       `function<T extends string>(param: T): T`
      */
-    node.typeParameters.params = node.typeParameters.params.map(typeParam => {
+    node.typeParameters.params.forEach(typeParam => {
       typeParam.constraint = undefined;
-
-      return typeParam;
     });
   }
 
@@ -39,7 +37,7 @@ function cleanUpFunction(node, { identifierName, JSDocCommentValue } = {}) {
       Generates conditional types for function's params in documentation.js compatible format
       `function<T>(param: T extends string ? boolean : number): void`
      */
-    node.params = node.params.map(param => {
+    node.params.forEach(param => {
       const paramTypeAnnotation = param.typeAnnotation?.typeAnnotation;
       if (paramTypeAnnotation?.type === 'TSConditionalType') {
         param.typeAnnotation.typeAnnotation = {
@@ -50,8 +48,6 @@ function cleanUpFunction(node, { identifierName, JSDocCommentValue } = {}) {
           },
         };
       }
-
-      return param;
     });
   }
 
