@@ -165,25 +165,37 @@ describe('buildDocumentation', () => {
     ).toMatchSnapshot();
   });
 
-  it('should show readable error from `documentation.js`', async () => {
-    // NOTE: https://github.com/niieani/typescript-vs-flowtype#bounded-polymorphism
+  it('should ignore generic constraints', async () => {
     const sourceCode = `
       /**
       * @doc UI
       */
-      function fooGood<T extends { x: number }>(obj: T): T {}
+      function fooGood<T extends string>(obj: T): T {}
     `;
 
-    expect.assertions(1);
-
-    try {
+    expect(
       await buildDocumentation({
         source: sourceCode,
         tag: 'UI',
         title: 'Documentation',
-      });
-    } catch (e) {
-      expect(e).toMatchSnapshot();
-    }
+      }),
+    ).toMatchSnapshot();
+  });
+
+  it('should handle conditional types', async () => {
+    const sourceCode = `
+      /**
+      * @doc UI
+      */
+      function fooGood<T>(obj: T extends string ? boolean : number): T {}
+    `;
+
+    expect(
+      await buildDocumentation({
+        source: sourceCode,
+        tag: 'UI',
+        title: 'Documentation',
+      }),
+    ).toMatchSnapshot();
   });
 });

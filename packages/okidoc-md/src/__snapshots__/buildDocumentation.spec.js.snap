@@ -40,10 +40,110 @@ exports[`buildDocumentation should build documentation for functions  1`] = `
 "
 `;
 
+exports[`buildDocumentation should handle conditional types 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Documentation
+
+## fooGood()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>obj</code>
+        </td>
+        <td>
+            <div class=\\"type\\"><code>\\"T extends string ? boolean : number\\"</code></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+        </td>
+        <td>
+            <div class=\\"type\\">T</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+"
+`;
+
 exports[`buildDocumentation should handle optional method in interface, issue #66 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
 # Documentation
+"
+`;
+
+exports[`buildDocumentation should ignore generic constraints 1`] = `
+"<!-- Generated automatically. Update this documentation by updating the source code. -->
+
+# Documentation
+
+## fooGood()
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">ARGUMENTS</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+          <code>obj</code>
+        </td>
+        <td>
+            <div class=\\"type\\">T</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class=\\"method-list\\">
+  <table>
+    <thead>
+      <tr>
+        <th class=\\"title\\">RETURN VALUE</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class=\\"param\\">
+        </td>
+        <td>
+            <div class=\\"type\\">T</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 "
 `;
 
@@ -87,15 +187,6 @@ get clock class
   </table>
 </div>
 "
-`;
-
-exports[`buildDocumentation should show readable error from \`documentation.js\` 1`] = `
-[SyntaxError: "Documentation" documentation source - Unexpected token, expected , (2:19)
-  1 | /** */
-> 2 | function fooGood<T extends {
-    |                   ^
-  3 |   x: number;
-  4 | }>(obj: T): T {}]
 `;
 
 exports[`buildDocumentation should support jsx syntax 1`] = `

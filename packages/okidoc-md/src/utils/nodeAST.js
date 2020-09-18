@@ -1,4 +1,5 @@
 import * as t from '@babel/types';
+import generate from '@babel/generator';
 
 import { createJSDocCommentValue, getJSDocCommentValue } from './JSDocAST';
 
@@ -20,6 +21,39 @@ function cleanUpFunction(node, { identifierName, JSDocCommentValue } = {}) {
 
   node.decorators = [];
   node.body = t.blockStatement([]);
+
+  if (node.typeParameters) {
+    /*
+      Removes generic constraint, because they can't be parsed by documentation.js
+      `function<T extends string>(param: T): T`
+     */
+    node.typeParameters.params = node.typeParameters.params.map(typeParam => {
+      typeParam.constraint = undefined;
+
+      return typeParam;
+    });
+  }
+
+  if (node.params) {
+    /*
+      Generates conditional types for function's params in documentation.js compatible format
+      `function<T>(param: T extends string ? boolean : number): void`
+     */
+    node.params = node.params.map(param => {
+      const paramTypeAnnotation = param.typeAnnotation?.typeAnnotation;
+      if (paramTypeAnnotation?.type === 'TSConditionalType') {
+        param.typeAnnotation.typeAnnotation = {
+          type: 'TSTypeReference',
+          typeName: {
+            type: 'Identifier',
+            name: `"${generate(paramTypeAnnotation).code}"`,
+          },
+        };
+      }
+
+      return param;
+    });
+  }
 
   cleanUpNodeJSDoc(node, JSDocCommentValue);
 }

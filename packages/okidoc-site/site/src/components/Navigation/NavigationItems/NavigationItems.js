@@ -14,8 +14,9 @@ function NavigationItems({ items }) {
             // eslint-disable-next-line
             <a>{item.title}</a>
           )}
-          {item.items &&
-            item.items.length && <NavigationItems items={item.items} />}
+          {item.items && item.items.length && (
+            <NavigationItems items={item.items} />
+          )}
         </li>
       ))}
     </ul>
