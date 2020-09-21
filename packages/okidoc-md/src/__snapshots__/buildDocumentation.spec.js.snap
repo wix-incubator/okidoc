@@ -189,6 +189,15 @@ get clock class
 "
 `;
 
+exports[`buildDocumentation should show readable error from \`documentation.js\` 1`] = `
+[SyntaxError: Unexpected token, expected "," (5:30)
+  3 |       * @doc UI
+  4 |       */
+> 5 |       function fooGood<T>(obj T): T {}
+    |                              ^
+  6 |     ]
+`;
+
 exports[`buildDocumentation should support jsx syntax 1`] = `
 "<!-- Generated automatically. Update this documentation by updating the source code. -->
 
