@@ -198,4 +198,25 @@ describe('buildDocumentation', () => {
       }),
     ).toMatchSnapshot();
   });
+
+  it('should show readable error from `documentation.js`', async () => {
+    const sourceCode = `
+      /**
+      * @doc UI
+      */
+      function fooGood<T>(obj T): T {}
+    `;
+
+    expect.assertions(1);
+
+    try {
+      await buildDocumentation({
+        source: sourceCode,
+        tag: 'UI',
+        title: 'Documentation',
+      });
+    } catch (e) {
+      expect(e).toMatchSnapshot();
+    }
+  });
 });
